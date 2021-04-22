@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+<paragraph>
+<sentence id="1">
+  <token id="t1.1" begin="0" end="5" form="Hello" lemma="hello" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="06632511-n" >
+  </token>
+  <token id="t1.2" begin="6" end="11" form="world" lemma="world" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="09466280-n" >
+  </token>
+  <constituents>
+    <node label="n-chunk" >
+      <node leaf="1" token="t1.1" word="Hello" />
+      <node head="1" label="n-chunk" >
+        <node leaf="1" head="1" token="t1.2" word="world" />
+      </node>
+    </node>
+  </constituents>
+  <dependencies>
+    <depnode token="t1.2" function="ROOT" word="world" >
+      <depnode token="t1.1" function="NMOD" word="Hello" />
+    </depnode>
+  </dependencies>
+</sentence>
+</paragraph>
+</document>

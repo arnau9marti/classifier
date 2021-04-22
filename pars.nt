@@ -1,0 +1,232 @@
+<http://www.ai4eu.eu/ontologies/ai4eu-categories> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> <http://purl.org/dc/terms/created> "2020-06-26T11:16:50.576+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> <http://www.w3.org/2000/01/rdf-schema#label> "Technical Categories"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> <http://purl.org/dc/terms/created> "2020-06-26T11:17:07.506+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> <http://www.w3.org/2000/01/rdf-schema#label> "Business Categories"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ExplainableAI> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ExplainableAI> <http://purl.org/dc/terms/created> "2020-06-26T11:17:54.865+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ExplainableAI> <http://www.w3.org/2000/01/rdf-schema#label> "Explainable AI"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ExplainableAI> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ExplainableAI> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#VerifiableAI> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#VerifiableAI> <http://purl.org/dc/terms/created> "2020-06-26T11:22:26.542+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#VerifiableAI> <http://www.w3.org/2000/01/rdf-schema#label> "Verifiable AI"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#VerifiableAI> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#VerifiableAI> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#PhysicalAI> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#PhysicalAI> <http://purl.org/dc/terms/created> "2020-06-26T11:22:46.133+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#PhysicalAI> <http://www.w3.org/2000/01/rdf-schema#label> "Physical AI"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#PhysicalAI> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#PhysicalAI> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IntegrativeAI> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IntegrativeAI> <http://purl.org/dc/terms/created> "2020-06-26T11:23:06.620+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IntegrativeAI> <http://www.w3.org/2000/01/rdf-schema#label> "Integrative AI"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IntegrativeAI> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IntegrativeAI> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CollaborativeAI> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CollaborativeAI> <http://purl.org/dc/terms/created> "2020-06-26T11:23:25.563+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CollaborativeAI> <http://www.w3.org/2000/01/rdf-schema#label> "Collaborative AI"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CollaborativeAI> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CollaborativeAI> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AlgorithmSelection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AlgorithmSelection> <http://purl.org/dc/terms/created> "2020-06-26T11:24:02.480+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AlgorithmSelection> <http://www.w3.org/2000/01/rdf-schema#label> "Algorithm Selection"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AlgorithmSelection> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AlgorithmSelection> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputationalLogic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputationalLogic> <http://purl.org/dc/terms/created> "2020-06-26T11:24:22.164+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputationalLogic> <http://www.w3.org/2000/01/rdf-schema#label> "Computational Logic"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputationalLogic> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputationalLogic> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputerVision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputerVision> <http://purl.org/dc/terms/created> "2020-06-26T11:24:43.568+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputerVision> <http://www.w3.org/2000/01/rdf-schema#label> "Computer Vision"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputerVision> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ComputerVision> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ConstraintsSAT> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ConstraintsSAT> <http://purl.org/dc/terms/created> "2020-06-26T11:25:08.029+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ConstraintsSAT> <http://www.w3.org/2000/01/rdf-schema#label> "Constraints and SAT"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ConstraintsSAT> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ConstraintsSAT> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DecisionSupportSystems> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DecisionSupportSystems> <http://purl.org/dc/terms/created> "2020-06-26T11:25:36.420+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DecisionSupportSystems> <http://www.w3.org/2000/01/rdf-schema#label> "Decision Support Systems"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DecisionSupportSystems> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DecisionSupportSystems> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HeuristicSearch> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HeuristicSearch> <http://purl.org/dc/terms/created> "2020-06-26T11:26:36.581+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HeuristicSearch> <http://www.w3.org/2000/01/rdf-schema#label> "Heuristic Search"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HeuristicSearch> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HeuristicSearch> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#KnowledgeRepresentation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#KnowledgeRepresentation> <http://purl.org/dc/terms/created> "2020-06-26T11:27:04.098+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#KnowledgeRepresentation> <http://www.w3.org/2000/01/rdf-schema#label> "Knowledge Representation"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#KnowledgeRepresentation> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#KnowledgeRepresentation> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MachineLearning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MachineLearning> <http://purl.org/dc/terms/created> "2020-06-26T11:27:26.361+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MachineLearning> <http://www.w3.org/2000/01/rdf-schema#label> "Machine Learning"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MachineLearning> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MachineLearning> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MultiAgentSystems> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MultiAgentSystems> <http://purl.org/dc/terms/created> "2020-06-26T11:27:50.163+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MultiAgentSystems> <http://www.w3.org/2000/01/rdf-schema#label> "Multi-agent Systems"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MultiAgentSystems> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#MultiAgentSystems> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DeepLearning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DeepLearning> <http://purl.org/dc/terms/created> "2020-06-26T11:28:26.104+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DeepLearning> <http://www.w3.org/2000/01/rdf-schema#label> "Deep Learning"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DeepLearning> <http://www.w3.org/2004/02/skos/core#broader> <http://www.ai4eu.eu/ontologies/ai4eu-categories#MachineLearning> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DeepLearning> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Planning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Planning> <http://purl.org/dc/terms/created> "2020-06-26T11:28:49.146+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Planning> <http://www.w3.org/2000/01/rdf-schema#label> "Planning"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Planning> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Planning> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#NLP> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#NLP> <http://purl.org/dc/terms/created> "2020-06-26T11:29:07.961+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#NLP> <http://www.w3.org/2000/01/rdf-schema#label> "Natural Language Processing"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#NLP> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#NLP> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SpeechAudioProcessing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SpeechAudioProcessing> <http://purl.org/dc/terms/created> "2020-06-26T11:29:31.684+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SpeechAudioProcessing> <http://www.w3.org/2000/01/rdf-schema#label> "Speech / Audio Processing"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SpeechAudioProcessing> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SpeechAudioProcessing> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DialogueProcessing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DialogueProcessing> <http://purl.org/dc/terms/created> "2020-06-26T11:29:57.033+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DialogueProcessing> <http://www.w3.org/2000/01/rdf-schema#label> "Dialogue Processing"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DialogueProcessing> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#DialogueProcessing> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ProbabilisticModels> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ProbabilisticModels> <http://purl.org/dc/terms/created> "2020-06-26T11:30:17.498+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ProbabilisticModels> <http://www.w3.org/2000/01/rdf-schema#label> "Probabilistic Models"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ProbabilisticModels> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ProbabilisticModels> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SemanticWeb> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SemanticWeb> <http://purl.org/dc/terms/created> "2020-06-26T11:30:36.222+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SemanticWeb> <http://www.w3.org/2000/01/rdf-schema#label> "Semantic Web"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SemanticWeb> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SemanticWeb> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Robotics> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Robotics> <http://purl.org/dc/terms/created> "2020-06-26T11:30:48.355+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Robotics> <http://www.w3.org/2000/01/rdf-schema#label> "Robotics"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Robotics> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Robotics> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Reasoning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Reasoning> <http://purl.org/dc/terms/created> "2020-06-26T11:31:02.109+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Reasoning> <http://www.w3.org/2000/01/rdf-schema#label> "Reasoning"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Reasoning> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Reasoning> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#TechnicalCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Health> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Health> <http://purl.org/dc/terms/created> "2020-06-26T11:35:38.266+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Health> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Health"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Health> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Health> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Agriculture> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Agriculture> <http://purl.org/dc/terms/created> "2020-06-26T11:35:55.847+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Agriculture> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Agriculture"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Agriculture> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Agriculture> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CitizenServicesEducation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CitizenServicesEducation> <http://purl.org/dc/terms/created> "2020-06-26T11:36:40.664+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CitizenServicesEducation> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Citizen Services and Education"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CitizenServicesEducation> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#CitizenServicesEducation> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RoboticsSector> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RoboticsSector> <http://purl.org/dc/terms/created> "2020-06-26T11:37:17.405+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RoboticsSector> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Robotics"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RoboticsSector> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RoboticsSector> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IndustryManufacturing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IndustryManufacturing> <http://purl.org/dc/terms/created> "2020-06-26T11:37:39.562+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IndustryManufacturing> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Industry and Manufacturing"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IndustryManufacturing> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IndustryManufacturing> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AutonomousDrivingMobility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AutonomousDrivingMobility> <http://purl.org/dc/terms/created> "2020-06-26T11:38:05.813+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AutonomousDrivingMobility> <http://www.w3.org/2000/01/rdf-schema#label> "AI in Autonomous Driving and Mobility"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AutonomousDrivingMobility> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AutonomousDrivingMobility> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ArtMusic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ArtMusic> <http://purl.org/dc/terms/created> "2020-06-26T11:38:24.062+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ArtMusic> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Art and Music"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ArtMusic> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#ArtMusic> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#EnvironmentSustainability> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#EnvironmentSustainability> <http://purl.org/dc/terms/created> "2020-06-26T11:39:34.232+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#EnvironmentSustainability> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Environment and Sustainability"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#EnvironmentSustainability> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#EnvironmentSustainability> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IoT> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IoT> <http://purl.org/dc/terms/created> "2020-06-26T11:39:50.959+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IoT> <http://www.w3.org/2000/01/rdf-schema#label> "AI for IoT"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IoT> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#IoT> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Cybersecurity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Cybersecurity> <http://purl.org/dc/terms/created> "2020-06-26T11:40:14.718+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Cybersecurity> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Cybersecurity"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Cybersecurity> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Cybersecurity> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Media> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Media> <http://purl.org/dc/terms/created> "2020-06-26T11:40:29.496+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Media> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Media"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Media> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Media> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Telecommunications> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Telecommunications> <http://purl.org/dc/terms/created> "2020-06-26T11:43:15.968+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Telecommunications> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Telecommunications"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Telecommunications> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Telecommunications> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#FinanceInsurance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#FinanceInsurance> <http://purl.org/dc/terms/created> "2020-06-26T11:43:36.348+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#FinanceInsurance> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Finance and Insurance"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#FinanceInsurance> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#FinanceInsurance> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Law> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Law> <http://purl.org/dc/terms/created> "2020-06-26T11:43:59.887+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Law> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Law"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Law> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Law> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RetailECommerce> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RetailECommerce> <http://purl.org/dc/terms/created> "2020-06-26T11:44:24.063+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RetailECommerce> <http://www.w3.org/2000/01/rdf-schema#label> "AI in Retail and e-Commerce"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RetailECommerce> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#RetailECommerce> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SoftwareEngineering> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SoftwareEngineering> <http://purl.org/dc/terms/created> "2020-06-26T11:44:46.820+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SoftwareEngineering> <http://www.w3.org/2000/01/rdf-schema#label> "AI in Software Engineering"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SoftwareEngineering> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#SoftwareEngineering> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HumanResources> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HumanResources> <http://purl.org/dc/terms/created> "2020-06-26T11:45:06.285+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HumanResources> <http://www.w3.org/2000/01/rdf-schema#label> "AI in Human Resources"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HumanResources> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#HumanResources> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TrustPrivacy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TrustPrivacy> <http://purl.org/dc/terms/created> "2020-06-26T11:45:23.484+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TrustPrivacy> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Trust and Privacy"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TrustPrivacy> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#TrustPrivacy> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AmbientIntelligence> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AmbientIntelligence> <http://purl.org/dc/terms/created> "2020-06-26T11:45:43.368+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AmbientIntelligence> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Ambient Intelligence"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AmbientIntelligence> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AmbientIntelligence> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Space> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Space> <http://purl.org/dc/terms/created> "2020-06-26T11:45:55.556+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Space> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Space"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Space> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Space> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AirTrafficManagement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AirTrafficManagement> <http://purl.org/dc/terms/created> "2020-06-26T11:46:18.414+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AirTrafficManagement> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Air Traffic Management"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AirTrafficManagement> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#AirTrafficManagement> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Fashion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Fashion> <http://purl.org/dc/terms/created> "2020-06-26T11:46:35.108+03:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Fashion> <http://www.w3.org/2000/01/rdf-schema#label> "AI for Fashion"@en .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Fashion> <http://www.w3.org/2004/02/skos/core#inScheme> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .
+<http://www.ai4eu.eu/ontologies/ai4eu-categories#Fashion> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://www.ai4eu.eu/ontologies/ai4eu-categories#BusinessCategories> .

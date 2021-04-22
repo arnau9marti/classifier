@@ -1,0 +1,401 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI4EU
+    </title>
+
+    <link rel="icon" href="images/favicon.png" type="image/x-icon"/>
+    <link href="libs/bootstrap_3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/Roboto.css" rel="stylesheet">
+    <!--link href="css/custom-common.css" rel="stylesheet"-->
+    <link href="css/AI4EU-style.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+    <script>
+
+        function checkSessionKey() {
+            $.ajax({
+                type: "GET",
+                url: "/logincontext?sessionDataKey=" + getParameterByName("sessionDataKey") + "&relyingParty=" + getParameterByName("relyingParty") + "&tenantDomain=" + getParameterByName("tenantDomain"),
+                success: function (data) {
+                    if (data && data.status == 'redirect' && data.redirectUrl && data.redirectUrl.length > 0) {
+                        window.location.href = data.redirectUrl;
+                    }
+                }
+            });
+        }
+
+
+        function getParameterByName(name, url) {
+            if (!url) {
+                url = window.location.href;
+            }
+            name = name.replace(/[\[\]]/g, '\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return "";
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+    </script>
+</head>
+
+<body onload="checkSessionKey()">
+
+<div class="layout">
+
+   
+<header id="header" class="header">
+
+    <div class="logo logo--ai4eu">
+        <a href="https://www.ai4eu.eu" class="logo__link" title="Home" aria-label="Home">
+            <img src="https://www.ai4eu.eu/sites/default/files/ai4eu.png" class="img-responsive" alt="AI4EU"/>
+        </a>
+    </div>
+    <nav class="main-nav">
+        <ul class="main-nav__list">
+        </ul>
+    </nav>
+    <nav class="user-nav">
+        <ul class="user-nav__list">
+            <li class="user-nav__item hidden">
+                <a href="login.html" class="user-nav__link">Log in / Register</a>
+            </li>
+        </ul>
+    </nav>
+    <nav class="user-nav">
+        <ul class="user-nav__list">
+            <li class="user-nav__item hidden">
+                <a href="login.html" class="user-nav__link">Log in / Register</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+    <main id="content" class="content">
+        <section class="section section--grey">
+            <!-- page content -->
+            <div class="container-fluid body-wrapper">
+                <div class="row justify-content-center">
+                    <!-- content -->
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-2 col-lg-4 wr-content wr-login">
+                        <h3 class="block__title">
+                            
+                            Sign In
+                            
+                        </h3>
+                        <div class="block__content">
+                            
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+        function submitCredentials (e) {
+            e.preventDefault();
+            var userName = document.getElementById("username");
+            userName.value = userName.value.trim();
+            if(userName.value){
+                document.getElementById("loginForm").submit();
+            }
+        }
+</script>
+
+
+
+
+<form action="../commonauth" method="post" id="loginForm" class="form">
+
+    
+
+    
+
+    
+    <div class="form__item">
+	<div class="input">
+           <input id="username" name="username" type="text" value class="form__text" tabindex="0" placeholder="Email" required>
+    	</div>
+    </div>
+    
+    <div class="form__item">
+      <div class="input">
+	    <input id="password" name="password" type="password" class="form__text" placeholder="Password" autocomplete="off">
+      </div>
+    </div>
+    
+    <div class="form__item">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="chkRemember" name="chkRemember">
+                Remember me on this computer
+            </label>
+        </div>
+    </div>
+    <input type="hidden" name="sessionDataKey" value='f821e591-6e9a-4455-a3a2-cc98f55277b9'/>
+    <div class="form__item">
+        <div class="alert alert-info margin-bottom-3 padding-10" role="alert">
+                After a successful sign in, we use a cookie in your browser to track your session. You can refer our
+                <a href="https://www.ai4eu.eu/privacy-policy" target="policy-pane">
+                    Cookie Policy
+                </a>
+                for more details.
+                By signing in, you agree to our
+                <a href="https://www.ai4eu.eu/privacy-policy" target="policy-pane">
+                    Privacy Policy
+                </a>
+        </div>
+    </div>
+
+        <div class="form__actions">
+            <button
+                    class="form__submit btn btn--blue"
+                    type="submit" onclick="submitCredentials(event)">
+                    Sign In
+            </button>
+        </div>
+
+
+    
+
+
+    
+</form>
+
+
+                            
+
+                            
+
+                            
+                            
+
+                        </div>
+                        <!-- /content -->
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-1 col-lg-4">
+                      
+                      <div class="center-xs" id="register">
+                        <h3 class="block__title">Register</h3>
+                        <p>Don&#39;t have an account?</p>
+                        <a id="registerLink" class="btn btn--blue btn--rounded" href="https://myidentity.ai4eu.eu/register">
+                        Register Now
+                        </a>
+                      </div>
+                      
+                      <div class="center-xs" id="forgot">
+                        <h3 class="block__title">Help</h3>
+                        <div class="form__actions">
+                            <div>
+                            
+                            <p>
+                            <a id="passwordRecoverLink" class="btn btn--blue btn--rounded" href="https://is.ai4eu.eu/accountrecoveryendpoint/recoverpassword.do?callback=https%3A%2F%2Fis.ai4eu.eu%3A443%2Fauthenticationendpoint%2Flogin.do%3Fclient_id%3DZBkYfAKUMQU8lqZULkDHfpClB34a%26commonAuthCallerPath%3D%252Foauth2%252Fauthorize%26forceAuth%3Dfalse%26passiveAuth%3Dfalse%26redirect_uri%3Dhttps%253A%252F%252Fwww.ai4eu.eu%252Fopenid-connect%252Fgeneric%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bprofile%26state%3DcFy_jlxALF72jIpYaDHveVblLf2_EI1Sd1kjl7KDk44%26tenantDomain%3Dcarbon.super%26sessionDataKey%3Df821e591-6e9a-4455-a3a2-cc98f55277b9%26relyingParty%3DZBkYfAKUMQU8lqZULkDHfpClB34a%26type%3Doidc%26sp%3Dai4eu-portal%26isSaaSApp%3Dfalse%26authenticators%3DBasicAuthenticator%3ALOCAL">
+                                Forgot 
+                                Password
+                            </a>
+                            </p>
+                            
+                            </div>
+                        </div>
+			<div class="form__actions" style="margin-top: 20px;"><div><p>
+			<a id="confirmationLink" class="btn btn--blue btn--rounded" href="https://myidentity.ai4eu.eu/confirmation">
+                           Resend the confirmation link
+                        </a>
+                        </p></div></div>
+                        <div class="form__actions" style="margin-top: 20px;">
+							<div>
+								<p>
+									<a id="supportLink" class="btn btn--blue btn--rounded" href="https://myidentity.ai4eu.eu/support">Need support </a>
+								</p>                            
+							</div>
+						</div>
+                      </div>
+                      
+                    </div>
+                </div>
+                <!-- /content/body -->
+            </div>
+
+        </section>
+    </main>
+    
+<footer id="footer" class="footer">
+    <div class="footer__first">
+        <div class="logo logo--ai4eu">
+            <a href="https://www.ai4eu.eu" class="logo__link" title="Home" aria-label="Home">
+                <img src="https://www.ai4eu.eu/themes/custom/ai4eu/logo.svg" class="img-responsive footer-logo" alt="AI4EU"/>
+            </a>
+        </div>
+        <nav class="footer-nav">
+            <ul class="footer-nav__list">
+                <li class="footer-nav__item">
+                    <a href="https://www.ai4eu.eu" class="footer-nav__link active">Home</a>
+                </li>
+                <li class="footer-nav__item">
+                    <a href="mailto:contact@ai4eu.eu" class="footer-nav__link">Contact us</a>
+                </li>
+                <li class="footer-nav__item">
+                    <a href="https://www.ai4eu.eu/privacy-policy" class="footer-nav__link">Privacy Policy</a>
+                </li>
+                <li class="footer-nav__item">
+                    <a href="https://www.ai4eu.eu/terms-use" class="footer-nav__link">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="social-media">
+            <ul class="social-media__list">
+                <li class="social-media__item social-media__item--twitter">
+                    <a href="https://twitter.com/ai4eu" class="social-media__link" title="Find AI4EU on Twitter"
+                       aria-label="Find AI4EU on Twitter">
+                        <span class="icon icon--twitter"></span>
+                    </a>
+                </li>
+                <li class="social-media__item social-media__item--linkedin">
+                    <a href="https://www.linkedin.com/company/ai4eu/about/" class="social-media__link" title="Find AI4EU on LinkedIn"
+                       aria-label="Find AI4EU on LinkedIn">
+                        <span class="icon icon--linkedin"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__second">
+        <div class="logo logo--eu">
+            <img src="images/png/logo_eu.png"/>
+        </div>
+        <div class="disclaimer">
+            <p>This project has received funding from the European Union's Horizon 2020 research and innovation
+                programme under grant agreement 825619.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</div>
+
+<script src="libs/jquery_1.11.3/jquery-1.11.3.js"></script>
+<script src="libs/bootstrap_3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.main-link').click(function () {
+            $('.main-link').next().hide();
+            $(this).next().toggle('fast');
+            var w = $(document).width();
+            var h = $(document).height();
+            $('.overlay').css("width", w + "px").css("height", h + "px").show();
+        });
+        $('[data-toggle="popover"]').popover();
+        $('.overlay').click(function () {
+            $(this).hide();
+            $('.main-link').next().hide();
+        });
+
+        
+    });
+
+    function myFunction(key, value, name) {
+        var object = document.getElementById(name);
+        var domain = object.value;
+
+
+        if (domain != "") {
+            document.location = "../commonauth?idp=" + key + "&authenticator=" + value +
+                "&sessionDataKey=f821e591-6e9a-4455-a3a2-cc98f55277b9&domain=" +
+                domain;
+        } else {
+            document.location = "../commonauth?idp=" + key + "&authenticator=" + value +
+                "&sessionDataKey=f821e591-6e9a-4455-a3a2-cc98f55277b9";
+        }
+    }
+
+    function handleNoDomain(key, value) {
+        
+        document.location = "../commonauth?idp=" + key + "&authenticator=" + value +
+            "&sessionDataKey=f821e591-6e9a-4455-a3a2-cc98f55277b9" +
+            "";
+    }
+
+    $('#popover').popover({
+        html: true,
+        title: function () {
+            return $("#popover-head").html();
+        },
+        content: function () {
+            return $("#popover-content").html();
+        }
+    });
+    window.onunload = function () {
+    };
+</script>
+
+<script>
+    function changeUsername(e) {
+        document.getElementById("changeUserForm").submit();
+    }
+</script>
+
+
+
+</body>
+</html>
+
