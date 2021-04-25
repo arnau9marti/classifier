@@ -27,6 +27,8 @@ map<string, vector<string> >  narrowers;
 map<string, vector<string> >  same_as;
 map<string, string> primary_labels;
 
+vector<string> queries;
+
 string eraseSubStr(string mainStr, string toErase, bool brackets)
 {
     size_t pos = mainStr.find(toErase);
@@ -206,9 +208,9 @@ void insert_dep(xml_object_range<xml_node_iterator> childs){
 
         string checkword = word;
 
-        vector<string> targets;
-        if (mode == 1) targets = pars;
-        else targets = cso_topics;
+        vector<string> targets = pars;
+        //if (mode == 1) targets = pars;
+        //else targets = cso_topics;
 
         //SINGLE
         for (int i = 0; i < targets.size(); ++i) {
@@ -326,9 +328,9 @@ int main()
         return -1;
     }
 
-    cout << "1 AI4EU Categories or else for AI4EU + CSO" << endl;
-
-    cin >> mode;
+    //cout << "1 AI4EU Categories or else for AI4EU + CSO" << endl;
+    //cin >> mode;
+    mode = 1;
 
     //AI4EU ONTOLOGY PROCESSING
     cout << "\nProcessing AI4EU ontology data...\n\n";
@@ -509,6 +511,8 @@ int main()
             cout << not_found[i] << endl;
         }
     }
-
+    ofstream outfile ("queries.txt");
+    outfile << "my query here!" << endl;
+    outfile.close();
     return 0;
 }

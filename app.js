@@ -35,8 +35,8 @@ function classify(desc, mode, res) {
     });
 
     // if the program needs input on stdin, you can write to it immediately
-    child.stdin.setEncoding('utf-8');
-    child.stdin.write(mode+"\n");
+    //child.stdin.setEncoding('utf-8');
+    //child.stdin.write(mode+"\n");
 }
 
 function delfile() {
