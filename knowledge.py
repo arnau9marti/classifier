@@ -95,11 +95,10 @@ class App:
         result = tx.run(query, topic_name=topic_name)
         return [row["name"] for row in result]
 
-    #TO DO SIMILARITY MATCHING LEVENSHTEIN: MATCH (t:ns0__Topic) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, "logistics") > 0.9 RETURN t.rdfs__label AS name
     @staticmethod
     def _find_and_return_topic_sim(tx, topic_name):
         query = (
-            "MATCH (t:ns0__Topic) WHERE t.rdfs__label = $topic_name RETURN t.rdfs__label AS name"
+            "MATCH (t:ns0__Topic) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $topic_name) > 0.9 RETURN t.rdfs__label AS name"
         )
         result = tx.run(query, topic_name=topic_name)
         return [row["name"] for row in result]

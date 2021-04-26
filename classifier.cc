@@ -350,6 +350,7 @@ int main()
     cout << check_sim(s1,s2) << endl;
     */
 
+    /*
     //CSO ONTOLOGY PROCESSING
     cout << "\nProcessing CSO ontology data...\n\n";
 
@@ -369,6 +370,7 @@ int main()
     }
 
     map_cso (cso);
+    */
 
     /* cso check
     string out = primary_labels["cyber security"];
@@ -378,7 +380,6 @@ int main()
         cout << out[i] << endl;
     }
     */
-
 
     xml_document doc;
 
@@ -511,8 +512,11 @@ int main()
             cout << not_found[i] << endl;
         }
     }
-    ofstream outfile ("queries.txt");
-    outfile << "my query here!" << endl;
-    outfile.close();
+    ofstream queries_file ("queries.txt");
+    queries_file << "my query here!" << endl;
+    queries_file.close();
+    ofstream tokens_file ("tokens.txt");
+    tokens_file << "my token here!" << endl;
+    tokens_file.close();
     return 0;
 }

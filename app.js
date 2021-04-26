@@ -19,15 +19,17 @@ var categories;
 
 function classify(desc, mode, res) {
     // standard node module
-    var execFile = require('child_process').execFile
+    var exec = require('child_process').exec
 
     // this launches the executable and returns immediately
-    var child = execFile("/Users/arnau/Desktop/classifier/classifier",
+    var child = exec('sh script.sh',
     function (error, stdout, stderr) {
         // This callback is invoked once the child terminates
         // You'd want to check err/stderr as well!
         console.log("Here is the complete output of the program: ");
+        console.log(error)
         console.log(stdout)
+        console.log(stderr)
         categories = stdout;
         
         res.send(categories);
