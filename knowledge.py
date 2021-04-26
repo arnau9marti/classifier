@@ -83,7 +83,7 @@ class App:
 
     def find_topic(self, topic_name):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_topic_exact, topic_name)
+            result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
             for row in result:
                 print("Found topic: {row}".format(row=row))
 
@@ -114,8 +114,15 @@ if __name__ == "__main__":
     #app.find_person("Alice")
     #app.find_topic("artificial intelligence")
     #app.insert_super_topic("artificial_intelligence")
-    app.insert_topic("convolutional_learning", "artificial intelligence")
-    app.find_topic("convolutional_learning")
+    with open("queries.txt") as f:
+        queries = f.readlines()
+    queries = [x.strip() for x in queries]
+
+    #app.insert_topic("convolutional_learning", "artificial intelligence")
+    for x in queries:
+        app.find_topic(x)
+    
+    
     app.close()
 
     #app.delete_topic

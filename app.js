@@ -25,14 +25,15 @@ function classify(desc, mode, res) {
     var child = exec('sh script.sh',
     function (error, stdout, stderr) {
         // This callback is invoked once the child terminates
-        // You'd want to check err/stderr as well!
         console.log("Here is the complete output of the program: ");
-        console.log(error)
+        //console.log(error)
         console.log(stdout)
-        console.log(stderr)
+        //console.log(stderr)
         categories = stdout;
         
-        res.send(categories);
+        //res.send(categories);
+        res.sendFile(path.join(__dirname, 'result.html'));
+
         //liveReloadServer.refresh('/');
     });
 

@@ -2,23 +2,2221 @@
 <document>
 <paragraph>
 <sentence id="1">
-  <token id="t1.1" begin="0" end="5" form="Hello" lemma="hello" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="06632511-n" >
+  <token id="t1.1" begin="0" end="2" form="In" lemma="in" tag="IN" ctag="IN" pos="preposition" >
   </token>
-  <token id="t1.2" begin="6" end="11" form="world" lemma="world" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="09466280-n" >
+  <token id="t1.2" begin="3" end="6" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t1.3" begin="7" end="20" form="cybersecurity" lemma="cybersecurity" tag="NN" ctag="NN" pos="noun" type="common" num="singular" >
+  </token>
+  <token id="t1.4" begin="21" end="29" form="industry" lemma="industry" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00923444-n" >
+  </token>
+  <token id="t1.5" begin="29" end="30" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t1.6" begin="31" end="34" form="IoT" lemma="iot" tag="NP00V00" ctag="NP" pos="noun" type="proper" neclass="other" nec="MISC" >
+  </token>
+  <token id="t1.7" begin="35" end="47" form="applications" lemma="application" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="00949134-n" >
+  </token>
+  <token id="t1.8" begin="48" end="51" form="are" lemma="be" tag="VBP" ctag="VBP" pos="verb" vform="personal" wn="02604760-v" >
+  </token>
+  <token id="t1.9" begin="52" end="62" form="considered" lemma="consider" tag="VBN" ctag="VBN" pos="verb" vform="participle" wn="00690614-v" >
+  </token>
+  <token id="t1.10" begin="63" end="65" form="as" lemma="as" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t1.11" begin="66" end="71" form="cheap" lemma="cheap" tag="JJ" ctag="JJ" pos="adjective" wn="00934199-a" >
+  </token>
+  <token id="t1.12" begin="72" end="81" form="solutions" lemma="solution" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="14589223-n" >
+  </token>
+  <token id="t1.13" begin="82" end="85" form="for" lemma="for" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t1.14" begin="86" end="93" form="variety" lemma="variety" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="05839024-n" >
+  </token>
+  <token id="t1.15" begin="94" end="96" form="of" lemma="of" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t1.16" begin="97" end="100" form="use" lemma="use" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="05149325-n" >
+  </token>
+  <token id="t1.17" begin="101" end="106" form="cases" lemma="case" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="07308889-n" >
+  </token>
+  <token id="t1.18" begin="106" end="107" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t1.19" begin="108" end="111" form="and" lemma="and" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t1.20" begin="112" end="117" form="could" lemma="can" tag="MD" ctag="MD" pos="verb" type="modal" >
+  </token>
+  <token id="t1.21" begin="118" end="120" form="be" lemma="be" tag="VB" ctag="VB" pos="verb" vform="infinitive" wn="02604760-v" >
+  </token>
+  <token id="t1.22" begin="121" end="127" form="easily" lemma="easily" tag="RB" ctag="RB" pos="adverb" type="general" wn="00147876-r" >
+  </token>
+  <token id="t1.23" begin="128" end="136" form="combined" lemma="combine" tag="VBN" ctag="VBN" pos="verb" vform="participle" wn="00394813-v" >
+  </token>
+  <token id="t1.24" begin="137" end="141" form="with" lemma="with" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t1.25" begin="142" end="149" form="machine" lemma="machine" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="03699975-n" >
+  </token>
+  <token id="t1.26" begin="150" end="158" form="learning" lemma="learn" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="00829107-v" >
+  </token>
+  <token id="t1.27" begin="159" end="162" form="and" lemma="and" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t1.28" begin="163" end="173" form="artificial" lemma="artificial" tag="JJ" ctag="JJ" pos="adjective" wn="01571363-a" >
+  </token>
+  <token id="t1.29" begin="174" end="186" form="intelligence" lemma="intelligence" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="06642138-n" >
+  </token>
+  <token id="t1.30" begin="187" end="198" form="in_order_to" lemma="in_order_to" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t1.31" begin="199" end="206" form="develop" lemma="develop" tag="VB" ctag="VB" pos="verb" vform="infinitive" wn="02624263-v" >
+  </token>
+  <token id="t1.32" begin="207" end="212" form="smart" lemma="smart" tag="JJ" ctag="JJ" pos="adjective" wn="00438707-a" >
+  </token>
+  <token id="t1.33" begin="213" end="224" form="maintenance" lemma="maintenance" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00267522-n" >
+  </token>
+  <token id="t1.34" begin="225" end="228" form="and" lemma="and" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t1.35" begin="229" end="240" form="supervision" lemma="supervision" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="01135529-n" >
+  </token>
+  <token id="t1.36" begin="241" end="247" form="models" lemma="model" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="05937112-n" >
+  </token>
+  <token id="t1.37" begin="248" end="251" form="for" lemma="for" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t1.38" begin="252" end="255" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t1.39" begin="256" end="266" form="industrial" lemma="industrial" tag="JJ" ctag="JJ" pos="adjective" wn="02748635-a" >
+  </token>
+  <token id="t1.40" begin="267" end="273" form="assets" lemma="asset" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="05154517-n" >
+  </token>
+  <token id="t1.41" begin="273" end="274" form="." lemma="." tag="Fp" ctag="Fp" pos="punctuation" type="period" >
   </token>
   <constituents>
-    <node label="n-chunk" >
-      <node leaf="1" token="t1.1" word="Hello" />
-      <node head="1" label="n-chunk" >
-        <node leaf="1" head="1" token="t1.2" word="world" />
+    <node head="1" label="sv-coor" >
+      <node label="sv" >
+        <node label="adv" >
+          <node leaf="1" head="1" token="t1.1" word="In" />
+          <node label="sn-chunk" >
+            <node leaf="1" token="t1.2" word="the" />
+            <node head="1" label="n-chunk" >
+              <node leaf="1" token="t1.3" word="cybersecurity" />
+              <node head="1" label="n-chunk" >
+                <node leaf="1" head="1" token="t1.4" word="industry" />
+              </node>
+            </node>
+          </node>
+          <node label="sf-brk" >
+            <node leaf="1" head="1" token="t1.5" word="," />
+          </node>
+        </node>
+        <node label="n-chunk" >
+          <node leaf="1" token="t1.6" word="IoT" />
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t1.7" word="applications" />
+          </node>
+        </node>
+        <node label="vb-be" >
+          <node leaf="1" head="1" token="t1.8" word="are" />
+        </node>
+        <node head="1" label="vb-chunk" >
+          <node leaf="1" head="1" token="t1.9" word="considered" />
+        </node>
+        <node label="sp-chunk" >
+          <node leaf="1" head="1" token="t1.10" word="as" />
+          <node label="n-chunk" >
+            <node label="attrib" >
+              <node leaf="1" head="1" token="t1.11" word="cheap" />
+            </node>
+            <node head="1" label="n-chunk" >
+              <node leaf="1" head="1" token="t1.12" word="solutions" />
+            </node>
+          </node>
+        </node>
+        <node label="sp-chunk" >
+          <node leaf="1" head="1" token="t1.13" word="for" />
+          <node label="n-chunk" >
+            <node leaf="1" head="1" token="t1.14" word="variety" />
+            <node label="sp-chunk" >
+              <node leaf="1" head="1" token="t1.15" word="of" />
+              <node label="n-chunk" >
+                <node leaf="1" token="t1.16" word="use" />
+                <node head="1" label="n-chunk" >
+                  <node leaf="1" head="1" token="t1.17" word="cases" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node label="sf-brk" >
+          <node leaf="1" head="1" token="t1.18" word="," />
+        </node>
+      </node>
+      <node leaf="1" head="1" token="t1.19" word="and" />
+      <node label="sv" >
+        <node label="mod-chunk" >
+          <node leaf="1" head="1" token="t1.20" word="could" />
+        </node>
+        <node head="1" label="vb-chunk" >
+          <node leaf="1" head="1" token="t1.21" word="be" />
+        </node>
+        <node label="adv" >
+          <node leaf="1" head="1" token="t1.22" word="easily" />
+        </node>
+      </node>
+      <node label="sv" >
+        <node leaf="1" head="1" token="t1.23" word="combined" />
+        <node label="sp-chunk" >
+          <node leaf="1" head="1" token="t1.24" word="with" />
+          <node label="sv" >
+            <node label="n-chunk" >
+              <node leaf="1" head="1" token="t1.25" word="machine" />
+            </node>
+            <node leaf="1" head="1" token="t1.26" word="learning" />
+          </node>
+        </node>
+      </node>
+      <node label="sn-co" >
+        <node leaf="1" head="1" token="t1.27" word="and" />
+        <node label="n-chunk" >
+          <node label="attrib" >
+            <node leaf="1" head="1" token="t1.28" word="artificial" />
+          </node>
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t1.29" word="intelligence" />
+          </node>
+        </node>
+      </node>
+      <node label="sub-cl" >
+        <node leaf="1" head="1" token="t1.30" word="in_order_to" />
+        <node label="sv" >
+          <node leaf="1" head="1" token="t1.31" word="develop" />
+          <node label="n-chunk" >
+            <node label="attrib" >
+              <node leaf="1" head="1" token="t1.32" word="smart" />
+            </node>
+            <node head="1" label="n-chunk" >
+              <node leaf="1" head="1" token="t1.33" word="maintenance" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="sn-co" >
+        <node leaf="1" head="1" token="t1.34" word="and" />
+        <node label="n-chunk" >
+          <node leaf="1" token="t1.35" word="supervision" />
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t1.36" word="models" />
+          </node>
+        </node>
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t1.37" word="for" />
+        <node label="sn-chunk" >
+          <node leaf="1" token="t1.38" word="the" />
+          <node head="1" label="n-chunk" >
+            <node label="attrib" >
+              <node leaf="1" head="1" token="t1.39" word="industrial" />
+            </node>
+            <node head="1" label="n-chunk" >
+              <node leaf="1" head="1" token="t1.40" word="assets" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="st-brk" >
+        <node leaf="1" head="1" token="t1.41" word="." />
       </node>
     </node>
   </constituents>
   <dependencies>
-    <depnode token="t1.2" function="ROOT" word="world" >
-      <depnode token="t1.1" function="NMOD" word="Hello" />
+    <depnode token="t1.8" function="ROOT" word="are" >
+      <depnode token="t1.1" function="LOC" word="In" >
+        <depnode token="t1.4" function="PMOD" word="industry" >
+          <depnode token="t1.2" function="NMOD" word="the" />
+          <depnode token="t1.3" function="NMOD" word="cybersecurity" />
+        </depnode>
+      </depnode>
+      <depnode token="t1.5" function="P" word="," />
+      <depnode token="t1.7" function="SBJ" word="applications" >
+        <depnode token="t1.6" function="NMOD" word="IoT" />
+      </depnode>
+      <depnode token="t1.9" function="VC" word="considered" >
+        <depnode token="t1.10" function="ADV" word="as" >
+          <depnode token="t1.12" function="PMOD" word="solutions" >
+            <depnode token="t1.11" function="NMOD" word="cheap" />
+            <depnode token="t1.13" function="NMOD" word="for" >
+              <depnode token="t1.14" function="PMOD" word="variety" >
+                <depnode token="t1.15" function="NMOD" word="of" >
+                  <depnode token="t1.17" function="PMOD" word="cases" >
+                    <depnode token="t1.16" function="NMOD" word="use" />
+                  </depnode>
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t1.18" function="P" word="," />
+      <depnode token="t1.19" function="COORD" word="and" >
+        <depnode token="t1.20" function="CONJ" word="could" >
+          <depnode token="t1.21" function="VC" word="be" >
+            <depnode token="t1.23" function="VC" word="combined" >
+              <depnode token="t1.22" function="MNR" word="easily" />
+              <depnode token="t1.24" function="ADV" word="with" >
+                <depnode token="t1.25" function="PMOD" word="machine" />
+                <depnode token="t1.26" function="PMOD" word="learning" >
+                  <depnode token="t1.27" function="COORD" word="and" >
+                    <depnode token="t1.28" function="CONJ" word="artificial" />
+                  </depnode>
+                  <depnode token="t1.29" function="OBJ" word="intelligence" />
+                </depnode>
+              </depnode>
+              <depnode token="t1.30" function="COORD" word="in_order_to" >
+                <depnode token="t1.31" function="CONJ" word="develop" >
+                  <depnode token="t1.36" function="OBJ" word="models" >
+                    <depnode token="t1.32" function="NMOD" word="smart" />
+                    <depnode token="t1.33" function="NMOD" word="maintenance" >
+                      <depnode token="t1.34" function="COORD" word="and" >
+                        <depnode token="t1.35" function="CONJ" word="supervision" />
+                      </depnode>
+                    </depnode>
+                    <depnode token="t1.37" function="NMOD" word="for" >
+                      <depnode token="t1.40" function="PMOD" word="assets" >
+                        <depnode token="t1.38" function="NMOD" word="the" />
+                        <depnode token="t1.39" function="NMOD" word="industrial" />
+                      </depnode>
+                    </depnode>
+                  </depnode>
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t1.41" function="P" word="." />
     </depnode>
   </dependencies>
+  <predicates>
+    <predicate id="P1.1" head_token="t1.4" sense="fabricate.01|manufacture.01" words="industry" >
+      <argument role="A1" words="cybersecurity" head_token="t1.3" from="t1.3" to="t1.3" />
+    </predicate>
+    <predicate id="P1.2" head_token="t1.7" sense="apply.02|employ.02|use.01|utilize.01" words="applications" />
+    <predicate id="P1.3" head_token="t1.9" sense="reckon.01|see.01|view.02|regard.01" words="considered" >
+      <argument role="AM-LOC" words="In the cybersecurity industry" head_token="t1.1" from="t1.1" to="t1.4" />
+      <argument role="A1" words="IoT applications" head_token="t1.7" from="t1.6" to="t1.7" />
+      <argument role="A2" words="as cheap solutions for variety of use cases" head_token="t1.10" from="t1.10" to="t1.17" />
+    </predicate>
+    <predicate id="P1.4" head_token="t1.14" sense="classify.01|separate.01|sort.01" words="variety" >
+      <argument role="A1" words="of use cases" head_token="t1.15" from="t1.15" to="t1.17" />
+    </predicate>
+    <predicate id="P1.5" head_token="t1.16" sense="serve.01|function.01" words="use" />
+    <predicate id="P1.6" head_token="t1.23" sense="coalesce.01|fuse.01|merge.01|mix.01" words="combined" >
+      <argument role="AM-DIS" words="In the cybersecurity industry" head_token="t1.1" from="t1.1" to="t1.4" />
+      <argument role="A1" words="IoT applications" head_token="t1.7" from="t1.6" to="t1.7" />
+      <argument role="AM-MOD" words="could be easily combined with machine learning and artificial intelligence in_order_to develop smart maintenance and supervision models for the industrial assets" head_token="t1.20" from="t1.20" to="t1.40" />
+      <argument role="AM-MNR" words="easily" head_token="t1.22" from="t1.22" to="t1.22" />
+      <argument role="A2" words="with machine learning and artificial intelligence" head_token="t1.24" from="t1.24" to="t1.29" />
+    </predicate>
+    <predicate id="P1.7" head_token="t1.26" sense="teach.01" words="learning" >
+      <argument role="A1" words="intelligence" head_token="t1.29" from="t1.29" to="t1.29" />
+    </predicate>
+    <predicate id="P1.8" head_token="t1.31" sense="grow.02|rise.01|develop.01|arise.01" words="develop" >
+      <argument role="AM-MOD" words="could be easily combined with machine learning and artificial intelligence in_order_to develop smart maintenance and supervision models for the industrial assets" head_token="t1.20" from="t1.20" to="t1.40" />
+      <argument role="A1" words="smart maintenance and supervision models for the industrial assets" head_token="t1.36" from="t1.32" to="t1.40" />
+    </predicate>
+    <predicate id="P1.9" head_token="t1.33" sense="preserve.01" words="maintenance" />
+    <predicate id="P1.10" head_token="t1.35" sense="manage.02|monitor.01" words="supervision" >
+      <argument role="A1" words="smart maintenance and supervision models for the industrial assets" head_token="t1.36" from="t1.32" to="t1.40" />
+    </predicate>
+    <predicate id="P1.11" head_token="t1.36" sense="model.01" words="models" />
+  </predicates>
+</sentence>
+<sentence id="2">
+  <token id="t2.1" begin="275" end="285" form="Especially" lemma="especially" tag="RB" ctag="RB" pos="adverb" type="general" wn="00084223-r" >
+  </token>
+  <token id="t2.2" begin="285" end="286" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t2.3" begin="287" end="289" form="in" lemma="in" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.4" begin="290" end="293" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t2.5" begin="294" end="301" form="contact" lemma="contact" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="14419510-n" >
+  </token>
+  <token id="t2.6" begin="302" end="306" form="with" lemma="with" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.7" begin="307" end="318" form="cooperation" lemma="cooperation" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="01202904-n" >
+  </token>
+  <token id="t2.8" begin="319" end="327" form="partners" lemma="partner" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="10640620-n" >
+  </token>
+  <token id="t2.9" begin="328" end="330" form="in" lemma="in" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.10" begin="331" end="334" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t2.11" begin="335" end="343" form="logistic" lemma="logistic" tag="JJ" ctag="JJ" pos="adjective" wn="02986218-a" >
+  </token>
+  <token id="t2.12" begin="344" end="352" form="industry" lemma="industry" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00923444-n" >
+  </token>
+  <token id="t2.13" begin="352" end="353" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t2.14" begin="354" end="356" form="we" lemma="we" tag="PRP" ctag="PRP" pos="pronoun" type="personal" >
+  </token>
+  <token id="t2.15" begin="357" end="362" form="found" lemma="find" tag="VBD" ctag="VBD" pos="verb" vform="past" wn="02154508-v" >
+  </token>
+  <token id="t2.16" begin="363" end="367" form="that" lemma="that" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.17" begin="368" end="371" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t2.18" begin="372" end="380" form="behavior" lemma="behavior" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="01220984-n" >
+  </token>
+  <token id="t2.19" begin="381" end="385" form="data" lemma="data" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="08462320-n" >
+  </token>
+  <token id="t2.20" begin="386" end="388" form="of" lemma="of" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.21" begin="389" end="398" form="forklifts" lemma="forklift" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="03384352-n" >
+  </token>
+  <token id="t2.22" begin="399" end="401" form="is" lemma="be" tag="VBZ" ctag="VBZ" pos="verb" vform="personal" person="3" wn="02604760-v" >
+  </token>
+  <token id="t2.23" begin="402" end="406" form="full" lemma="full" tag="JJ" ctag="JJ" pos="adjective" wn="01083157-a" >
+  </token>
+  <token id="t2.24" begin="407" end="409" form="of" lemma="of" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.25" begin="410" end="415" form="value" lemma="value" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="05856388-n" >
+  </token>
+  <token id="t2.26" begin="415" end="416" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t2.27" begin="417" end="422" form="which" lemma="which" tag="WDT" ctag="WDT" pos="determiner" type="interrogative" >
+  </token>
+  <token id="t2.28" begin="423" end="426" form="not" lemma="not" tag="RB" ctag="RB" pos="adverb" type="general" wn="00024073-r" >
+  </token>
+  <token id="t2.29" begin="427" end="431" form="only" lemma="only" tag="RB" ctag="RB" pos="adverb" type="general" wn="00008600-r" >
+  </token>
+  <token id="t2.30" begin="432" end="441" form="indicates" lemma="indicate" tag="VBZ" ctag="VBZ" pos="verb" vform="personal" person="3" wn="00923793-v" >
+  </token>
+  <token id="t2.31" begin="442" end="450" form="directly" lemma="directly" tag="RB" ctag="RB" pos="adverb" type="general" wn="00504281-r" >
+  </token>
+  <token id="t2.32" begin="451" end="454" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t2.33" begin="455" end="462" form="working" lemma="work" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="00634906-v" >
+  </token>
+  <token id="t2.34" begin="463" end="469" form="status" lemma="status" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="13920835-n" >
+  </token>
+  <token id="t2.35" begin="470" end="472" form="of" lemma="of" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.36" begin="473" end="474" form="a" lemma="a" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t2.37" begin="475" end="483" form="forklift" lemma="forklift" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="03384352-n" >
+  </token>
+  <token id="t2.38" begin="484" end="485" form="(" lemma="(" tag="Fpa" ctag="Fpa" pos="punctuation" type="parenthesis" punctenclose="open" >
+  </token>
+  <token id="t2.39" begin="485" end="489" form="e.g." lemma="e.g." tag="JJ" ctag="JJ" pos="adjective" >
+  </token>
+  <token id="t2.40" begin="490" end="497" form="loading" lemma="loading" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="02964389-n" >
+  </token>
+  <token id="t2.41" begin="497" end="498" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t2.42" begin="499" end="508" form="unloading" lemma="unload" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="01489465-v" >
+  </token>
+  <token id="t2.43" begin="508" end="509" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t2.44" begin="510" end="516" form="normal" lemma="normal" tag="JJ" ctag="JJ" pos="adjective" wn="01593649-a" >
+  </token>
+  <token id="t2.45" begin="517" end="524" form="driving" lemma="drive" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="01026975-v" >
+  </token>
+  <token id="t2.46" begin="524" end="525" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t2.47" begin="526" end="533" form="harmful" lemma="harmful" tag="JJ" ctag="JJ" pos="adjective" wn="01160031-a" >
+  </token>
+  <token id="t2.48" begin="534" end="543" form="vibration" lemma="vibration" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="07345166-n" >
+  </token>
+  <token id="t2.49" begin="544" end="547" form="etc" lemma="etc" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t2.50" begin="547" end="548" form="." lemma="." tag="Fp" ctag="Fp" pos="punctuation" type="period" >
+  </token>
+  <token id="t2.51" begin="548" end="549" form=")" lemma=")" tag="Fpt" ctag="Fpt" pos="punctuation" type="parenthesis" punctenclose="close" >
+  </token>
+  <token id="t2.52" begin="549" end="550" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t2.53" begin="551" end="554" form="but" lemma="but" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t2.54" begin="555" end="557" form="is" lemma="be" tag="VBZ" ctag="VBZ" pos="verb" vform="personal" person="3" wn="02604760-v" >
+  </token>
+  <token id="t2.55" begin="558" end="562" form="also" lemma="also" tag="RB" ctag="RB" pos="adverb" type="general" wn="00047534-r" >
+  </token>
+  <token id="t2.56" begin="563" end="571" form="possible" lemma="possible" tag="JJ" ctag="JJ" pos="adjective" wn="01821266-a" >
+  </token>
+  <token id="t2.57" begin="572" end="574" form="to" lemma="to" tag="TO" ctag="TO" pos="particle" type="to" >
+  </token>
+  <token id="t2.58" begin="575" end="577" form="be" lemma="be" tag="VB" ctag="VB" pos="verb" vform="infinitive" wn="02604760-v" >
+  </token>
+  <token id="t2.59" begin="578" end="585" form="further" lemma="further" tag="RB" ctag="RB" pos="adverb" type="general" wn="00030443-r" >
+  </token>
+  <token id="t2.60" begin="586" end="590" form="used" lemma="use" tag="VBN" ctag="VBN" pos="verb" vform="participle" wn="01158872-v" >
+  </token>
+  <token id="t2.61" begin="591" end="594" form="for" lemma="for" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t2.62" begin="595" end="604" form="analyzing" lemma="analyze" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="00644583-v" >
+  </token>
+  <token id="t2.63" begin="605" end="609" form="high" lemma="high" tag="JJ" ctag="JJ" pos="adjective" wn="01210854-a" >
+  </token>
+  <token id="t2.64" begin="610" end="615" form="level" lemma="level" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="13939892-n" >
+  </token>
+  <token id="t2.65" begin="616" end="620" form="KPIs" lemma="kpis" tag="NP00V00" ctag="NP" pos="noun" type="proper" neclass="other" nec="MISC" >
+  </token>
+  <token id="t2.66" begin="620" end="621" form="." lemma="." tag="Fp" ctag="Fp" pos="punctuation" type="period" >
+  </token>
+  <constituents>
+    <node head="1" label="claus" >
+      <node label="adv" >
+        <node leaf="1" head="1" token="t2.1" word="Especially" />
+        <node label="sf-brk" >
+          <node leaf="1" head="1" token="t2.2" word="," />
+        </node>
+        <node label="sp-chunk" >
+          <node leaf="1" head="1" token="t2.3" word="in" />
+          <node label="sn-chunk" >
+            <node leaf="1" token="t2.4" word="the" />
+            <node head="1" label="n-chunk" >
+              <node leaf="1" head="1" token="t2.5" word="contact" />
+            </node>
+          </node>
+        </node>
+        <node label="sp-chunk" >
+          <node leaf="1" head="1" token="t2.6" word="with" />
+          <node label="n-chunk" >
+            <node leaf="1" token="t2.7" word="cooperation" />
+            <node head="1" label="n-chunk" >
+              <node leaf="1" head="1" token="t2.8" word="partners" />
+            </node>
+          </node>
+        </node>
+        <node label="sp-chunk" >
+          <node leaf="1" head="1" token="t2.9" word="in" />
+          <node label="sn-chunk" >
+            <node leaf="1" token="t2.10" word="the" />
+            <node head="1" label="n-chunk" >
+              <node label="attrib" >
+                <node leaf="1" head="1" token="t2.11" word="logistic" />
+              </node>
+              <node head="1" label="n-chunk" >
+                <node leaf="1" head="1" token="t2.12" word="industry" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node label="sf-brk" >
+          <node leaf="1" head="1" token="t2.13" word="," />
+        </node>
+      </node>
+      <node label="sn-chunk" >
+        <node leaf="1" head="1" token="t2.14" word="we" />
+      </node>
+      <node leaf="1" head="1" token="t2.15" word="found" />
+      <node label="sub-cl" >
+        <node leaf="1" head="1" token="t2.16" word="that" />
+        <node label="sv" >
+          <node label="sn-chunk" >
+            <node leaf="1" token="t2.17" word="the" />
+            <node head="1" label="n-chunk" >
+              <node leaf="1" token="t2.18" word="behavior" />
+              <node head="1" label="n-chunk" >
+                <node leaf="1" head="1" token="t2.19" word="data" />
+              </node>
+            </node>
+            <node label="sp-chunk" >
+              <node leaf="1" head="1" token="t2.20" word="of" />
+              <node label="n-chunk" >
+                <node leaf="1" head="1" token="t2.21" word="forklifts" />
+              </node>
+            </node>
+          </node>
+          <node leaf="1" head="1" token="t2.22" word="is" />
+          <node label="attrib" >
+            <node leaf="1" head="1" token="t2.23" word="full" />
+          </node>
+          <node label="sp-chunk" >
+            <node leaf="1" head="1" token="t2.24" word="of" />
+            <node label="n-chunk" >
+              <node leaf="1" head="1" token="t2.25" word="value" />
+              <node label="rel-cl" >
+                <node label="sf-brk" >
+                  <node leaf="1" head="1" token="t2.26" word="," />
+                </node>
+                <node leaf="1" head="1" token="t2.27" word="which" />
+                <node label="sv" >
+                  <node label="adv" >
+                    <node leaf="1" head="1" token="t2.28" word="not" />
+                  </node>
+                  <node label="adv" >
+                    <node leaf="1" head="1" token="t2.29" word="only" />
+                  </node>
+                  <node leaf="1" head="1" token="t2.30" word="indicates" />
+                  <node label="adv" >
+                    <node leaf="1" head="1" token="t2.31" word="directly" />
+                  </node>
+                  <node label="sn-chunk" >
+                    <node leaf="1" token="t2.32" word="the" />
+                    <node leaf="1" token="t2.33" word="working" />
+                    <node head="1" label="n-chunk" >
+                      <node leaf="1" head="1" token="t2.34" word="status" />
+                    </node>
+                    <node label="sp-chunk" >
+                      <node leaf="1" head="1" token="t2.35" word="of" />
+                      <node label="sn-chunk" >
+                        <node leaf="1" token="t2.36" word="a" />
+                        <node head="1" label="n-chunk" >
+                          <node leaf="1" head="1" token="t2.37" word="forklift" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="inc-mk" >
+        <node leaf="1" head="1" token="t2.38" word="(" />
+      </node>
+      <node label="n-chunk" >
+        <node label="attrib" >
+          <node leaf="1" head="1" token="t2.39" word="e.g." />
+        </node>
+        <node head="1" label="n-chunk" >
+          <node leaf="1" head="1" token="t2.40" word="loading" />
+        </node>
+      </node>
+      <node label="sf-brk" >
+        <node leaf="1" head="1" token="t2.41" word="," />
+      </node>
+      <node label="vb-chunk" >
+        <node leaf="1" head="1" token="t2.42" word="unloading" />
+      </node>
+      <node label="sf-brk" >
+        <node leaf="1" head="1" token="t2.43" word="," />
+      </node>
+      <node label="attrib" >
+        <node leaf="1" head="1" token="t2.44" word="normal" />
+      </node>
+      <node label="vb-chunk" >
+        <node leaf="1" head="1" token="t2.45" word="driving" />
+      </node>
+      <node label="sf-brk" >
+        <node leaf="1" head="1" token="t2.46" word="," />
+      </node>
+      <node label="n-chunk" >
+        <node label="attrib" >
+          <node leaf="1" head="1" token="t2.47" word="harmful" />
+        </node>
+        <node head="1" label="n-chunk" >
+          <node leaf="1" head="1" token="t2.48" word="vibration" />
+        </node>
+      </node>
+      <node label="CC" >
+        <node leaf="1" head="1" token="t2.49" word="etc" />
+      </node>
+      <node label="st-brk" >
+        <node leaf="1" head="1" token="t2.50" word="." />
+      </node>
+      <node label="inc-mk" >
+        <node leaf="1" head="1" token="t2.51" word=")" />
+      </node>
+      <node label="sf-brk" >
+        <node leaf="1" head="1" token="t2.52" word="," />
+      </node>
+      <node label="nex-coord" >
+        <node leaf="1" head="1" token="t2.53" word="but" />
+      </node>
+      <node label="vb-be" >
+        <node leaf="1" head="1" token="t2.54" word="is" />
+      </node>
+      <node label="attrib" >
+        <node label="adv" >
+          <node leaf="1" head="1" token="t2.55" word="also" />
+        </node>
+        <node head="1" label="attrib" >
+          <node leaf="1" head="1" token="t2.56" word="possible" />
+        </node>
+      </node>
+      <node label="inf-mk" >
+        <node leaf="1" head="1" token="t2.57" word="to" />
+        <node label="inf" >
+          <node leaf="1" head="1" token="t2.58" word="be" />
+          <node label="adv" >
+            <node leaf="1" head="1" token="t2.59" word="further" />
+          </node>
+        </node>
+      </node>
+      <node label="claus" >
+        <node leaf="1" head="1" token="t2.60" word="used" />
+        <node label="sp-chunk" >
+          <node leaf="1" head="1" token="t2.61" word="for" />
+          <node label="sv" >
+            <node leaf="1" head="1" token="t2.62" word="analyzing" />
+            <node label="n-chunk" >
+              <node label="attrib" >
+                <node leaf="1" head="1" token="t2.63" word="high" />
+              </node>
+              <node head="1" label="n-chunk" >
+                <node leaf="1" token="t2.64" word="level" />
+                <node head="1" label="n-chunk" >
+                  <node leaf="1" head="1" token="t2.65" word="KPIs" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node label="st-brk" >
+          <node leaf="1" head="1" token="t2.66" word="." />
+        </node>
+      </node>
+    </node>
+  </constituents>
+  <dependencies>
+    <depnode token="t2.15" function="ROOT" word="found" >
+      <depnode token="t2.1" function="ADV" word="Especially" />
+      <depnode token="t2.2" function="P" word="," />
+      <depnode token="t2.3" function="LOC" word="in" >
+        <depnode token="t2.5" function="PMOD" word="contact" >
+          <depnode token="t2.4" function="NMOD" word="the" />
+          <depnode token="t2.6" function="NMOD" word="with" >
+            <depnode token="t2.8" function="PMOD" word="partners" >
+              <depnode token="t2.7" function="NMOD" word="cooperation" />
+              <depnode token="t2.9" function="LOC" word="in" >
+                <depnode token="t2.12" function="PMOD" word="industry" >
+                  <depnode token="t2.10" function="NMOD" word="the" />
+                  <depnode token="t2.11" function="NMOD" word="logistic" />
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t2.13" function="P" word="," />
+      <depnode token="t2.14" function="SBJ" word="we" />
+      <depnode token="t2.16" function="OBJ" word="that" >
+        <depnode token="t2.22" function="SUB" word="is" >
+          <depnode token="t2.19" function="SBJ" word="data" >
+            <depnode token="t2.17" function="NMOD" word="the" />
+            <depnode token="t2.18" function="NMOD" word="behavior" />
+            <depnode token="t2.20" function="NMOD" word="of" >
+              <depnode token="t2.21" function="PMOD" word="forklifts" />
+            </depnode>
+          </depnode>
+          <depnode token="t2.23" function="PRD" word="full" >
+            <depnode token="t2.24" function="AMOD" word="of" >
+              <depnode token="t2.25" function="PMOD" word="value" >
+                <depnode token="t2.26" function="P" word="," />
+                <depnode token="t2.30" function="NMOD" word="indicates" >
+                  <depnode token="t2.27" function="SBJ" word="which" />
+                  <depnode token="t2.28" function="ADV" word="not" />
+                  <depnode token="t2.29" function="ADV" word="only" />
+                  <depnode token="t2.31" function="MNR" word="directly" />
+                  <depnode token="t2.34" function="OBJ" word="status" >
+                    <depnode token="t2.32" function="NMOD" word="the" />
+                    <depnode token="t2.33" function="NMOD" word="working" />
+                    <depnode token="t2.35" function="NMOD" word="of" >
+                      <depnode token="t2.37" function="PMOD" word="forklift" >
+                        <depnode token="t2.36" function="NMOD" word="a" />
+                        <depnode token="t2.40" function="APPO" word="loading" >
+                          <depnode token="t2.38" function="P" word="(" />
+                          <depnode token="t2.39" function="NMOD" word="e.g." />
+                        </depnode>
+                      </depnode>
+                    </depnode>
+                  </depnode>
+                  <depnode token="t2.41" function="P" word="," />
+                  <depnode token="t2.42" function="ADV" word="unloading" >
+                    <depnode token="t2.48" function="OBJ" word="vibration" >
+                      <depnode token="t2.43" function="P" word="," />
+                      <depnode token="t2.45" function="NMOD" word="driving" >
+                        <depnode token="t2.44" function="NMOD" word="normal" />
+                        <depnode token="t2.46" function="P" word="," />
+                      </depnode>
+                      <depnode token="t2.47" function="NMOD" word="harmful" />
+                      <depnode token="t2.49" function="COORD" word="etc" />
+                    </depnode>
+                  </depnode>
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t2.50" function="P" word="." />
+      <depnode token="t2.51" function="P" word=")" />
+      <depnode token="t2.52" function="P" word="," />
+      <depnode token="t2.53" function="COORD" word="but" >
+        <depnode token="t2.54" function="CONJ" word="is" >
+          <depnode token="t2.55" function="ADV" word="also" />
+          <depnode token="t2.56" function="PRD" word="possible" >
+            <depnode token="t2.57" function="AMOD" word="to" >
+              <depnode token="t2.58" function="IM" word="be" >
+                <depnode token="t2.60" function="VC" word="used" >
+                  <depnode token="t2.59" function="ADV" word="further" />
+                  <depnode token="t2.61" function="ADV" word="for" >
+                    <depnode token="t2.62" function="PMOD" word="analyzing" >
+                      <depnode token="t2.65" function="OBJ" word="KPIs" >
+                        <depnode token="t2.64" function="NMOD" word="level" >
+                          <depnode token="t2.63" function="NMOD" word="high" />
+                        </depnode>
+                      </depnode>
+                    </depnode>
+                  </depnode>
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t2.66" function="P" word="." />
+    </depnode>
+  </dependencies>
+  <predicates>
+    <predicate id="P2.1" head_token="t2.5" sense="touch.01|adjoin.01" words="contact" >
+      <argument role="A1" words="with cooperation partners in the logistic industry" head_token="t2.6" from="t2.6" to="t2.12" />
+    </predicate>
+    <predicate id="P2.2" head_token="t2.7" sense="collaborate.01|cooperate.01" words="cooperation" >
+      <argument role="A0" words="cooperation partners in the logistic industry" head_token="t2.8" from="t2.7" to="t2.12" />
+      <argument role="A1" words="in the logistic industry" head_token="t2.9" from="t2.9" to="t2.12" />
+    </predicate>
+    <predicate id="P2.3" head_token="t2.8" sense="mate.01|pair.01" words="partners" >
+      <argument role="A1" words="cooperation" head_token="t2.7" from="t2.7" to="t2.7" />
+      <argument role="A0" words="cooperation partners in the logistic industry" head_token="t2.8" from="t2.7" to="t2.12" />
+    </predicate>
+    <predicate id="P2.4" head_token="t2.12" sense="fabricate.01|manufacture.01" words="industry" />
+    <predicate id="P2.5" head_token="t2.15" sense="detect.01|notice.01|observe.01" words="found" >
+      <argument role="AM-TMP" words="Especially" head_token="t2.1" from="t2.1" to="t2.1" />
+      <argument role="AM-LOC" words="in the contact with cooperation partners in the logistic industry" head_token="t2.3" from="t2.3" to="t2.12" />
+      <argument role="A0" words="we" head_token="t2.14" from="t2.14" to="t2.14" />
+    </predicate>
+    <predicate id="P2.6" head_token="t2.22" sense="be.00" words="is" >
+      <argument role="A1" words="the behavior data of forklifts" head_token="t2.19" from="t2.17" to="t2.21" />
+      <argument role="A2" words="full of value , which not only indicates directly the working status of a forklift ( e.g. loading , unloading , normal driving , harmful vibration etc" head_token="t2.23" from="t2.23" to="t2.49" />
+    </predicate>
+    <predicate id="P2.7" head_token="t2.30" sense="indicate.00" words="indicates" >
+      <argument role="A1" words="value , which not only indicates directly the working status of a forklift ( e.g. loading , unloading , normal driving , harmful vibration etc" head_token="t2.25" from="t2.25" to="t2.49" />
+      <argument role="R-A0" words="which" head_token="t2.27" from="t2.27" to="t2.27" />
+      <argument role="AM-NEG" words="not" head_token="t2.28" from="t2.28" to="t2.28" />
+      <argument role="AM-ADV" words="only" head_token="t2.29" from="t2.29" to="t2.29" />
+      <argument role="AM-MNR" words="directly" head_token="t2.31" from="t2.31" to="t2.31" />
+      <argument role="A1" words="the working status of a forklift ( e.g. loading" head_token="t2.34" from="t2.32" to="t2.40" />
+      <argument role="AM-ADV" words="unloading , normal driving , harmful vibration etc" head_token="t2.42" from="t2.42" to="t2.49" />
+    </predicate>
+    <predicate id="P2.8" head_token="t2.33" sense="solve.01" words="working" >
+      <argument role="A0" words="the working status of a forklift ( e.g. loading" head_token="t2.34" from="t2.32" to="t2.40" />
+    </predicate>
+    <predicate id="P2.9" head_token="t2.40" sense="ship.01|send.01|transport.01|load.01" words="loading" >
+      <argument role="AM-MNR" words="e.g." head_token="t2.39" from="t2.39" to="t2.39" />
+    </predicate>
+    <predicate id="P2.10" head_token="t2.42" sense="discharge.01" words="unloading" >
+      <argument role="R-A0" words="which" head_token="t2.27" from="t2.27" to="t2.27" />
+      <argument role="A1" words=", normal driving , harmful vibration etc" head_token="t2.48" from="t2.43" to="t2.49" />
+    </predicate>
+    <predicate id="P2.11" head_token="t2.45" sense="drive.00" words="driving" >
+      <argument role="AM-MNR" words="normal" head_token="t2.44" from="t2.44" to="t2.44" />
+      <argument role="A0" words=", normal driving , harmful vibration etc" head_token="t2.48" from="t2.43" to="t2.49" />
+    </predicate>
+    <predicate id="P2.12" head_token="t2.48" sense="oscillate.01|vibrate.01" words="vibration" >
+      <argument role="AM-MNR" words="harmful" head_token="t2.47" from="t2.47" to="t2.47" />
+    </predicate>
+    <predicate id="P2.13" head_token="t2.54" sense="be.00" words="is" >
+      <argument role="A0" words="we" head_token="t2.14" from="t2.14" to="t2.14" />
+      <argument role="AM-DIS" words="also" head_token="t2.55" from="t2.55" to="t2.55" />
+      <argument role="A2" words="possible to be further used for analyzing high level KPIs" head_token="t2.56" from="t2.56" to="t2.65" />
+    </predicate>
+    <predicate id="P2.14" head_token="t2.60" sense="apply.02|employ.02|use.01|utilize.01" words="used" >
+      <argument role="AM-ADV" words="further" head_token="t2.59" from="t2.59" to="t2.59" />
+      <argument role="A2" words="for analyzing high level KPIs" head_token="t2.61" from="t2.61" to="t2.65" />
+    </predicate>
+    <predicate id="P2.15" head_token="t2.62" sense="analyze.00" words="analyzing" >
+      <argument role="A1" words="high level KPIs" head_token="t2.65" from="t2.63" to="t2.65" />
+    </predicate>
+  </predicates>
+</sentence>
+<sentence id="3">
+  <token id="t3.1" begin="622" end="634" form="For_instance" lemma="for_instance" tag="RB" ctag="RB" pos="adverb" type="general" wn="00159040-r" >
+  </token>
+  <token id="t3.2" begin="634" end="635" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t3.3" begin="636" end="639" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t3.4" begin="640" end="649" form="analyzing" lemma="analyze" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="00644583-v" >
+  </token>
+  <token id="t3.5" begin="650" end="652" form="of" lemma="of" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t3.6" begin="653" end="661" form="forklift" lemma="forklift" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="03384352-n" >
+  </token>
+  <token id="t3.7" begin="662" end="670" form="workload" lemma="workload" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00581241-n" >
+  </token>
+  <token id="t3.8" begin="671" end="673" form="is" lemma="be" tag="VBZ" ctag="VBZ" pos="verb" vform="personal" person="3" wn="02604760-v" >
+  </token>
+  <token id="t3.9" begin="674" end="682" form="valuable" lemma="valuable" tag="JJ" ctag="JJ" pos="adjective" wn="02500884-a" >
+  </token>
+  <token id="t3.10" begin="683" end="685" form="to" lemma="to" tag="TO" ctag="TO" pos="particle" type="to" >
+  </token>
+  <token id="t3.11" begin="686" end="693" form="arrange" lemma="arrange" tag="VB" ctag="VB" pos="verb" vform="infinitive" wn="01463963-v" >
+  </token>
+  <token id="t3.12" begin="694" end="700" form="assets" lemma="asset" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="05154517-n" >
+  </token>
+  <token id="t3.13" begin="701" end="704" form="and" lemma="and" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t3.14" begin="705" end="713" form="forecast" lemma="forecast" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="06749881-n" >
+  </token>
+  <token id="t3.15" begin="714" end="720" form="demand" lemma="demand" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="07191279-n" >
+  </token>
+  <token id="t3.16" begin="720" end="721" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t3.17" begin="722" end="729" form="as_well" lemma="as_well" tag="RB" ctag="RB" pos="adverb" type="general" wn="00047534-r" >
+  </token>
+  <token id="t3.18" begin="730" end="732" form="as" lemma="as" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t3.19" begin="733" end="736" form="for" lemma="for" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t3.20" begin="737" end="747" form="predictive" lemma="predictive" tag="JJ" ctag="JJ" pos="adjective" wn="01883325-a" >
+  </token>
+  <token id="t3.21" begin="748" end="759" form="maintenance" lemma="maintenance" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00267522-n" >
+  </token>
+  <token id="t3.22" begin="759" end="760" form="." lemma="." tag="Fp" ctag="Fp" pos="punctuation" type="period" >
+  </token>
+  <constituents>
+    <node head="1" label="adv" >
+      <node leaf="1" head="1" token="t3.1" word="For_instance" />
+      <node label="sf-brk" >
+        <node leaf="1" head="1" token="t3.2" word="," />
+      </node>
+      <node label="DT" >
+        <node leaf="1" head="1" token="t3.3" word="the" />
+      </node>
+      <node label="claus" >
+        <node label="part" >
+          <node leaf="1" head="1" token="t3.4" word="analyzing" />
+          <node label="sp-chunk" >
+            <node leaf="1" head="1" token="t3.5" word="of" />
+            <node label="n-chunk" >
+              <node leaf="1" token="t3.6" word="forklift" />
+              <node head="1" label="n-chunk" >
+                <node leaf="1" head="1" token="t3.7" word="workload" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node leaf="1" head="1" token="t3.8" word="is" />
+      </node>
+      <node label="attrib" >
+        <node leaf="1" head="1" token="t3.9" word="valuable" />
+      </node>
+      <node label="inf-mk" >
+        <node leaf="1" head="1" token="t3.10" word="to" />
+        <node label="inf" >
+          <node leaf="1" head="1" token="t3.11" word="arrange" />
+          <node label="n-chunk" >
+            <node leaf="1" head="1" token="t3.12" word="assets" />
+          </node>
+        </node>
+      </node>
+      <node label="sn-co" >
+        <node leaf="1" head="1" token="t3.13" word="and" />
+        <node label="n-chunk" >
+          <node leaf="1" token="t3.14" word="forecast" />
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t3.15" word="demand" />
+          </node>
+        </node>
+      </node>
+      <node label="adv" >
+        <node label="sf-brk" >
+          <node leaf="1" head="1" token="t3.16" word="," />
+        </node>
+        <node leaf="1" head="1" token="t3.17" word="as_well" />
+      </node>
+      <node label="prt-mix" >
+        <node leaf="1" head="1" token="t3.18" word="as" />
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t3.19" word="for" />
+        <node label="n-chunk" >
+          <node label="attrib" >
+            <node leaf="1" head="1" token="t3.20" word="predictive" />
+          </node>
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t3.21" word="maintenance" />
+          </node>
+        </node>
+      </node>
+      <node label="st-brk" >
+        <node leaf="1" head="1" token="t3.22" word="." />
+      </node>
+    </node>
+  </constituents>
+  <dependencies>
+    <depnode token="t3.8" function="ROOT" word="is" >
+      <depnode token="t3.1" function="ADV" word="For_instance" />
+      <depnode token="t3.2" function="P" word="," />
+      <depnode token="t3.4" function="SBJ" word="analyzing" >
+        <depnode token="t3.3" function="NMOD" word="the" />
+        <depnode token="t3.5" function="NMOD" word="of" >
+          <depnode token="t3.7" function="PMOD" word="workload" >
+            <depnode token="t3.6" function="NMOD" word="forklift" />
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t3.9" function="PRD" word="valuable" >
+        <depnode token="t3.10" function="AMOD" word="to" >
+          <depnode token="t3.11" function="IM" word="arrange" >
+            <depnode token="t3.12" function="OBJ" word="assets" >
+              <depnode token="t3.13" function="COORD" word="and" >
+                <depnode token="t3.15" function="CONJ" word="demand" >
+                  <depnode token="t3.14" function="NMOD" word="forecast" />
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t3.16" function="P" word="," />
+      <depnode token="t3.18" function="ADV" word="as" >
+        <depnode token="t3.17" function="PMOD" word="as_well" />
+        <depnode token="t3.19" function="PMOD" word="for" >
+          <depnode token="t3.21" function="PMOD" word="maintenance" >
+            <depnode token="t3.20" function="NMOD" word="predictive" />
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t3.22" function="P" word="." />
+    </depnode>
+  </dependencies>
+  <predicates>
+    <predicate id="P3.1" head_token="t3.4" sense="analyze.00" words="analyzing" >
+      <argument role="A1" words="of forklift workload" head_token="t3.5" from="t3.5" to="t3.7" />
+    </predicate>
+    <predicate id="P3.2" head_token="t3.11" sense="arrange.00" words="arrange" >
+      <argument role="A1" words="assets and forecast demand" head_token="t3.12" from="t3.12" to="t3.15" />
+    </predicate>
+    <predicate id="P3.3" head_token="t3.15" sense="demand.01" words="demand" />
+    <predicate id="P3.4" head_token="t3.21" sense="preserve.01" words="maintenance" >
+      <argument role="AM-MNR" words="predictive" head_token="t3.20" from="t3.20" to="t3.20" />
+    </predicate>
+  </predicates>
+</sentence>
+<sentence id="4">
+  <token id="t4.1" begin="761" end="765" form="This" lemma="this" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t4.2" begin="766" end="768" form="is" lemma="be" tag="VBZ" ctag="VBZ" pos="verb" vform="personal" person="3" wn="02604760-v" >
+  </token>
+  <token id="t4.3" begin="769" end="771" form="an" lemma="a" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t4.4" begin="772" end="775" form="IoT" lemma="iot" tag="NP00V00" ctag="NP" pos="noun" type="proper" neclass="other" nec="MISC" >
+  </token>
+  <token id="t4.5" begin="776" end="784" form="solution" lemma="solution" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="14589223-n" >
+  </token>
+  <token id="t4.6" begin="785" end="787" form="in" lemma="in" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t4.7" begin="788" end="799" form="combination" lemma="combination" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="07963711-n" >
+  </token>
+  <token id="t4.8" begin="800" end="804" form="with" lemma="with" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t4.9" begin="805" end="812" form="machine" lemma="machine" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="03699975-n" >
+  </token>
+  <token id="t4.10" begin="813" end="821" form="learning" lemma="learn" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="00829107-v" >
+  </token>
+  <token id="t4.11" begin="822" end="831" form="algorithm" lemma="algorithm" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="05847438-n" >
+  </token>
+  <token id="t4.12" begin="832" end="835" form="for" lemma="for" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t4.13" begin="836" end="839" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t4.14" begin="840" end="848" form="logistic" lemma="logistic" tag="JJ" ctag="JJ" pos="adjective" wn="02986218-a" >
+  </token>
+  <token id="t4.15" begin="849" end="857" form="industry" lemma="industry" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00923444-n" >
+  </token>
+  <token id="t4.16" begin="857" end="858" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t4.17" begin="859" end="865" form="aiming" lemma="aim" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="01150559-v" >
+  </token>
+  <token id="t4.18" begin="866" end="868" form="at" lemma="at" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t4.19" begin="869" end="878" form="analyzing" lemma="analyze" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="00644583-v" >
+  </token>
+  <token id="t4.20" begin="879" end="884" form="daily" lemma="daily" tag="JJ" ctag="JJ" pos="adjective" wn="01968165-a" >
+  </token>
+  <token id="t4.21" begin="885" end="894" form="behaviors" lemma="behavior" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="01220984-n" >
+  </token>
+  <token id="t4.22" begin="895" end="897" form="of" lemma="of" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t4.23" begin="898" end="901" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t4.24" begin="902" end="911" form="forklifts" lemma="forklift" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="03384352-n" >
+  </token>
+  <token id="t4.25" begin="911" end="912" form="." lemma="." tag="Fp" ctag="Fp" pos="punctuation" type="period" >
+  </token>
+  <constituents>
+    <node head="1" label="DT" >
+      <node leaf="1" head="1" token="t4.1" word="This" />
+      <node label="vb-be" >
+        <node leaf="1" head="1" token="t4.2" word="is" />
+      </node>
+      <node label="sn-chunk" >
+        <node leaf="1" token="t4.3" word="an" />
+        <node head="1" label="n-chunk" >
+          <node leaf="1" token="t4.4" word="IoT" />
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t4.5" word="solution" />
+          </node>
+        </node>
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t4.6" word="in" />
+        <node label="n-chunk" >
+          <node leaf="1" head="1" token="t4.7" word="combination" />
+        </node>
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t4.8" word="with" />
+        <node label="part" >
+          <node label="n-chunk" >
+            <node leaf="1" head="1" token="t4.9" word="machine" />
+          </node>
+          <node leaf="1" head="1" token="t4.10" word="learning" />
+          <node label="n-chunk" >
+            <node leaf="1" head="1" token="t4.11" word="algorithm" />
+          </node>
+          <node label="sp-chunk" >
+            <node leaf="1" head="1" token="t4.12" word="for" />
+            <node label="sn-chunk" >
+              <node leaf="1" token="t4.13" word="the" />
+              <node head="1" label="n-chunk" >
+                <node label="attrib" >
+                  <node leaf="1" head="1" token="t4.14" word="logistic" />
+                </node>
+                <node head="1" label="n-chunk" >
+                  <node leaf="1" head="1" token="t4.15" word="industry" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="sf-brk" >
+        <node leaf="1" head="1" token="t4.16" word="," />
+      </node>
+      <node label="claus" >
+        <node label="part" >
+          <node leaf="1" head="1" token="t4.17" word="aiming" />
+          <node leaf="1" token="t4.18" word="at" />
+        </node>
+        <node leaf="1" head="1" token="t4.19" word="analyzing" />
+      </node>
+      <node label="n-chunk" >
+        <node label="attrib" >
+          <node leaf="1" head="1" token="t4.20" word="daily" />
+        </node>
+        <node head="1" label="n-chunk" >
+          <node leaf="1" head="1" token="t4.21" word="behaviors" />
+          <node label="sp-chunk" >
+            <node leaf="1" head="1" token="t4.22" word="of" />
+            <node label="sn-chunk" >
+              <node leaf="1" token="t4.23" word="the" />
+              <node head="1" label="n-chunk" >
+                <node leaf="1" head="1" token="t4.24" word="forklifts" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="st-brk" >
+        <node leaf="1" head="1" token="t4.25" word="." />
+      </node>
+    </node>
+  </constituents>
+  <dependencies>
+    <depnode token="t4.2" function="ROOT" word="is" >
+      <depnode token="t4.1" function="SBJ" word="This" />
+      <depnode token="t4.5" function="PRD" word="solution" >
+        <depnode token="t4.3" function="NMOD" word="an" />
+        <depnode token="t4.4" function="NMOD" word="IoT" />
+        <depnode token="t4.6" function="LOC" word="in" >
+          <depnode token="t4.7" function="PMOD" word="combination" >
+            <depnode token="t4.8" function="NMOD" word="with" >
+              <depnode token="t4.9" function="PMOD" word="machine" >
+                <depnode token="t4.10" function="APPO" word="learning" >
+                  <depnode token="t4.11" function="OBJ" word="algorithm" />
+                  <depnode token="t4.12" function="ADV" word="for" >
+                    <depnode token="t4.15" function="PMOD" word="industry" >
+                      <depnode token="t4.13" function="NMOD" word="the" />
+                      <depnode token="t4.14" function="NMOD" word="logistic" />
+                    </depnode>
+                  </depnode>
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t4.16" function="P" word="," />
+      <depnode token="t4.17" function="ADV" word="aiming" >
+        <depnode token="t4.18" function="ADV" word="at" >
+          <depnode token="t4.19" function="PMOD" word="analyzing" >
+            <depnode token="t4.21" function="OBJ" word="behaviors" >
+              <depnode token="t4.20" function="NMOD" word="daily" />
+              <depnode token="t4.22" function="NMOD" word="of" >
+                <depnode token="t4.24" function="PMOD" word="forklifts" >
+                  <depnode token="t4.23" function="NMOD" word="the" />
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t4.25" function="P" word="." />
+    </depnode>
+  </dependencies>
+  <predicates>
+    <predicate id="P4.1" head_token="t4.10" sense="teach.01" words="learning" >
+      <argument role="A0" words="machine learning algorithm for the logistic industry" head_token="t4.9" from="t4.9" to="t4.15" />
+      <argument role="A1" words="algorithm" head_token="t4.11" from="t4.11" to="t4.11" />
+      <argument role="AM-PNC" words="for the logistic industry" head_token="t4.12" from="t4.12" to="t4.15" />
+    </predicate>
+    <predicate id="P4.2" head_token="t4.15" sense="fabricate.01|manufacture.01" words="industry" />
+    <predicate id="P4.3" head_token="t4.17" sense="target.01" words="aiming" >
+      <argument role="A2" words="at analyzing daily behaviors of the forklifts" head_token="t4.18" from="t4.18" to="t4.24" />
+    </predicate>
+    <predicate id="P4.4" head_token="t4.19" sense="analyze.00" words="analyzing" >
+      <argument role="A1" words="daily behaviors of the forklifts" head_token="t4.21" from="t4.20" to="t4.24" />
+    </predicate>
+  </predicates>
+</sentence>
+<sentence id="5">
+  <token id="t5.1" begin="913" end="918" form="Those" lemma="those" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t5.2" begin="919" end="929" form="classified" lemma="classify" tag="VBN" ctag="VBN" pos="verb" vform="participle" wn="00654625-v" >
+  </token>
+  <token id="t5.3" begin="930" end="938" form="behavior" lemma="behavior" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="01220984-n" >
+  </token>
+  <token id="t5.4" begin="939" end="943" form="data" lemma="data" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="08462320-n" >
+  </token>
+  <token id="t5.5" begin="944" end="947" form="can" lemma="can" tag="MD" ctag="MD" pos="verb" type="modal" >
+  </token>
+  <token id="t5.6" begin="948" end="950" form="be" lemma="be" tag="VB" ctag="VB" pos="verb" vform="infinitive" wn="02604760-v" >
+  </token>
+  <token id="t5.7" begin="951" end="954" form="use" lemma="use" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="05149325-n" >
+  </token>
+  <token id="t5.8" begin="955" end="957" form="by" lemma="by" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t5.9" begin="958" end="963" form="other" lemma="other" tag="JJ" ctag="JJ" pos="adjective" wn="02069355-a" >
+  </token>
+  <token id="t5.10" begin="964" end="967" form="IoT" lemma="iot" tag="NP00V00" ctag="NP" pos="noun" type="proper" neclass="other" nec="MISC" >
+  </token>
+  <token id="t5.11" begin="968" end="980" form="applications" lemma="application" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="00949134-n" >
+  </token>
+  <token id="t5.12" begin="981" end="984" form="for" lemma="for" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t5.13" begin="985" end="992" form="further" lemma="further" tag="JJ" ctag="JJ" pos="adjective" wn="00443988-a" >
+  </token>
+  <token id="t5.14" begin="993" end="1001" form="analysis" lemma="analysis" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00704305-n" >
+  </token>
+  <token id="t5.15" begin="1001" end="1002" form="," lemma="," tag="Fc" ctag="Fc" pos="punctuation" type="comma" >
+  </token>
+  <token id="t5.16" begin="1003" end="1014" form="for_example" lemma="for_example" tag="RB" ctag="RB" pos="adverb" type="general" wn="00159040-r" >
+  </token>
+  <token id="t5.17" begin="1015" end="1023" form="analysis" lemma="analysis" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00704305-n" >
+  </token>
+  <token id="t5.18" begin="1024" end="1033" form="functions" lemma="function" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="05149325-n" >
+  </token>
+  <token id="t5.19" begin="1034" end="1036" form="of" lemma="of" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t5.20" begin="1037" end="1044" form="RIOTANA" lemma="riotana" tag="NN" ctag="NN" pos="noun" type="common" num="singular" >
+  </token>
+  <token id="t5.21" begin="1045" end="1046" form="(" lemma="(" tag="Fpa" ctag="Fpa" pos="punctuation" type="parenthesis" punctenclose="open" >
+  </token>
+  <token id="t5.22" begin="1046" end="1055" form="Real-time" lemma="real_time" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="15298695-n" >
+  </token>
+  <token id="t5.23" begin="1056" end="1059" form="IoT" lemma="iot" tag="NN" ctag="NN" pos="noun" type="common" num="singular" >
+  </token>
+  <token id="t5.24" begin="1060" end="1069" form="Analytics" lemma="analytics" tag="NN" ctag="NN" pos="noun" type="common" num="singular" >
+  </token>
+  <token id="t5.25" begin="1069" end="1070" form=")" lemma=")" tag="Fpt" ctag="Fpt" pos="punctuation" type="parenthesis" punctenclose="close" >
+  </token>
+  <token id="t5.26" begin="1071" end="1073" form="by" lemma="by" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t5.27" begin="1074" end="1089" form="Fraunhofer_ISST" lemma="fraunhofer_isst" tag="NP00O00" ctag="NP" pos="noun" type="proper" neclass="organization" nec="ORG" >
+  </token>
+  <token id="t5.28" begin="1089" end="1090" form="." lemma="." tag="Fp" ctag="Fp" pos="punctuation" type="period" >
+  </token>
+  <constituents>
+    <node head="1" label="claus" >
+      <node label="sn-chunk" >
+        <node leaf="1" token="t5.1" word="Those" />
+        <node leaf="1" token="t5.2" word="classified" />
+        <node head="1" label="n-chunk" >
+          <node leaf="1" token="t5.3" word="behavior" />
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t5.4" word="data" />
+          </node>
+        </node>
+      </node>
+      <node label="mod-chunk" >
+        <node leaf="1" head="1" token="t5.5" word="can" />
+      </node>
+      <node head="1" label="vb-chunk" >
+        <node leaf="1" head="1" token="t5.6" word="be" />
+      </node>
+      <node label="n-chunk" >
+        <node leaf="1" head="1" token="t5.7" word="use" />
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t5.8" word="by" />
+        <node label="n-chunk" >
+          <node label="attrib" >
+            <node leaf="1" head="1" token="t5.9" word="other" />
+          </node>
+          <node head="1" label="n-chunk" >
+            <node leaf="1" token="t5.10" word="IoT" />
+            <node head="1" label="n-chunk" >
+              <node leaf="1" head="1" token="t5.11" word="applications" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t5.12" word="for" />
+        <node label="n-chunk" >
+          <node label="attrib" >
+            <node leaf="1" head="1" token="t5.13" word="further" />
+          </node>
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t5.14" word="analysis" />
+          </node>
+        </node>
+      </node>
+      <node label="adv" >
+        <node label="sf-brk" >
+          <node leaf="1" head="1" token="t5.15" word="," />
+        </node>
+        <node leaf="1" head="1" token="t5.16" word="for_example" />
+      </node>
+      <node label="n-chunk" >
+        <node leaf="1" token="t5.17" word="analysis" />
+        <node head="1" label="n-chunk" >
+          <node leaf="1" head="1" token="t5.18" word="functions" />
+          <node label="sp-chunk" >
+            <node leaf="1" head="1" token="t5.19" word="of" />
+            <node label="n-chunk" >
+              <node leaf="1" head="1" token="t5.20" word="RIOTANA" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="sn-parenth" >
+        <node label="inc-mk" >
+          <node leaf="1" head="1" token="t5.21" word="(" />
+        </node>
+        <node leaf="1" token="t5.22" word="Real-time" />
+        <node head="1" label="n-chunk" >
+          <node leaf="1" token="t5.23" word="IoT" />
+          <node head="1" label="n-chunk" >
+            <node leaf="1" head="1" token="t5.24" word="Analytics" />
+          </node>
+        </node>
+        <node label="inc-mk" >
+          <node leaf="1" head="1" token="t5.25" word=")" />
+        </node>
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t5.26" word="by" />
+        <node label="n-chunk" >
+          <node leaf="1" head="1" token="t5.27" word="Fraunhofer_ISST" />
+        </node>
+      </node>
+      <node label="st-brk" >
+        <node leaf="1" head="1" token="t5.28" word="." />
+      </node>
+    </node>
+  </constituents>
+  <dependencies>
+    <depnode token="t5.5" function="ROOT" word="can" >
+      <depnode token="t5.4" function="SBJ" word="data" >
+        <depnode token="t5.1" function="NMOD" word="Those" />
+        <depnode token="t5.2" function="NMOD" word="classified" />
+        <depnode token="t5.3" function="NMOD" word="behavior" />
+      </depnode>
+      <depnode token="t5.6" function="VC" word="be" >
+        <depnode token="t5.7" function="PRD" word="use" >
+          <depnode token="t5.8" function="NMOD" word="by" >
+            <depnode token="t5.11" function="PMOD" word="applications" >
+              <depnode token="t5.9" function="NMOD" word="other" />
+              <depnode token="t5.10" function="NMOD" word="IoT" />
+              <depnode token="t5.12" function="NMOD" word="for" >
+                <depnode token="t5.14" function="PMOD" word="analysis" >
+                  <depnode token="t5.13" function="NMOD" word="further" />
+                </depnode>
+              </depnode>
+              <depnode token="t5.15" function="P" word="," />
+              <depnode token="t5.18" function="COORD" word="functions" >
+                <depnode token="t5.16" function="NMOD" word="for_example" />
+                <depnode token="t5.17" function="NMOD" word="analysis" />
+                <depnode token="t5.19" function="NMOD" word="of" >
+                  <depnode token="t5.20" function="PMOD" word="RIOTANA" >
+                    <depnode token="t5.24" function="APPO" word="Analytics" >
+                      <depnode token="t5.21" function="P" word="(" />
+                      <depnode token="t5.22" function="NMOD" word="Real-time" />
+                      <depnode token="t5.23" function="NMOD" word="IoT" />
+                      <depnode token="t5.25" function="P" word=")" />
+                    </depnode>
+                    <depnode token="t5.26" function="NMOD" word="by" >
+                      <depnode token="t5.27" function="PMOD" word="Fraunhofer_ISST" />
+                    </depnode>
+                  </depnode>
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t5.28" function="P" word="." />
+    </depnode>
+  </dependencies>
+  <predicates>
+    <predicate id="P5.1" head_token="t5.2" sense="classify.01|separate.01|sort.01" words="classified" >
+      <argument role="A1" words="Those classified behavior data" head_token="t5.4" from="t5.1" to="t5.4" />
+    </predicate>
+    <predicate id="P5.2" head_token="t5.6" sense="be.00" words="be" >
+      <argument role="A0" words="Those classified behavior data" head_token="t5.4" from="t5.1" to="t5.4" />
+      <argument role="A1" words="use by other IoT applications for further analysis , for_example analysis functions of RIOTANA ( Real-time IoT Analytics ) by Fraunhofer_ISST" head_token="t5.7" from="t5.7" to="t5.27" />
+    </predicate>
+    <predicate id="P5.3" head_token="t5.7" sense="serve.01|function.01" words="use" >
+      <argument role="A0" words="by other IoT applications for further analysis , for_example analysis functions of RIOTANA ( Real-time IoT Analytics ) by Fraunhofer_ISST" head_token="t5.8" from="t5.8" to="t5.27" />
+    </predicate>
+    <predicate id="P5.4" head_token="t5.11" sense="apply.02|employ.02|use.01|utilize.01" words="applications" >
+      <argument role="A1" words="for further analysis" head_token="t5.12" from="t5.12" to="t5.14" />
+    </predicate>
+    <predicate id="P5.5" head_token="t5.18" sense="serve.01|function.01" words="functions" >
+      <argument role="A1" words="analysis" head_token="t5.17" from="t5.17" to="t5.17" />
+      <argument role="A1" words="of RIOTANA ( Real-time IoT Analytics ) by Fraunhofer_ISST" head_token="t5.19" from="t5.19" to="t5.27" />
+    </predicate>
+  </predicates>
+</sentence>
+<sentence id="6">
+  <token id="t6.1" begin="1091" end="1093" form="We" lemma="we" tag="PRP" ctag="PRP" pos="pronoun" type="personal" >
+  </token>
+  <token id="t6.2" begin="1094" end="1101" form="collect" lemma="collect" tag="VBP" ctag="VBP" pos="verb" vform="personal" wn="02304982-v" >
+  </token>
+  <token id="t6.3" begin="1102" end="1106" form="real" lemma="real" tag="JJ" ctag="JJ" pos="adjective" wn="01932973-a" >
+  </token>
+  <token id="t6.4" begin="1107" end="1113" form="motion" lemma="motion" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="00331950-n" >
+  </token>
+  <token id="t6.5" begin="1114" end="1120" form="sensor" lemma="sensor" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="03180969-n" >
+  </token>
+  <token id="t6.6" begin="1121" end="1125" form="data" lemma="data" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="08462320-n" >
+  </token>
+  <token id="t6.7" begin="1126" end="1130" form="from" lemma="from" tag="IN" ctag="IN" pos="preposition" >
+  </token>
+  <token id="t6.8" begin="1131" end="1140" form="forklifts" lemma="forklift" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="03384352-n" >
+  </token>
+  <token id="t6.9" begin="1141" end="1144" form="and" lemma="and" tag="CC" ctag="CC" pos="conjunction" type="coordinating" >
+  </token>
+  <token id="t6.10" begin="1145" end="1152" form="develop" lemma="develop" tag="VB" ctag="VB" pos="verb" vform="infinitive" wn="02624263-v" >
+  </token>
+  <token id="t6.11" begin="1153" end="1160" form="machine" lemma="machine" tag="NN" ctag="NN" pos="noun" type="common" num="singular" wn="03699975-n" >
+  </token>
+  <token id="t6.12" begin="1161" end="1169" form="learning" lemma="learn" tag="VBG" ctag="VBG" pos="verb" vform="gerund" wn="00829107-v" >
+  </token>
+  <token id="t6.13" begin="1170" end="1180" form="algorithms" lemma="algorithm" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="05847438-n" >
+  </token>
+  <token id="t6.14" begin="1181" end="1183" form="to" lemma="to" tag="TO" ctag="TO" pos="particle" type="to" >
+  </token>
+  <token id="t6.15" begin="1184" end="1193" form="recognize" lemma="recognize" tag="VB" ctag="VB" pos="verb" vform="infinitive" wn="02193194-v" >
+  </token>
+  <token id="t6.16" begin="1194" end="1197" form="the" lemma="the" tag="DT" ctag="DT" pos="determiner" >
+  </token>
+  <token id="t6.17" begin="1198" end="1207" form="behaviors" lemma="behavior" tag="NNS" ctag="NNS" pos="noun" type="common" num="plural" wn="01220984-n" >
+  </token>
+  <token id="t6.18" begin="1207" end="1208" form="." lemma="." tag="Fp" ctag="Fp" pos="punctuation" type="period" >
+  </token>
+  <constituents>
+    <node head="1" label="sv" >
+      <node label="sn-chunk" >
+        <node leaf="1" head="1" token="t6.1" word="We" />
+      </node>
+      <node leaf="1" head="1" token="t6.2" word="collect" />
+      <node label="n-chunk" >
+        <node label="attrib" >
+          <node leaf="1" head="1" token="t6.3" word="real" />
+        </node>
+        <node head="1" label="n-chunk" >
+          <node leaf="1" token="t6.4" word="motion" />
+          <node head="1" label="n-chunk" >
+            <node leaf="1" token="t6.5" word="sensor" />
+            <node head="1" label="n-chunk" >
+              <node leaf="1" head="1" token="t6.6" word="data" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node label="sp-chunk" >
+        <node leaf="1" head="1" token="t6.7" word="from" />
+        <node label="n-chunk" >
+          <node leaf="1" head="1" token="t6.8" word="forklifts" />
+        </node>
+      </node>
+      <node label="nex-coord" >
+        <node leaf="1" head="1" token="t6.9" word="and" />
+      </node>
+      <node label="sv2-c" >
+        <node leaf="1" head="1" token="t6.10" word="develop" />
+        <node label="n-chunk" >
+          <node leaf="1" head="1" token="t6.11" word="machine" />
+        </node>
+      </node>
+      <node label="claus" >
+        <node leaf="1" head="1" token="t6.12" word="learning" />
+        <node label="n-chunk" >
+          <node leaf="1" head="1" token="t6.13" word="algorithms" />
+        </node>
+        <node label="inf-mk" >
+          <node leaf="1" head="1" token="t6.14" word="to" />
+          <node label="inf" >
+            <node leaf="1" head="1" token="t6.15" word="recognize" />
+            <node label="sn-chunk" >
+              <node leaf="1" token="t6.16" word="the" />
+              <node head="1" label="n-chunk" >
+                <node leaf="1" head="1" token="t6.17" word="behaviors" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node label="st-brk" >
+          <node leaf="1" head="1" token="t6.18" word="." />
+        </node>
+      </node>
+    </node>
+  </constituents>
+  <dependencies>
+    <depnode token="t6.2" function="ROOT" word="collect" >
+      <depnode token="t6.1" function="SBJ" word="We" />
+      <depnode token="t6.6" function="OBJ" word="data" >
+        <depnode token="t6.3" function="NMOD" word="real" />
+        <depnode token="t6.5" function="NMOD" word="sensor" >
+          <depnode token="t6.4" function="NMOD" word="motion" />
+        </depnode>
+      </depnode>
+      <depnode token="t6.7" function="ADV" word="from" >
+        <depnode token="t6.8" function="PMOD" word="forklifts" />
+      </depnode>
+      <depnode token="t6.9" function="COORD" word="and" >
+        <depnode token="t6.10" function="CONJ" word="develop" >
+          <depnode token="t6.11" function="OBJ" word="machine" />
+          <depnode token="t6.13" function="OBJ" word="algorithms" >
+            <depnode token="t6.12" function="NMOD" word="learning" />
+            <depnode token="t6.14" function="NMOD" word="to" >
+              <depnode token="t6.15" function="IM" word="recognize" >
+                <depnode token="t6.17" function="OBJ" word="behaviors" >
+                  <depnode token="t6.16" function="NMOD" word="the" />
+                </depnode>
+              </depnode>
+            </depnode>
+          </depnode>
+        </depnode>
+      </depnode>
+      <depnode token="t6.18" function="P" word="." />
+    </depnode>
+  </dependencies>
+  <predicates>
+    <predicate id="P6.1" head_token="t6.2" sense="accumulate.01|amass.01|collect.01" words="collect" >
+      <argument role="A0" words="We" head_token="t6.1" from="t6.1" to="t6.1" />
+      <argument role="A1" words="real motion sensor data" head_token="t6.6" from="t6.3" to="t6.6" />
+      <argument role="A2" words="from forklifts" head_token="t6.7" from="t6.7" to="t6.8" />
+    </predicate>
+    <predicate id="P6.2" head_token="t6.5" sense="feel.01|sense.01|detect.01|notice.01|observe.01" words="sensor" >
+      <argument role="A1" words="motion" head_token="t6.4" from="t6.4" to="t6.4" />
+    </predicate>
+    <predicate id="P6.3" head_token="t6.10" sense="grow.02|rise.01|develop.01|arise.01" words="develop" >
+      <argument role="A0" words="We" head_token="t6.1" from="t6.1" to="t6.1" />
+      <argument role="A1" words="machine" head_token="t6.11" from="t6.11" to="t6.11" />
+      <argument role="A1" words="learning algorithms to recognize the behaviors" head_token="t6.13" from="t6.12" to="t6.17" />
+    </predicate>
+    <predicate id="P6.4" head_token="t6.12" sense="teach.01" words="learning" >
+      <argument role="A0" words="learning algorithms to recognize the behaviors" head_token="t6.13" from="t6.12" to="t6.17" />
+    </predicate>
+    <predicate id="P6.5" head_token="t6.15" sense="discern.01|recognize.02" words="recognize" >
+      <argument role="A0" words="learning algorithms to recognize the behaviors" head_token="t6.13" from="t6.12" to="t6.17" />
+      <argument role="A1" words="the behaviors" head_token="t6.17" from="t6.16" to="t6.17" />
+    </predicate>
+  </predicates>
 </sentence>
 </paragraph>
+<coreferences>
+  <coref id="co4">
+    <mention id="m4.1" from="t1.6" to="t1.6" words="IoT" />
+    <mention id="m4.2" from="t4.4" to="t4.4" words="IoT" />
+    <mention id="m4.3" from="t5.10" to="t5.10" words="IoT" />
+  </coref>
+  <coref id="co19">
+    <mention id="m19.1" from="t2.10" to="t2.12" words="the logistic industry" />
+    <mention id="m19.2" from="t4.13" to="t4.15" words="the logistic industry" />
+  </coref>
+  <coref id="co20">
+    <mention id="m20.1" from="t2.14" to="t2.14" words="we" />
+    <mention id="m20.2" from="t6.1" to="t6.1" words="We" />
+  </coref>
+  <coref id="co23">
+    <mention id="m23.1" from="t2.21" to="t2.21" words="forklifts" />
+    <mention id="m23.2" from="t4.23" to="t4.24" words="the forklifts" />
+  </coref>
+  <coref id="co24">
+    <mention id="m24.1" from="t2.25" to="t2.49" words="value , which not only indicates directly the working status of a forklift ( e.g. loading , unloading , normal driving , harmful vibration etc" />
+    <mention id="m24.2" from="t2.27" to="t2.27" words="which" />
+  </coref>
+  <coref id="co27">
+    <mention id="m27.1" from="t2.36" to="t2.40" words="a forklift ( e.g. loading" />
+    <mention id="m27.2" from="t2.39" to="t2.40" words="e.g. loading" />
+  </coref>
+  <coref id="co46">
+    <mention id="m46.1" from="t4.20" to="t4.24" words="daily behaviors of the forklifts" />
+    <mention id="m46.2" from="t6.16" to="t6.17" words="the behaviors" />
+  </coref>
+  <coref id="co57">
+    <mention id="m57.1" from="t5.20" to="t5.27" words="RIOTANA ( Real-time IoT Analytics ) by Fraunhofer_ISST" />
+    <mention id="m57.2" from="t5.22" to="t5.24" words="Real-time IoT Analytics" />
+  </coref>
+</coreferences>
+<semantic_graph>
+   <entity id="W2" lemma="industry" class="unknown" sense="00923444-n" >
+      <mention id="t2.12" words="the logistic industry" />
+      <mention id="t4.15" words="the logistic industry" />
+      <synonym lemma="industry"/>
+      <synonym lemma="manufacture"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00923444-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjhdZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Manufacture"/>
+   </entity>
+   <entity id="W3" lemma="we" class="unknown" >
+      <mention id="t2.14" words="we" />
+      <mention id="t6.1" words="We" />
+   </entity>
+   <entity id="W4" lemma="forklift" class="unknown" sense="03384352-n" >
+      <mention id="t2.21" words="forklifts" />
+      <mention id="t4.24" words="the forklifts" />
+      <mention id="t6.8" words="forklifts" />
+      <synonym lemma="forklift"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/03384352-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#CargoVehicle"/>
+   </entity>
+   <entity id="W5" lemma="value" class="unknown" sense="05856388-n" >
+      <mention id="t2.25" words="value , which not only indicates directly the working status of a forklift ( e.g. loading , unloading , normal driving , harmful vibration etc" />
+      <mention id="t2.27" words="which" />
+      <synonym lemma="value"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/05856388-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Quantity"/>
+   </entity>
+   <entity id="W7" lemma="behavior" class="unknown" sense="01220984-n" >
+      <mention id="t4.21" words="daily behaviors of the forklifts" />
+      <mention id="t6.17" words="the behaviors" />
+      <synonym lemma="behavior"/>
+      <synonym lemma="behaviour"/>
+      <synonym lemma="conduct"/>
+      <synonym lemma="doings"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01220984-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvViVx5wpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#BodyMotion"/>
+   </entity>
+   <entity id="W8" lemma="analytics" class="unknown" >
+      <mention id="t5.20" words="RIOTANA ( Real-time IoT Analytics ) by Fraunhofer_ISST" />
+      <mention id="t5.24" words="Real-time IoT Analytics" />
+   </entity>
+   <entity id="W16" lemma="cybersecurity" >
+      <mention id="t1.3" words="cybersecurity" />
+   </entity>
+   <entity id="W17" lemma="application" sense="00949134-n" >
+      <mention id="t1.7" words="IoT applications" />
+      <synonym lemma="application"/>
+      <synonym lemma="practical_application"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00949134-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#uses"/>
+   </entity>
+   <entity id="W18" lemma="solution" sense="14589223-n" >
+      <mention id="t1.12" words="cheap solutions for variety of use cases" />
+      <synonym lemma="solution"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/14589223-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVkFnJwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Solution"/>
+   </entity>
+   <entity id="W19" lemma="case" sense="07308889-n" >
+      <mention id="t1.17" words="use cases" />
+      <synonym lemma="case"/>
+      <synonym lemma="example"/>
+      <synonym lemma="instance"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/07308889-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#instance"/>
+   </entity>
+   <entity id="W20" lemma="be" sense="02604760-v" >
+      <mention id="t1.21" words="be easily combined with machine learning and artificial intelligence in_order_to develop smart maintenance and supervision models for the industrial assets" />
+      <synonym lemma="be"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02604760-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#instance"/>
+   </entity>
+   <entity id="W21" lemma="easily" sense="00147876-r" >
+      <mention id="t1.22" words="easily" />
+      <synonym lemma="easily"/>
+      <synonym lemma="easy"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00147876-r"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#SubjectiveAssessmentAttribute"/>
+   </entity>
+   <entity id="W22" lemma="machine" sense="03699975-n" >
+      <mention id="t1.25" words="machine" />
+      <mention id="t4.9" words="machine learning algorithm for the logistic industry" />
+      <mention id="t6.11" words="machine" />
+      <synonym lemma="machine"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/03699975-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjVgZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Machine"/>
+   </entity>
+   <entity id="W23" lemma="intelligence" sense="06642138-n" >
+      <mention id="t1.29" words="intelligence" />
+      <synonym lemma="intelligence"/>
+      <synonym lemma="news"/>
+      <synonym lemma="tidings"/>
+      <synonym lemma="word"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/06642138-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#FactualText"/>
+   </entity>
+   <entity id="W24" lemma="model" sense="05937112-n" >
+      <mention id="t1.36" words="smart maintenance and supervision models for the industrial assets" />
+      <synonym lemma="example"/>
+      <synonym lemma="model"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/05937112-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Abstract"/>
+   </entity>
+   <entity id="W39" lemma="especially" sense="00084223-r" >
+      <mention id="t2.1" words="Especially" />
+      <synonym lemma="especially"/>
+      <synonym lemma="particularly"/>
+      <synonym lemma="peculiarly"/>
+      <synonym lemma="specially"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00084223-r"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#SubjectiveAssessmentAttribute"/>
+   </entity>
+   <entity id="W40" lemma="data" sense="08462320-n" >
+      <mention id="t2.19" words="the behavior data of forklifts" />
+      <mention id="t5.4" words="Those classified behavior data" />
+      <mention id="t6.6" words="real motion sensor data" />
+      <synonym lemma="data"/>
+      <synonym lemma="information"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/08462320-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#FactualText"/>
+   </entity>
+   <entity id="W41" lemma="full" sense="01083157-a" >
+      <mention id="t2.23" words="full of value , which not only indicates directly the working status of a forklift ( e.g. loading , unloading , normal driving , harmful vibration etc" />
+      <synonym lemma="full"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01083157-a"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#ContainerFull"/>
+   </entity>
+   <entity id="W42" lemma="not" sense="00024073-r" >
+      <mention id="t2.28" words="not" />
+      <synonym lemma="non"/>
+      <synonym lemma="not"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00024073-r"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#not"/>
+   </entity>
+   <entity id="W43" lemma="only" sense="00008600-r" >
+      <mention id="t2.29" words="only" />
+      <synonym lemma="alone"/>
+      <synonym lemma="entirely"/>
+      <synonym lemma="exclusively"/>
+      <synonym lemma="only"/>
+      <synonym lemma="solely"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00008600-r"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#SocialInteraction"/>
+   </entity>
+   <entity id="W44" lemma="directly" sense="00504281-r" >
+      <mention id="t2.31" words="directly" />
+      <synonym lemma="directly"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00504281-r"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#SubjectiveAssessmentAttribute"/>
+   </entity>
+   <entity id="W45" lemma="status" sense="13920835-n" >
+      <mention id="t2.34" words="the working status of a forklift ( e.g. loading" />
+      <synonym lemma="condition"/>
+      <synonym lemma="status"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/13920835-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#manner"/>
+   </entity>
+   <entity id="W46" lemma="e.g." >
+      <mention id="t2.39" words="e.g." />
+   </entity>
+   <entity id="W47" lemma="normal" sense="01593649-a" >
+      <mention id="t2.44" words="normal" />
+      <synonym lemma="normal"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01593649-a"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#NormativeAttribute"/>
+   </entity>
+   <entity id="W48" lemma="harmful" sense="01160031-a" >
+      <mention id="t2.47" words="harmful" />
+      <synonym lemma="harmful"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01160031-a"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Damaging"/>
+   </entity>
+   <entity id="W49" lemma="also" sense="00047534-r" >
+      <mention id="t2.55" words="also" />
+      <synonym lemma="also"/>
+      <synonym lemma="as_well"/>
+      <synonym lemma="besides"/>
+      <synonym lemma="likewise"/>
+      <synonym lemma="too"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00047534-r"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#and"/>
+   </entity>
+   <entity id="W50" lemma="possible" sense="01821266-a" >
+      <mention id="t2.56" words="possible to be further used for analyzing high level KPIs" />
+      <synonym lemma="possible"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01821266-a"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Possibility"/>
+   </entity>
+   <entity id="W51" lemma="further" sense="00030443-r" >
+      <mention id="t2.59" words="further" />
+      <synonym lemma="further"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00030443-r"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#and"/>
+   </entity>
+   <entity id="W52" lemma="kpis" >
+      <mention id="t2.65" words="high level KPIs" />
+   </entity>
+   <entity id="W56" lemma="workload" sense="00581241-n" >
+      <mention id="t3.7" words="forklift workload" />
+      <synonym lemma="work_load"/>
+      <synonym lemma="workload"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00581241-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#TimeDependentQuantity"/>
+   </entity>
+   <entity id="W57" lemma="asset" sense="05154517-n" >
+      <mention id="t3.12" words="assets and forecast demand" />
+      <synonym lemma="asset"/>
+      <synonym lemma="plus"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/05154517-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4ryb1WdLy2EdmAAAACs6hRjg"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#PropertyFn"/>
+   </entity>
+   <entity id="W58" lemma="predictive" sense="01883325-a" >
+      <mention id="t3.20" words="predictive" />
+      <synonym lemma="predictive"/>
+      <synonym lemma="prognostic"/>
+      <synonym lemma="prognosticative"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01883325-a"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Predicting"/>
+   </entity>
+   <entity id="W62" lemma="algorithm" sense="05847438-n" >
+      <mention id="t4.11" words="algorithm" />
+      <mention id="t6.13" words="learning algorithms to recognize the behaviors" />
+      <synonym lemma="algorithm"/>
+      <synonym lemma="algorithmic_program"/>
+      <synonym lemma="algorithmic_rule"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/05847438-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjuaJwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Procedure"/>
+   </entity>
+   <entity id="W68" lemma="analysis" sense="00704305-n" >
+      <mention id="t5.14" words="further analysis" />
+      <mention id="t5.17" words="analysis" />
+      <synonym lemma="analysis"/>
+      <synonym lemma="depth_psychology"/>
+      <synonym lemma="psychoanalysis"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00704305-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#TherapeuticProcess"/>
+   </entity>
+   <entity id="W74" lemma="motion" sense="00331950-n" >
+      <mention id="t6.4" words="motion" />
+      <synonym lemma="motility"/>
+      <synonym lemma="motion"/>
+      <synonym lemma="move"/>
+      <synonym lemma="movement"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00331950-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvV5EZJwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#BodyMotion"/>
+   </entity>
+   <frame id="F9" token="t1.4" lemma="fabricate.01|manufacture.01" sense="00923444-n" >
+      <argument role="A1" entity="W16" />
+      <synonym lemma="industry"/>
+      <synonym lemma="manufacture"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00923444-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjhdZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Manufacture"/>
+   </frame>
+   <frame id="F10" token="t1.9" lemma="reckon.01|see.01|view.02|regard.01" sense="00690614-v" >
+      <argument role="AM-LOC" entity="F9" />
+      <argument role="A1:Theme" entity="W17" />
+      <argument role="A2:Attribute" entity="W18" />
+      <synonym lemma="consider"/>
+      <synonym lemma="reckon"/>
+      <synonym lemma="regard"/>
+      <synonym lemma="see"/>
+      <synonym lemma="view"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00690614-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#believes"/>
+   </frame>
+   <frame id="F11" token="t1.14" lemma="classify.01|separate.01|sort.01" sense="05839024-n" >
+      <argument role="A1" entity="W19" />
+      <synonym lemma="form"/>
+      <synonym lemma="kind"/>
+      <synonym lemma="sort"/>
+      <synonym lemma="variety"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/05839024-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvViAzJwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Class"/>
+   </frame>
+   <frame id="F12" token="t1.23" lemma="coalesce.01|fuse.01|merge.01|mix.01" sense="00394813-v" >
+      <argument role="AM-DIS" entity="F9" />
+      <argument role="A1:Beneficiary" entity="W17" />
+      <argument role="AM-MOD" entity="W20" />
+      <argument role="AM-MNR" entity="W21" />
+      <argument role="A2:Patient" entity="W22" />
+      <synonym lemma="blend"/>
+      <synonym lemma="coalesce"/>
+      <synonym lemma="combine"/>
+      <synonym lemma="commingle"/>
+      <synonym lemma="conflate"/>
+      <synonym lemma="flux"/>
+      <synonym lemma="fuse"/>
+      <synonym lemma="immix"/>
+      <synonym lemma="meld"/>
+      <synonym lemma="merge"/>
+      <synonym lemma="mix"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00394813-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjwp5wpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#IntentionalProcess"/>
+   </frame>
+   <frame id="F13" token="t1.26" lemma="teach.01" sense="00829107-v" >
+      <argument role="A1" entity="W23" />
+      <synonym lemma="instruct"/>
+      <synonym lemma="learn"/>
+      <synonym lemma="teach"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00829107-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#EducationalProcess"/>
+   </frame>
+   <frame id="F14" token="t1.31" lemma="grow.02|rise.01|develop.01|arise.01" sense="02624263-v" >
+      <argument role="AM-MOD" entity="W20" />
+      <argument role="A1:Theme" entity="W24" />
+      <synonym lemma="arise"/>
+      <synonym lemma="develop"/>
+      <synonym lemma="grow"/>
+      <synonym lemma="originate"/>
+      <synonym lemma="rise"/>
+      <synonym lemma="spring_up"/>
+      <synonym lemma="uprise"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02624263-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjeiZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#origin"/>
+   </frame>
+   <frame id="F15" token="t1.35" lemma="manage.02|monitor.01" sense="01135529-n" >
+      <argument role="A1" entity="W24" />
+      <synonym lemma="oversight"/>
+      <synonym lemma="superintendence"/>
+      <synonym lemma="supervising"/>
+      <synonym lemma="supervision"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01135529-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Managing"/>
+   </frame>
+   <frame id="F25" token="t2.5" lemma="touch.01|adjoin.01" sense="14419510-n" >
+      <argument role="A1" entity="F27" />
+      <synonym lemma="contact"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/14419510-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjrGZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#connected"/>
+   </frame>
+   <frame id="F26" token="t2.7" lemma="collaborate.01|cooperate.01" sense="01202904-n" >
+      <argument role="A0" entity="F27" />
+      <argument role="A1" entity="W2" />
+      <synonym lemma="cooperation"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01202904-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rv6wB1JwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Cooperation"/>
+   </frame>
+   <frame id="F27" token="t2.8" lemma="mate.01|pair.01" sense="10640620-n" >
+      <argument role="A1" entity="F26" />
+      <synonym lemma="better_half"/>
+      <synonym lemma="married_person"/>
+      <synonym lemma="mate"/>
+      <synonym lemma="partner"/>
+      <synonym lemma="spouse"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/10640620-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx8NhB4rvcD6KJwpEbGdrcN5Y29ycB4rvViAkpwpEbGdrcN5Y29ycB4rvVjVkZwpEbGdrcN5Y29ycB4rvViAkpwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#SocialRole"/>
+   </frame>
+   <frame id="F28" token="t2.15" lemma="detect.01|notice.01|observe.01" sense="02154508-v" >
+      <argument role="AM-TMP" entity="W39" />
+      <argument role="AM-LOC" entity="F25" />
+      <argument role="A0:Experiencer" entity="W3" />
+      <synonym lemma="detect"/>
+      <synonym lemma="discover"/>
+      <synonym lemma="find"/>
+      <synonym lemma="notice"/>
+      <synonym lemma="observe"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02154508-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvWHGSJwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Discovering"/>
+   </frame>
+   <frame id="F29" token="t2.22" lemma="be.00" sense="02604760-v" >
+      <argument role="A1" entity="W40" />
+      <argument role="A2" entity="W41" />
+      <synonym lemma="be"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02604760-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#instance"/>
+   </frame>
+   <frame id="F30" token="t2.30" lemma="indicate.00" sense="00923793-v" >
+      <argument role="A1:Topic" entity="W5" />
+      <argument role="R-A0" entity="W5" />
+      <argument role="AM-NEG" entity="W42" />
+      <argument role="AM-ADV" entity="W43" />
+      <argument role="AM-MNR" entity="W44" />
+      <argument role="A1:Topic" entity="W45" />
+      <argument role="AM-ADV" entity="F33" />
+      <synonym lemma="designate"/>
+      <synonym lemma="indicate"/>
+      <synonym lemma="point"/>
+      <synonym lemma="show"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00923793-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Indicating"/>
+   </frame>
+   <frame id="F31" token="t2.33" lemma="solve.01" sense="00634906-v" >
+      <argument role="A0:Agent" entity="W45" />
+      <synonym lemma="figure_out"/>
+      <synonym lemma="lick"/>
+      <synonym lemma="puzzle_out"/>
+      <synonym lemma="solve"/>
+      <synonym lemma="work"/>
+      <synonym lemma="work_out"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00634906-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Reasoning"/>
+   </frame>
+   <frame id="F32" token="t2.40" lemma="ship.01|send.01|transport.01|load.01" sense="02964389-n" >
+      <argument role="AM-MNR" entity="W46" />
+      <synonym lemma="cargo"/>
+      <synonym lemma="consignment"/>
+      <synonym lemma="freight"/>
+      <synonym lemma="lading"/>
+      <synonym lemma="load"/>
+      <synonym lemma="loading"/>
+      <synonym lemma="payload"/>
+      <synonym lemma="shipment"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02964389-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Artifact"/>
+   </frame>
+   <frame id="F33" token="t2.42" lemma="discharge.01" sense="01489465-v" >
+      <argument role="R-A0" entity="W5" />
+      <argument role="A1:Theme" entity="F35" />
+      <synonym lemma="discharge"/>
+      <synonym lemma="drop"/>
+      <synonym lemma="drop_off"/>
+      <synonym lemma="put_down"/>
+      <synonym lemma="set_down"/>
+      <synonym lemma="unload"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01489465-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Removing"/>
+   </frame>
+   <frame id="F34" token="t2.45" lemma="drive.00" sense="01026975-v" >
+      <argument role="AM-MNR" entity="W47" />
+      <argument role="A0" entity="F35" />
+      <synonym lemma="aim"/>
+      <synonym lemma="drive"/>
+      <synonym lemma="get"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01026975-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Communication"/>
+   </frame>
+   <frame id="F35" token="t2.48" lemma="oscillate.01|vibrate.01" sense="07345166-n" >
+      <argument role="AM-MNR" entity="W48" />
+      <synonym lemma="oscillation"/>
+      <synonym lemma="vibration"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/07345166-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Motion"/>
+   </frame>
+   <frame id="F36" token="t2.54" lemma="be.00" sense="02604760-v" >
+      <argument role="A0" entity="W3" />
+      <argument role="AM-DIS" entity="W49" />
+      <argument role="A2" entity="W50" />
+      <synonym lemma="be"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02604760-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#instance"/>
+   </frame>
+   <frame id="F37" token="t2.60" lemma="apply.02|employ.02|use.01|utilize.01" sense="01158872-v" >
+      <argument role="AM-ADV" entity="W51" />
+      <argument role="A2:Predicate" entity="F38" />
+      <synonym lemma="apply"/>
+      <synonym lemma="employ"/>
+      <synonym lemma="use"/>
+      <synonym lemma="utilise"/>
+      <synonym lemma="utilize"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01158872-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvWW4E5wpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#uses"/>
+   </frame>
+   <frame id="F38" token="t2.62" lemma="analyze.00" sense="00644583-v" >
+      <argument role="A1" entity="W52" />
+      <synonym lemma="analyse"/>
+      <synonym lemma="analyze"/>
+      <synonym lemma="canvas"/>
+      <synonym lemma="canvass"/>
+      <synonym lemma="examine"/>
+      <synonym lemma="study"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00644583-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvkQUA5wpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Investigating"/>
+   </frame>
+   <frame id="F53" token="t3.4" lemma="analyze.00" sense="00644583-v" >
+      <argument role="A1" entity="W56" />
+      <synonym lemma="analyse"/>
+      <synonym lemma="analyze"/>
+      <synonym lemma="canvas"/>
+      <synonym lemma="canvass"/>
+      <synonym lemma="examine"/>
+      <synonym lemma="study"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00644583-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvkQUA5wpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Investigating"/>
+   </frame>
+   <frame id="F54" token="t3.11" lemma="arrange.00" sense="01463963-v" >
+      <argument role="A1" entity="W57" />
+      <synonym lemma="arrange"/>
+      <synonym lemma="set_up"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01463963-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvWwPLZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Putting"/>
+   </frame>
+   <frame id="F55" token="t3.21" lemma="preserve.01" sense="00267522-n" >
+      <argument role="AM-MNR" entity="W58" />
+      <synonym lemma="care"/>
+      <synonym lemma="maintenance"/>
+      <synonym lemma="upkeep"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00267522-n"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjC25wpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Maintaining"/>
+   </frame>
+   <frame id="F59" token="t4.10" lemma="teach.01" sense="00829107-v" >
+      <argument role="A0" entity="W22" />
+      <argument role="A1" entity="W62" />
+      <argument role="AM-PNC" entity="W2" />
+      <synonym lemma="instruct"/>
+      <synonym lemma="learn"/>
+      <synonym lemma="teach"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00829107-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#EducationalProcess"/>
+   </frame>
+   <frame id="F60" token="t4.17" lemma="target.01" sense="01150559-v" >
+      <argument role="A2:Instrument" entity="F61" />
+      <synonym lemma="aim"/>
+      <synonym lemma="direct"/>
+      <synonym lemma="place"/>
+      <synonym lemma="point"/>
+      <synonym lemma="target"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/01150559-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvbbEIZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#IntentionalProcess"/>
+   </frame>
+   <frame id="F61" token="t4.19" lemma="analyze.00" sense="00644583-v" >
+      <argument role="A1" entity="W7" />
+      <synonym lemma="analyse"/>
+      <synonym lemma="analyze"/>
+      <synonym lemma="canvas"/>
+      <synonym lemma="canvass"/>
+      <synonym lemma="examine"/>
+      <synonym lemma="study"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00644583-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvkQUA5wpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Investigating"/>
+   </frame>
+   <frame id="F63" token="t5.2" lemma="classify.01|separate.01|sort.01" sense="00654625-v" >
+      <argument role="A1:Theme" entity="W40" />
+      <synonym lemma="assort"/>
+      <synonym lemma="class"/>
+      <synonym lemma="classify"/>
+      <synonym lemma="separate"/>
+      <synonym lemma="sort"/>
+      <synonym lemma="sort_out"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00654625-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Classifying"/>
+   </frame>
+   <frame id="F64" token="t5.6" lemma="be.00" sense="02604760-v" >
+      <argument role="A0" entity="W40" />
+      <argument role="A1" entity="F65" />
+      <synonym lemma="be"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02604760-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#instance"/>
+   </frame>
+   <frame id="F65" token="t5.7" lemma="serve.01|function.01" sense="05149325-n" >
+      <argument role="A0" entity="F66" />
+      <synonym lemma="function"/>
+      <synonym lemma="purpose"/>
+      <synonym lemma="role"/>
+      <synonym lemma="use"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/05149325-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#hasPurpose"/>
+   </frame>
+   <frame id="F66" token="t5.11" lemma="apply.02|employ.02|use.01|utilize.01" sense="00949134-n" >
+      <argument role="A1" entity="W68" />
+      <synonym lemma="application"/>
+      <synonym lemma="practical_application"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00949134-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#uses"/>
+   </frame>
+   <frame id="F67" token="t5.18" lemma="serve.01|function.01" sense="05149325-n" >
+      <argument role="A1" entity="W68" />
+      <argument role="A1" entity="W8" />
+      <synonym lemma="function"/>
+      <synonym lemma="purpose"/>
+      <synonym lemma="role"/>
+      <synonym lemma="use"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/05149325-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#hasPurpose"/>
+   </frame>
+   <frame id="F69" token="t6.2" lemma="accumulate.01|amass.01|collect.01" sense="02304982-v" >
+      <argument role="A0:Agent" entity="W3" />
+      <argument role="A1:Theme" entity="W40" />
+      <argument role="A2" entity="W4" />
+      <synonym lemma="accumulate"/>
+      <synonym lemma="amass"/>
+      <synonym lemma="collect"/>
+      <synonym lemma="compile"/>
+      <synonym lemma="hoard"/>
+      <synonym lemma="pile_up"/>
+      <synonym lemma="roll_up"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02304982-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Putting"/>
+   </frame>
+   <frame id="F70" token="t6.5" lemma="feel.01|sense.01|detect.01|notice.01|observe.01" sense="03180969-n" >
+      <argument role="A1" entity="W74" />
+      <synonym lemma="detector"/>
+      <synonym lemma="sensing_element"/>
+      <synonym lemma="sensor"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/03180969-n"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#MeasuringDevice"/>
+   </frame>
+   <frame id="F71" token="t6.10" lemma="grow.02|rise.01|develop.01|arise.01" sense="02624263-v" >
+      <argument role="A0" entity="W3" />
+      <argument role="A1:Theme" entity="W22" />
+      <argument role="A1:Theme" entity="W62" />
+      <synonym lemma="arise"/>
+      <synonym lemma="develop"/>
+      <synonym lemma="grow"/>
+      <synonym lemma="originate"/>
+      <synonym lemma="rise"/>
+      <synonym lemma="spring_up"/>
+      <synonym lemma="uprise"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02624263-v"/>
+      <URI knowledgeBase="OpenCYC" URI="http://sw.opencyc.org/concept/Mx4rvVjeiZwpEbGdrcN5Y29ycA"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#origin"/>
+   </frame>
+   <frame id="F72" token="t6.12" lemma="teach.01" sense="00829107-v" >
+      <argument role="A0" entity="W62" />
+      <synonym lemma="instruct"/>
+      <synonym lemma="learn"/>
+      <synonym lemma="teach"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/00829107-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#EducationalProcess"/>
+   </frame>
+   <frame id="F73" token="t6.15" lemma="discern.01|recognize.02" sense="02193194-v" >
+      <argument role="A0:Experiencer" entity="W62" />
+      <argument role="A1:Stimulus" entity="W7" />
+      <synonym lemma="discern"/>
+      <synonym lemma="distinguish"/>
+      <synonym lemma="make_out"/>
+      <synonym lemma="pick_out"/>
+      <synonym lemma="recognise"/>
+      <synonym lemma="recognize"/>
+      <synonym lemma="spot"/>
+      <synonym lemma="tell_apart"/>
+      <URI knowledgeBase="WordNet" URI="http://wordnet-rdf.princeton.edu/wn30/02193194-v"/>
+      <URI knowledgeBase="SUMO" URI="http://ontologyportal.org/SUMO.owl#Perception"/>
+   </frame>
+</semantic_graph>
 </document>

@@ -14,12 +14,11 @@
 using namespace std;
 using namespace pugi;
 
-int mode;
-
 vector<string> pars;
-double min_ratio = 0.96;
 vector<string> found_cat;
 map<string, vector<string> > semantic_data;
+
+double min_ratio = 0.96;
 
 vector<string> cso_topics;
 map<string, vector<string> >  broaders;
@@ -28,6 +27,7 @@ map<string, vector<string> >  same_as;
 map<string, string> primary_labels;
 
 vector<string> queries;
+vector<string> tokens;
 
 string eraseSubStr(string mainStr, string toErase, bool brackets)
 {
@@ -65,7 +65,6 @@ void map_cso (vector<vector<string> > cso) {
         }
         else if (endsWith(triple[1],"rdf-schema#label"))
         {
-            //topics[triple[0]] = true;
             cso_topics.push_back(triple[0]);
         }
         else if (triple[1] == "preferentialEquivalent")
@@ -200,47 +199,50 @@ void insert_dep(xml_object_range<xml_node_iterator> childs){
     xml_node parent = childs.begin()->parent();
     string parent_sibword = parent.next_sibling().last_attribute().value();  
 
-
     for (xml_node_iterator it3 = childs.begin(); it3 != childs.end(); ++it3) {
         //cout << "Nth Dependency Node: ";        
 
         string word = it3->last_attribute().value();
 
-        string checkword = word;
+        const char_t* att = "token";
+        string token = it3->attribute(att).value();
+        tokens.push_back(token);
 
         vector<string> targets = pars;
-        //if (mode == 1) targets = pars;
-        //else targets = cso_topics;
 
         //SINGLE
+        //queries.push_back("---SINGLE---");
+        string checkword = word;
+        queries.push_back(checkword);
         for (int i = 0; i < targets.size(); ++i) {
             if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
         }
 
         //PARENT
         //SIBLINGS + PARENT???
-        /*
+        //queries.push_back("---PARENT---");
         string parentword = it3->parent().last_attribute().value();
-        checkword = word + "_" + parentword;        
+        checkword = word + "_" + parentword;
+        queries.push_back(checkword);
         for (int i = 0; i < targets.size(); ++i) {
             if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
         }
-        */
 
         //SIBLINGS
+        //queries.push_back("---SIBLINGS---");
         for (int i = 0; i < sibwords.size(); ++i) {
             if(sibwords[i] != word) {
                 checkword = word + "_" + sibwords[i];
-                
+                queries.push_back(checkword);
+
                 for (int i = 0; i < targets.size(); ++i) {
                     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
                 }
             }
         }
-        
 
         //PARENT SIBLINGS
-        /*
+        //queries.push_back("---PARENT SIBLINGS---");
         xml_node parent = childs.begin()->parent().parent();
         vector<string> parent_sibwords;
         for (xml_node_iterator it3 = parent.begin(); it3 != parent.end(); ++it3) {
@@ -251,20 +253,21 @@ void insert_dep(xml_object_range<xml_node_iterator> childs){
         for (int i = 0; i < parent_sibwords.size(); ++i) {
             if(parent_sibwords[i] != word) {
                 checkword = word + "_" + parent_sibwords[i];
+                queries.push_back(checkword);
 
                 for (int i = 0; i < targets.size(); ++i) {
                     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
                 }
             }
         }
-        */
 
         //PARENT NEXT SIBLING
-        checkword = word + "_" + parent_sibword;        
+        //queries.push_back("---PARENT NEXT SIBLINGS---");
+        checkword = word + "_" + parent_sibword;
+        queries.push_back(checkword);
         for (int i = 0; i < targets.size(); ++i) {
             if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
         }
-        
 
         /* parent and sibiling words output check
         if (word == "artificial") {
@@ -288,7 +291,13 @@ void insert_dep(xml_object_range<xml_node_iterator> childs){
         */
 
         xml_object_range<xml_node_iterator> childsrec = it3->children();
-
+        
+        /*
+        queries.push_back("---------------------");
+        queries.push_back("---NEXT DEPENDENCY---");
+        queries.push_back("---------------------");
+        */
+       
         //it->empty();
         if (childsrec.begin() != childsrec.end()) {
             insert_dep(childsrec);
@@ -327,10 +336,6 @@ int main()
         cout << "add the cso.nt with the cso ontology to start analyzing" << endl;
         return -1;
     }
-
-    //cout << "1 AI4EU Categories or else for AI4EU + CSO" << endl;
-    //cin >> mode;
-    mode = 1;
 
     //AI4EU ONTOLOGY PROCESSING
     cout << "\nProcessing AI4EU ontology data...\n\n";
@@ -451,13 +456,12 @@ int main()
     found_cat.erase( unique( found_cat.begin(), found_cat.end() ), found_cat.end() );
 
     //AI4EU
-    if (mode == 1) {
-        cout << "AI4EU CATEGORIES:" << endl;
-        for (int i = 0; i<found_cat.size(); ++i) {
-            cout << found_cat[i] << endl;;
-        }
+    cout << "AI4EU CATEGORIES:" << endl;
+    for (int i = 0; i<found_cat.size(); ++i) {
+        cout << found_cat[i] << endl;;
     }
-    //AI4EU + CSO
+
+    /* CSO
     else {
         for (int i = 0; i<found_cat.size(); ++i) {
             if (!primary_labels[found_cat[i]].empty()) found_cat[i] = primary_labels[found_cat[i]];
@@ -512,11 +516,22 @@ int main()
             cout << not_found[i] << endl;
         }
     }
+    */
+    
+    queries.erase( unique( queries.begin(), queries.end() ), queries.end() );
+    tokens.erase( unique( tokens.begin(), tokens.end() ), tokens.end() );
+
     ofstream queries_file ("queries.txt");
-    queries_file << "my query here!" << endl;
+    for (int i = 0; i < queries.size(); ++i) {
+        queries_file << queries[i] << endl;
+    }
     queries_file.close();
+
     ofstream tokens_file ("tokens.txt");
-    tokens_file << "my token here!" << endl;
+    for (int i = 0; i < tokens.size(); ++i) {
+        tokens_file << tokens[i] << endl;
+    }
     tokens_file.close();
+
     return 0;
 }
