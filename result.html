@@ -1,7 +1,19 @@
 <!doctype html>
 <html>
 <head>
-    <title>Neovis.js Simple Example</title>
+	<h1 id="title">My page</h1>
+    <script>
+        fetch('http://localhost:5000/version').then(function(response) {
+            return response.json();
+        }).then(function(myJson) {
+            document.getElementById('title').innerHTML = myJson;
+        });
+    </script>
+
+
+	<input id="Name" type="textbox" value=name>
+
+	<title>Neovis.js Simple Example</title>
     <style type="text/css">
         html, body {
             font: 16pt arial;
@@ -38,28 +50,31 @@
 				server_url: "bolt://localhost:7687",
 				server_user: "neo4j",
 				server_password: "1234",
-				
+				arrows: true,
                 labels: {
-					/*
-					//"Character": "name",
-					"Character": {
-						"caption": "name",
-						"size": "pagerank",
-						"community": "community"
+					"Resource": {
+						"caption": "rdfs__label",
+						//"size": "pagerank",
+						//"community": "community"
+						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+					},
+					"ns0__Topic": {
+						"caption": "rdfs__label",
+						//"size": "pagerank",
+						//"community": "community"
 						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
 					}
-					*/
 				},
 				relationships: {
-					/*
-					"INTERACTS": {
-						"thickness": "weight",
-						"caption": false
+					"ns0__superTopicOf": {
+						//"thickness": "weight",
+						//"caption": false
 					}
-					*/
+					
 				},
 				//initial_cypher: "MATCH (t:ns0__Topic) WHERE t.rdfs__label = 'artificial intelligence' RETURN t"
-				initial_cypher: "MATCH (n:ns0__Topic) RETURN n LIMIT 25"
+				//initial_cypher: "MATCH (n:ns0__Topic) RETURN n LIMIT 25"
+				initial_cypher: "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 25"
 			};
 
 			viz = new NeoVis.default(config);

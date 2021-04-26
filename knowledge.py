@@ -113,7 +113,7 @@ if __name__ == "__main__":
     #app.create_friendship("Alice", "David")
     #app.find_person("Alice")
     #app.find_topic("artificial intelligence")
-    #app.insert_super_topic("artificial_intelligence")
+    #app.insert_super_topic("artificial_intelligence") //POT SER AL REVES
     with open("queries.txt") as f:
         queries = f.readlines()
     queries = [x.strip() for x in queries]
