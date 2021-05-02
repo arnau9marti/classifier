@@ -1,51 +1,54 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs')
+const path = require('path');
 const app = express();
-var path = require('path');
 
+/*
 const livereload = require("livereload");
-
 const liveReloadServer = livereload.createServer();
 liveReloadServer.watch(path.join(__dirname, 'public'));
-
 const connectLivereload = require("connect-livereload");
-
 app.use(connectLivereload());
+*/
+
+const exphbs = require('express-handlebars');
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, 'views/mainLayout')
+}));
+
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static(__dirname));
-app.set('view engine', 'pug')
+
+app.set('view engine', 'handlebars');
 
 var categories;
+var description = "";
+
+var pos = ["0","3"]; //EXAMPLE TODO READ FROM TOKENS
 
 function classify(desc, mode, res) {
-    // standard node module
     var exec = require('child_process').exec
 
-    // this launches the executable and returns immediately
     var child = exec('sh script.sh',
     function (error, stdout, stderr) {
-        // This callback is invoked once the child terminates
         console.log("Here is the complete output of the program: ");
         //console.log(error)
         console.log(stdout)
         //console.log(stderr)
+        
         categories = stdout;
 
         fs.readFile('file.txt', 'utf-8', (err, data) => {
             if (err) throw err;
-            console.log(data);
+            description=data;
         })
-        res.render('input', { name: "HOLA" }, function (err, html) {
-            //const myVersion = 'My version is 0.5';
-            //res.json(myVersion)
-            res.sendFile(path.join(__dirname, 'result.html'));
-        })
+        res.render('result', {text: description, position: pos});
     
         //liveReloadServer.refresh('/');
     });
 
-    // if the program needs input on stdin, you can write to it immediately
     //child.stdin.setEncoding('utf-8');
     //child.stdin.write(mode+"\n");
 }
@@ -81,16 +84,11 @@ exec("echo '"+desc+ "' >file.txt", (error, stdout, stderr) => {
     console.log(`stdout: ${stdout}`);
 });
 }
-
-var pos = ["0","3"]; //EXAMPLE TODO READ FROM TOKENS
-
-app.get('/', function(req, res,) {
-
-
-    //res.render(path.join(__dirname, 'index.html'), { name: 'description', positions: pos});
+app.get('/', (req, res) => {
+    res.render('index', { name: "HOLA" });
 });
 
-app.post('/input', (req, res) => {
+app.post('/result', (req, res) => {
     if (req.body.lname == "") mode = "1";
     else mode = "0";
     desc = req.body.fname;
