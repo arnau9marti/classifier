@@ -1,0 +1,57 @@
+                            SEMANTIC
+
+// INVERSE
+MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) 
+CALL apoc.refactor.invert(rel)
+yield input, output
+RETURN input, output
+
+/* RELATIONSHIPS CHECK
+MATCH path = (c:ns0__Topic {rdfs__label: "internet"})<-[:ns0__superTopicOf*]-(child)
+RETURN path
+*/
+
+// CATEGORY INFERENCE
+MATCH (c:ns0__Topic {rdfs__label: "internet"})
+CALL n10s.inference.nodesInCategory(c, {
+  inCatRel: "ns0__preferentialEquivalent",
+  subCatRel: "ns0__superTopicOf"
+})
+YIELD node
+RETURN node
+
+// INVERSE
+MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) 
+CALL apoc.refactor.invert(rel)
+yield input, output
+RETURN input, output
+
+// CATEGORY INFERENCE (NOT DIRECTLY LINKED) "online" topics
+match path = (c:ns0__Topic)-[:ns0__preferentialEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: "internet"})
+where c.rdfs__label contains "online"
+RETURN path;
+
+
+
+
+
+                            SIMILARITY
+
+MATCH (c:ns0__Topic {rdfs__label: "internet"}),
+      path = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat),
+      otherPath = (wiki)<-[:ns0__contributesTo]-(other)
+return path, otherPath
+limit 30;
+
+
+
+
+
+MATCH (c:ns0__Topic {rdfs__label: "internet"}),
+      entityPath = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat),
+      path = (cat)-[:ns0__superTopicOf]->(parent)<-[:ns0__superTopicOf]-(otherCat),
+      otherEntityPath = (otherCat)<-[:ns0__preferentialEquivalent]-(otherWiki)<-[:ns0__contributesTo]-(other)
+RETURN other.rdfs__label,
+       [(other)-[:ns0__contributesTo]->()-[:ns0__preferentialEquivalent]->(entity) | entity.rdfs__label] AS otherCategories,
+       collect([node in nodes(path) | node.rdfs__label]) AS pathToOther
+limit 30
