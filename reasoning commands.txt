@@ -1,4 +1,4 @@
-                            SEMANTIC
+                            FIRST SEMANTIC
 
 // INVERSE
 MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) 
@@ -20,22 +20,28 @@ CALL n10s.inference.nodesInCategory(c, {
 YIELD node
 RETURN node
 
+
+// CATEGORY INTERSECTION
+
+
 // INVERSE
 MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) 
 CALL apoc.refactor.invert(rel)
 yield input, output
 RETURN input, output
 
+                            SECOND SEMANTIC
+
 // CATEGORY INFERENCE (NOT DIRECTLY LINKED) "online" topics
-match path = (c:ns0__Topic)-[:ns0__preferentialEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: "internet"})
-where c.rdfs__label contains "online"
+match path = (c:ns0__Topic)-[:ns0_relatedEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: "internet"})
+where c.rdfs__label contains "streaming"
 RETURN path;
 
 
 
 
 
-                            SIMILARITY
+                            FIRST SIMILARITY
 
 MATCH (c:ns0__Topic {rdfs__label: "internet"}),
       path = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat),
@@ -46,6 +52,7 @@ limit 30;
 
 
 
+                            SECOND SIMILARITY
 
 MATCH (c:ns0__Topic {rdfs__label: "internet"}),
       entityPath = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat),
@@ -55,3 +62,19 @@ RETURN other.rdfs__label,
        [(other)-[:ns0__contributesTo]->()-[:ns0__preferentialEquivalent]->(entity) | entity.rdfs__label] AS otherCategories,
        collect([node in nodes(path) | node.rdfs__label]) AS pathToOther
 limit 30
+
+
+                            ADD NEW NODES
+CREATE (resource_name); 
+
+CREATE (topic_name)-[:HAS_TOPIC]->(resource_name) 
+CREATE (topic_name)-[:TECH_CAT]->(resource_name) 
+CREATE (topic_name)-[:BUS_CAT]->(resource_name) 
+
+CREATE (resource_name)-[:HAS_CATEGORY]->(category_name) 
+
+
+
+                            ONTOLOGY UPLOAD
+
+CALL n10s.rdf.import.fetch("file:///Users/arnau/Desktop/classifier/topics.ttl","Turtle");

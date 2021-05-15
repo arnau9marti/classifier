@@ -44,6 +44,7 @@ function classify(desc, mode, res) {
             if (err) throw err;
             description=data;
         })
+        
         res.render('result', {text: description, position: pos});
     
         //liveReloadServer.refresh('/');

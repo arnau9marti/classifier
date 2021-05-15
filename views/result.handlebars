@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Neovis.js Simple Example</title>
+	<title>Result view</title>
     <style type="text/css">
         html, body {
             font: 16pt arial;
@@ -83,7 +83,9 @@ Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
 
 </body>
     <p>{{text}}</p>
+
 	<h1>{{position}}</h1>
+
 <script>
 	$("#reload").click(function() {
 
@@ -104,4 +106,29 @@ Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
 	})
 
 </script>
+
+<p>Description click test</p>
+
+
+<script type = "text/javascript">
+    $(document).ready(function() {
+
+    var p = $('p');
+    p.css({ cursor: 'pointer' });
+
+    p.dblclick(function(e) {
+        var range = window.getSelection() || document.getSelection() || document.selection.createRange();
+        var word = $.trim(range.toString());
+        if(word != '') {
+            alert(word);
+        }
+        range.collapse();
+        e.stopPropagation();
+    });
+    
+});
+    
+</script>
+
+
 </html>
