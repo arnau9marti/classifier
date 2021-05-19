@@ -18,11 +18,8 @@ CALL n10s.inference.nodesInCategory(c, {
   subCatRel: "ns0__superTopicOf"
 })
 YIELD node
-RETURN node
-
-
-// CATEGORY INTERSECTION
-
+WITH node.rdfs__label as nodes1
+RETURN nodes1
 
 // INVERSE
 MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) 
@@ -33,7 +30,7 @@ RETURN input, output
                             SECOND SEMANTIC
 
 // CATEGORY INFERENCE (NOT DIRECTLY LINKED) "online" topics
-match path = (c:ns0__Topic)-[:ns0_relatedEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: "internet"})
+match path = (c:ns0__Topic)-[:ns0__relatedEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: "internet"})
 where c.rdfs__label contains "streaming"
 RETURN path;
 

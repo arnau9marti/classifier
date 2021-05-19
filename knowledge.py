@@ -53,6 +53,65 @@ class App:
                 query=query, exception=exception))
             raise
 
+    def find_relationship(self, topic_name1, topic_name2):
+        with self.driver.session() as session:
+            session.read_transaction(self._inverse_super)
+            result1 = session.read_transaction(self._find_and_return_categories, topic_name1)
+            result2 = session.read_transaction(self._find_and_return_categories, topic_name2)
+            session.read_transaction(self._inverse_super)
+            result = set.intersection(set(result1), set(result2))
+        
+            for row in result:
+                print("Found topic: {row}".format(row=row))
+                
+    @staticmethod
+    def _find_and_return_categories(tx, topic_name):
+        query = (
+            "MATCH (c:ns0__Topic {rdfs__label: $topic_name}) "
+            "CALL n10s.inference.nodesInCategory(c, { "
+            "  inCatRel: 'ns0__preferentialEquivalent', "
+            #"  inCatRel: 'ns0__relatedEquivalent', "
+            "  subCatRel: 'ns0__superTopicOf' "
+            "}) "
+            "YIELD node "
+            "RETURN node.rdfs__label"
+        )
+        intersect = (
+            "RETURN apoc.coll.intersection($result1, $result2)" 
+        )
+        result = tx.run(query, topic_name=topic_name)
+        #intersection = tx.run(intersect, result1=result1, result2=result2)
+
+        return [row["node.rdfs__label"] for row in result]
+
+    def inverse_super(self):
+        with self.driver.session() as session:
+            session.read_transaction(self._inverse_super)
+
+    @staticmethod
+    def _inverse_super(tx):
+        inverse = (
+            "MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) CALL apoc.refactor.invert(rel) yield input, output RETURN input, output"
+        )
+        tx.run(inverse)
+
+    def find_related_term(self, first_term, second_term):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_related_term, first_term, second_term)
+        
+        if result != None:
+            print("RELATED")
+
+    @staticmethod
+    def _find_and_return_related_term(tx, broad_term, concrete_term):
+        query = (
+            "MATCH path = (c:ns0__Topic)-[:ns0__relatedEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: $broad_term}) "
+            "WHERE c.rdfs__label contains $concrete_term "
+            "RETURN path"
+        )
+        result = tx.run(query, broad_term=broad_term, concrete_term=concrete_term)
+        return [row["path"] for row in result]
+
     def find_topic(self, topic_name):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
@@ -83,15 +142,19 @@ if __name__ == "__main__":
     password = "1234"
     app = App(bolt_url, user, password)
 
+    #app.find_relationship("internet","streaming")
+    app.find_related_term("internet", "streaming")
+
     #app.find_topic("artificial intelligence")
     #app.insert_topic("convolutional_learning", "artificial intelligence")
 
-    with open("queries.txt") as f:
-        queries = f.readlines()
-    queries = [x.strip() for x in queries]
+    #with open("queries.txt") as f:
+    #    queries = f.readlines()
     
-    for x in queries:
-        app.find_topic(x)
+    #queries = [x.strip() for x in queries]
+    
+    #for x in queries:
+    #    app.find_topic(x)
     
     app.close()
 
