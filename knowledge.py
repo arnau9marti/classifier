@@ -1,6 +1,10 @@
 from neo4j import GraphDatabase
 import logging
 from neo4j.exceptions import ServiceUnavailable
+import sys
+
+topic_list = []
+found_cat = []
 
 class App:
 
@@ -53,6 +57,7 @@ class App:
                 query=query, exception=exception))
             raise
 
+    # FRIST SEMANTIC REASONING
     def find_relationship(self, topic_name1, topic_name2):
         with self.driver.session() as session:
             session.read_transaction(self._inverse_super)
@@ -95,6 +100,7 @@ class App:
         )
         tx.run(inverse)
 
+    # SECOND SEMANTIC REASONING
     def find_related_term(self, first_term, second_term):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_related_term, first_term, second_term)
@@ -116,6 +122,7 @@ class App:
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
             for row in result:
+                topic_list.append(row)
                 print("Found topic: {row}".format(row=row))
 
     @staticmethod
@@ -129,34 +136,167 @@ class App:
     @staticmethod
     def _find_and_return_topic_sim(tx, topic_name):
         query = (
-            "MATCH (t:ns0__Topic) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $topic_name) > 0.9 RETURN t.rdfs__label AS name"
+            "MATCH (t:ns0__Topic) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $topic_name) > 0.8 RETURN t.rdfs__label AS name"
         )
         result = tx.run(query, topic_name=topic_name)
         return [row["name"] for row in result]
 
+    # FRIST SIMILARITY REASONING
+    def find_suggestion_similarity(self, first_term, second_term):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_related_term, first_term, second_term)
+        
+        if result != None:
+            print("SUGGESTED")
 
+    # SECOND SIMILARITY REASONING
+    #def find_parent_similarity(self):
+
+    def match_categories(self):
+        with self.driver.session() as session:
+            aux_topic_list = []
+
+            for topic_name in topic_list:
+                result = session.read_transaction(self._find_and_return_same_as, topic_name)
+                for row in result:
+                    aux_topic_list.append(row)
+                
+                result = session.read_transaction(self._find_and_return_equivalent, topic_name)
+                for row in result:
+                    aux_topic_list.append(row)
+                
+                result = session.read_transaction(self._find_and_return_parent, topic_name)
+                for row in result:
+                    aux_topic_list.append(row)
+                
+            for topic in aux_topic_list:
+                topic_list.append(topic)
+
+            for topic_name in topic_list:
+                result = session.read_transaction(self._find_and_return_category_sim, topic_name)
+                for row in result:
+                    found_cat.append(row)
+                    #print("Found category: {row}".format(row=row))
+
+    @staticmethod
+    def _find_and_return_same_as(tx, category_name):
+        query = (
+            "MATCH (t:ns0__Topic {rdfs__label: $category_name})-[:owl__sameAs]->(t2:ns0__Topic) RETURN t2.rdfs__label AS name"
+        )
+        result = tx.run(query, category_name=category_name)
+        return [row["name"] for row in result]
+    
+    @staticmethod
+    def _find_and_return_equivalent(tx, category_name):
+        query = (
+            "MATCH (t:ns0__Topic {rdfs__label: $category_name})-[:ns0__relatedEquivalent]->(t2:ns0__Topic) RETURN t2.rdfs__label AS name"
+        )
+        result = tx.run(query, category_name=category_name)
+        return [row["name"] for row in result]
+    
+    @staticmethod
+    def _find_and_return_parent(tx, category_name):
+        query = (
+            "MATCH (t:ns0__Topic {rdfs__label: $category_name})<-[:ns0__superTopicOf]-(t2:ns0__Topic) RETURN t2.rdfs__label AS name"
+        )
+        result = tx.run(query, category_name=category_name)
+        return [row["name"] for row in result]
+
+    @staticmethod
+    def _find_and_return_category_sim(tx, category_name):
+        query = (
+            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.8 RETURN t.rdfs__label AS name"
+        )
+        result = tx.run(query, category_name=category_name)
+        return [row["name"] for row in result]
+    
+    @staticmethod
+    def _find_and_return_category_parent_sim(tx, category_name):
+        query = (
+            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.8 RETURN t.rdfs__label AS name"
+        )
+        result = tx.run(query, category_name=category_name)
+        return [row["name"] for row in result]
+
+    #WORK IN PROGRESS
+    # @staticmethod
+    # def _find_and_return_topic_sim(tx, topic_name):
+    #     query = (
+    #         "MATCH (c:ns0__Topic {rdfs__label: 'internet'}) "
+    #         "path = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat) "
+    #         "otherPath = (wiki)<-[:ns0__contributesTo]-(other) "
+    #         "return path, otherPath "
+    #         "limit 30;"
+    #     )
+    #     result = tx.run(query, broad_term=broad_term, concrete_term=concrete_term)
+    #     return [row["path"] for row in result]
+        
 if __name__ == "__main__":
     # Aura queries use an encrypted connection using the "neo4j+s" URI scheme
     bolt_url = "bolt://localhost:7687"
     user = "neo4j"
     password = "1234"
     app = App(bolt_url, user, password)
+    
+    args = sys.argv
+    
+    print(args[1])
+    #print(args[2])
 
+    # FRIST SEMANTIC REASONING
     #app.find_relationship("internet","streaming")
-    app.find_related_term("internet", "streaming")
-
-    #app.find_topic("artificial intelligence")
-    #app.insert_topic("convolutional_learning", "artificial intelligence")
-
-    #with open("queries.txt") as f:
-    #    queries = f.readlines()
     
-    #queries = [x.strip() for x in queries]
+    # SECOND SEMANTIC REASONING
+    #app.find_related_term("internet", "streaming")
+
+    # FRIST SIMILARITY REASONING
+    #app.find_suggestion_similarity()
+
+    # SECOND SIMILARITY REASONING
+    #app.find_parent_similarity()
+
+    # CENTRALITY REASONING
+
+    # AI4EU MATCHING (LEV DIST AND CONTAINS (DEL "AI FOR")) + NEW REL OF CAT DESC WITH TOPICS OR SECOND SIM
+    # MOST IMPORTANT ASPECT IS BROADER TOPIC
+
+    #REMOVE TOO SIMILAR
+    topic_list = ['cyber security', 'machine-learning', 'machine learning', 'artificial intelligence', 'logistic', 'logistic', 'sensor', 'sensor data', 'sensor data']
+    topic_list = list(dict.fromkeys(topic_list))
     
-    #for x in queries:
-    #    app.find_topic(x)
+    buss_categories = []
+    tech_categories = topic_list.copy()
+
+    for topic in topic_list:
+        buss_categories.append("AI for " + topic)
+
+    for topic in buss_categories:
+        topic_list.append(topic)
+
+    app.match_categories()
+
+    found_cat = list(dict.fromkeys(found_cat))
+    result_cat = []
+    result_cat.append(buss_categories)
+    result_cat.append(tech_categories)
+    result_cat.append(found_cat)
+    print(result_cat)
+    # TOPICS MATCHING
+
+    # with open("queries.txt") as f:
+    #     queries = f.readlines()
+    
+    # queries = [x.strip() for x in queries]
+    #queries = list(dict.fromkeys(queries))
+
+    # for x in queries:
+    #     app.find_topic(x)
     
     app.close()
+
+    # INSERT AND DELETE TOPICS
+
+    #app.insert_topic("convolutional_learning", "artificial intelligence")
 
     #app.delete_topic
     #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t

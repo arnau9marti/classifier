@@ -1,7 +1,81 @@
 <!doctype html>
 <html>
 <head>
-	<title>Result view</title>
+
+	<style>
+		h1 {text-align: center; font-family:garamond;}
+		p {text-align: justify; font-family:garamond; align-items: center;}
+		form {text-align: center; font-family:garamond;}
+		textarea {text-align: center;}
+		button {text-align: center; font-family:garamond;}
+	</style>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+</style>
+
+	<title>Result</title>
+
     <style type="text/css">
         html, body {
             font: 16pt arial;
@@ -16,9 +90,8 @@
 
     </style>
 
-    <!-- FIXME: load from dist -->
+    <!-- LOAD ONLINE -->
 	<script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
-
 
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -26,10 +99,6 @@
             crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-		// define config car
-		// instantiate nodevis object
-		// draw
-
 		var viz;
 
 		function draw() {
@@ -72,19 +141,28 @@
 		}
     </script>
 </head>
+
 <body onload="draw()">
-<div id="viz"></div>
 
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+</style>
 
-Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
-<input type="submit" value="Submit" id="reload">
-<input type="submit" value="Stabilize" id="stabilize">
+<h1> <b>Resource description: </b> </h1> 
 
+<p id="p1"> {{text}}</p>
 
-</body>
-    <p>{{text}}</p>
-
-	<h1>{{position}}</h1>
+<script type="text/javascript">
+	var word = "{{position}}"
+    var str = document.getElementById("p1").innerHTML; 
+    var res = str.replace(word, "<span style='color:red'>"+word+"</span>");
+    document.getElementById("p1").innerHTML = res;
+</script>
 
 <script>
 	$("#reload").click(function() {
@@ -107,8 +185,113 @@ Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
 
 </script>
 
-<p>Description click test</p>
+<form >
+  <label for="cars">Technology category:</label>
+  <select name="cars" id="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option>
+  </select>
+<button type="submit" style="margin:auto"> Add new</button>
 
+</form>
+
+<br>
+
+<form >
+  <label for="cars">Business category:</label>
+  <select name="cars" id="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option>
+  </select>
+<button type="submit" style="margin:auto"> Add new</button>
+
+</form>
+<br>
+
+<form>
+<label for="cars">Category:</label>
+
+<select id="myid"></select>
+</form>
+<script>
+ var number=5;
+ var optionList = "";
+ for (var x=1; x<=number; x++) {
+  optionList += "<option>"+x+"</option>";
+ }
+ $("select#myid").html(optionList);
+</script>
+
+<div id="container"></div>
+
+<script>
+
+
+  var values = ["dog", "cat", "parrot", "rabbit"];
+
+  var select = document.createElement("select");
+  select.name = "pets";
+  select.id = "pets"
+
+  for (const val of values) {
+    var option = document.createElement("option");
+    option.value = val;
+    option.text = val.charAt(0).toUpperCase() + val.slice(1);
+    select.appendChild(option);
+  }
+
+  var label = document.createElement("label");
+  label.innerHTML = "Choose your pets: "
+  label.htmlFor = "pets";
+
+  document.getElementById("container").appendChild(label).appendChild(select);
+</script>
+
+
+<div id="viz" class="center" style="align-content: center"></div>
+<button type="submit" style="margin:auto"> Reset</button>
+<!--
+<h1><b>Cypher manual query:</b></h1> 
+
+<form>
+<textarea rows="4" cols=50 id="cypher"> </textarea><br>
+<input style="font-family:garamond" type="submit" value="Submit" id="reload">
+<input style="font-family:garamond" type="submit" value="Stabilize" id="stabilize">
+
+</form>
+//-->
+
+<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> </h1>
+
+<script>
+	function redraw(cypher) {
+		if (cypher.length > 3) {
+			viz.renderWithCypher(cypher);
+		} else {
+			console.log("reload");
+			viz.reload();
+		}
+	}
+</script>
+
+<style>
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
 
 <script type = "text/javascript">
     $(document).ready(function() {
@@ -119,16 +302,166 @@ Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
     p.dblclick(function(e) {
         var range = window.getSelection() || document.getSelection() || document.selection.createRange();
         var word = $.trim(range.toString());
-        if(word != '') {
-            alert(word);
+		var cypher = "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 2";
+        if(word != '#p1') {
+			redraw(cypher);
+            //alert(word);
+
+			let nbut = 10;
+			let ides = 'id';
+			let idbr = 'br';
+
+			for (let i = 0; i<nbut; i++) {
+			 	let ideact = ides.concat(i.toString());
+				var elem = document.getElementById(ideact);
+				if (elem != null) elem.remove();
+
+				let bract = idbr.concat(i.toString());
+				elem = document.getElementById(bract);
+				if (elem != null) elem.remove();
+			}
+			
+			for (let i = 0; i<nbut; i++) {
+				let btn = document.createElement("button");
+				btn.id = ides.concat(i.toString());
+				btn.style.margin = "auto";
+				btn.style.alignItems = "center";
+				btn.style.display = "flex";
+				btn.style.fontSize = "16px";
+				btn.innerHTML = word;
+				btn.onclick = function () {
+					result = confirm(word);
+				};
+				document.body.appendChild(btn);
+				
+				linebreak = document.createElement("br");
+				linebreak.id = idbr.concat(i.toString());
+
+				document.body.appendChild(linebreak);
+			}
+
+			$.post( "/modify", { word: word} );
+
         }
-        range.collapse();
-        e.stopPropagation();
+        //range.collapse();
+       //e.stopPropagation();
     });
-    
 });
     
 </script>
 
+<form autocomplete="off">
+  <div class="autocomplete" style="width:300px;">
+    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+  </div>
+  <input type="submit">
+</form>
+
+</body>
+
+<script type = "text/javascript">
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+/*execute a function when someone clicks in the document:*/
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
+}
+
+var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+autocomplete(document.getElementById("myInput"), countries);
+
+
+</script>
 
 </html>

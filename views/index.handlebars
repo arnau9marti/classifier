@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
-<body>
+<style>
+    h1 {text-align: center;}
+    p {text-align: center; font-family:garamond;}
+    form {text-align: center;}
+    button {text-align: center; font-family:garamond;}
+</style>
+    <h1 style="font-family:garamond; font-size:50px"> AI Resource Classifier </h1>
+
     <form action="http://localhost:8080/result" method="POST">
-        Description: <textarea rows="4" cols=50 name="fname"></textarea><br>
-        Mode (Leave blank): <input type="text" name="lname"><br>
-       <button type="submit">Classify.</button>
+        <p>Write a description</p>
+        <textarea rows="4" cols=50 name="fname"></textarea><br>
+        <!-- Mode (Leave blank): <input type="text" name="lname"><br> -->
+        <button type="submit">Classify</button>
     </form>
 </body>
 </html>

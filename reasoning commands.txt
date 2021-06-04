@@ -34,43 +34,59 @@ match path = (c:ns0__Topic)-[:ns0__relatedEquivalent]->(category)-[:ns0__superTo
 where c.rdfs__label contains "streaming"
 RETURN path;
 
+                            CREATE PARTIAL GRAPH
+
+CALL gds.graph.create.cypher(
+    'my-cypher-graph',
+    'match path = (c:ns0__Topic)-[:ns0__relatedEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: "internet"}) where c.rdfs__label contains "streaming" RETURN path;',
+)
+YIELD graphName, nodeCount, relationshipCount, createMillis;
 
 
 
-
-                            FIRST SIMILARITY
-
-MATCH (c:ns0__Topic {rdfs__label: "internet"}),
-      path = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat),
-      otherPath = (wiki)<-[:ns0__contributesTo]-(other)
+                            FIRST SIMILARITY (SIMPLE)
+MATCH (c:AI_RESOURCE {rdfs__label: "MACHINE LOGISTICS SYSTEM"}),
+      path = (c)<-[:HAS_TOPIC]-(topic),
+      otherPath = (topic)-[:HAS_TOPIC]->(res)
 return path, otherPath
-limit 30;
-
-
 
 
                             SECOND SIMILARITY
 
-MATCH (c:ns0__Topic {rdfs__label: "internet"}),
-      entityPath = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat),
-      path = (cat)-[:ns0__superTopicOf]->(parent)<-[:ns0__superTopicOf]-(otherCat),
-      otherEntityPath = (otherCat)<-[:ns0__preferentialEquivalent]-(otherWiki)<-[:ns0__contributesTo]-(other)
+INTRA CAT:
+
+MATCH (c:ns0__Topic {rdfs__label: "mobile operators"}),
+      path = (c)-[:HAS_TOPIC]->(res)-[:HAS_CATEGORY]->(cat),
+      otherPath = (other)-[:HAS_CATEGORY]->(cat)
+return path, otherPath
+
+COMMUNITY???
+
+OUTTA CAT:
+
+MATCH (c:ns0__Topic {rdfs__label: "mobile operators"}),
+      entityPath = (c)-[:HAS_TOPIC]->(res)-[:HAS_CATEGORY]->(cat),
+      path = (cat)-[:skos__topConceptOf]->(parent)<-[:skos__topConceptOf]-(otherCat),
+      otherEntityPath = (otherCat)<-[:HAS_CATEGORY]-(otherWiki)<-[:HAS_TOPIC]-(other)
 RETURN other.rdfs__label,
-       [(other)-[:ns0__contributesTo]->()-[:ns0__preferentialEquivalent]->(entity) | entity.rdfs__label] AS otherCategories,
+       [(other)-[:HAS_TOPIC]->()-[:HAS_CATEGORY]->(entity) | entity.rdfs__label] AS otherCategories,
        collect([node in nodes(path) | node.rdfs__label]) AS pathToOther
-limit 30
 
 
                             ADD NEW NODES
-CREATE (resource_name); 
+CREATE (n:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
 
-CREATE (topic_name)-[:HAS_TOPIC]->(resource_name) 
-CREATE (topic_name)-[:TECH_CAT]->(resource_name) 
-CREATE (topic_name)-[:BUS_CAT]->(resource_name) 
+MATCH (n1:ns0__Topic {rdfs__label: 'mobile operators'})
+MATCH (n2:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
+MERGE (n1)-[:HAS_TOPIC]->(n2)
 
-CREATE (resource_name)-[:HAS_CATEGORY]->(category_name) 
+MATCH (n1:skos__Concept {rdfs__label: 'AI for Ambient Intelligence'})
+MATCH (n2:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
+MERGE (n2)-[:HAS_CATEGORY]->(n1)
 
 
+MATCH (n:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
+RETURN n
 
                             ONTOLOGY UPLOAD
 

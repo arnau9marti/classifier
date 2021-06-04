@@ -39,11 +39,8 @@ function classify(desc, mode, res) {
         //console.log(stderr)
         
         categories = stdout;
+        pos = "machine";
 
-        fs.readFile('file.txt', 'utf-8', (err, data) => {
-            if (err) throw err;
-            description=data;
-        })
         
         res.render('result', {text: description, position: pos});
     
@@ -95,7 +92,16 @@ app.post('/result', (req, res) => {
     desc = req.body.fname;
     //delfile();
     //newtxt(desc);
+    fs.readFile('file.txt', 'utf-8', (err, data) => {
+        if (err) throw err;
+        description=data;
+    })
     classify(desc, mode, res);
+});
+
+app.post('/modify', (req, res) => {
+    console.log(req.body.word);
+
 });
 
 const port = 8080;
