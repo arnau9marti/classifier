@@ -454,14 +454,15 @@ int main()
 
     sort( found_cat.begin(), found_cat.end() );
     found_cat.erase( unique( found_cat.begin(), found_cat.end() ), found_cat.end() );
-
+    
+    /*
     //AI4EU
     cout << "AI4EU CATEGORIES:" << endl;
     for (int i = 0; i<found_cat.size(); ++i) {
         cout << found_cat[i] << endl;;
     }
 
-    /* CSO
+    //CSO
     else {
         for (int i = 0; i<found_cat.size(); ++i) {
             if (!primary_labels[found_cat[i]].empty()) found_cat[i] = primary_labels[found_cat[i]];

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs')
 const path = require('path');
 const app = express();
+const eol = require('eol')
 
 /*
 const livereload = require("livereload");
@@ -33,18 +34,45 @@ function classify(desc, mode, res) {
 
     var child = exec('sh script.sh',
     function (error, stdout, stderr) {
-        console.log("Here is the complete output of the program: ");
         //console.log(error)
-        console.log(stdout)
+        //console.log(stdout)
         //console.log(stderr)
         
         categories = stdout;
-        pos = "machine";
-
+        topics = "machine";
         
-        res.render('result', {text: description, position: pos});
-    
-        //liveReloadServer.refresh('/');
+        let lines = eol.split(stdout)
+        lines.forEach(function(line) {
+            console.log(line)
+
+        })
+
+
+        res.render('result', {text: description, tops: topics, cat: categories});    
+    });
+
+    //child.stdin.setEncoding('utf-8');
+    //child.stdin.write(mode+"\n");
+}
+
+function driver(desc, mode, res) {
+    var exec = require('child_process').exec
+
+    var child = exec('python3 knowledge.py 3',
+    function (error, stdout, stderr) {
+        //console.log(error)
+        //console.log(stdout)
+        //console.log(stderr)
+        
+        categories = stdout;
+        topics = "machine";
+
+        console.log(stdout[0])
+        console.log(stdout[1])
+        console.log(stdout[2])
+        console.log(stdout[3])
+
+        res.render('result', {text: description, tops: topics, cat: categories});        
     });
 
     //child.stdin.setEncoding('utf-8');

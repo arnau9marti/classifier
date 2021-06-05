@@ -5,6 +5,8 @@ import sys
 
 topic_list = []
 found_cat = []
+buss_categories = []
+tech_categories = []
 
 class App:
 
@@ -12,28 +14,11 @@ class App:
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
     def close(self):
-        # Don't forget to close the driver connection when you are finished with it
         self.driver.close()
 
-    def find_person(self, person_name):
-        with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_person, person_name)
-            for row in result:
-                print("Found person: {row}".format(row=row))
-
-    @staticmethod
-    def _find_and_return_person(tx, person_name):
-        query = (
-            "MATCH (p:Person) "
-            "WHERE p.name = $person_name "
-            "RETURN p.name AS name"
-        )
-        result = tx.run(query, person_name=person_name)
-        return [row["name"] for row in result]
-
+    # TOPIC CREATION
     def insert_topic(self, topic_name, super_topic_name):
         with self.driver.session() as session:
-            # Write transactions allow the driver to handle retries and transient errors
             result = session.write_transaction(
                 self._insert_and_return_topic, topic_name, super_topic_name)
             for row in result:
@@ -51,12 +36,39 @@ class App:
         try:
             return [{"t": row["t"]["rdfs__label"], "st": row["st"]["rdfs__label"]}
                     for row in result]
-        # Capture any errors along with the query and data for traceability
         except ServiceUnavailable as exception:
             logging.error("{query} raised an error: \n {exception}".format(
                 query=query, exception=exception))
             raise
+    
+    # TOPIC SEARCH
+    def find_topic(self, topic_name):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
+            for row in result:
+                topic_list.append(row)
+                print("Found topic: {row}".format(row=row))
 
+    @staticmethod
+    def _find_and_return_topic_exact(tx, topic_name):
+        query = (
+            "MATCH (t:ns0__Topic) "
+            "WHERE t.rdfs__label = $topic_name "
+            "RETURN t.rdfs__label AS name"
+        )
+        result = tx.run(query, topic_name=topic_name)
+        return [row["name"] for row in result]
+
+    @staticmethod
+    def _find_and_return_topic_sim(tx, topic_name):
+        query = (
+            "MATCH (t:ns0__Topic) "
+            "WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $topic_name) > 0.8 "
+            "RETURN t.rdfs__label AS name"
+        )
+        result = tx.run(query, topic_name=topic_name)
+        return [row["name"] for row in result]
+    
     # FRIST SEMANTIC REASONING
     def find_relationship(self, topic_name1, topic_name2):
         with self.driver.session() as session:
@@ -96,7 +108,9 @@ class App:
     @staticmethod
     def _inverse_super(tx):
         inverse = (
-            "MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) CALL apoc.refactor.invert(rel) yield input, output RETURN input, output"
+            "MATCH (t1: ns0__Topic)-[rel:ns0__superTopicOf]->(t2: ns0__Topic) "
+            "CALL apoc.refactor.invert(rel) yield input, output "
+            "RETURN input, output"
         )
         tx.run(inverse)
 
@@ -118,40 +132,61 @@ class App:
         result = tx.run(query, broad_term=broad_term, concrete_term=concrete_term)
         return [row["path"] for row in result]
 
-    def find_topic(self, topic_name):
+    # FRIST SIMILARITY REASONING WIP
+    def find_suggestion_similarity(self, resource_name):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
-            for row in result:
-                topic_list.append(row)
-                print("Found topic: {row}".format(row=row))
-
-    @staticmethod
-    def _find_and_return_topic_exact(tx, topic_name):
-        query = (
-            "MATCH (t:ns0__Topic) WHERE t.rdfs__label = $topic_name RETURN t.rdfs__label AS name"
-        )
-        result = tx.run(query, topic_name=topic_name)
-        return [row["name"] for row in result]
-
-    @staticmethod
-    def _find_and_return_topic_sim(tx, topic_name):
-        query = (
-            "MATCH (t:ns0__Topic) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $topic_name) > 0.8 RETURN t.rdfs__label AS name"
-        )
-        result = tx.run(query, topic_name=topic_name)
-        return [row["name"] for row in result]
-
-    # FRIST SIMILARITY REASONING
-    def find_suggestion_similarity(self, first_term, second_term):
-        with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_related_term, first_term, second_term)
+            result = session.read_transaction(self._find_and_return_similar_resources, resource_name)
         
         if result != None:
             print("SUGGESTED")
 
-    # SECOND SIMILARITY REASONING
-    #def find_parent_similarity(self):
+    def _find_and_return_similar_resources(tx, resource_name):
+        query = (
+            #"MATCH (c:AI_RESOURCE {rdfs__label: $resource_name}), "
+            "MATCH (c:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'}), "
+            "path = (c)<-[:HAS_TOPIC]-(topic), "
+            "otherPath = (topic)-[:HAS_TOPIC]->(res) "
+            "RETURN path, otherPath"
+        )
+        result = tx.run(query, resource_name=resource_name)
+        return [row["path"] for row in result]
 
+    # SECOND SIMILARITY REASONING WIP
+    def find_parent_similarity(self, topic_name):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_outcat_path, topic_name)
+        
+        if result != None:
+            print("SUGGESTED")
+
+    @staticmethod
+    def _find_and_return_incat_path(tx, topic_name):
+        query = (
+            #"MATCH (c:ns0__Topic {rdfs__label: $topic_name}), "
+            "MATCH (c:ns0__Topic {rdfs__label: 'mobile operators'}), "
+            "path = (c)-[:HAS_TOPIC]->(res)-[:HAS_CATEGORY]->(cat), "
+            "otherPath = (other)-[:HAS_CATEGORY]->(cat) "
+            "return path, otherPath"
+        )
+        result = tx.run(query, topic_name=topic_name)
+        return [row["path"] for row in result]
+
+    @staticmethod
+    def _find_and_return_outcat_path(tx, topic_name):
+        query = (
+            #"MATCH (c:ns0__Topic {rdfs__label: $topic_name}), "
+            "MATCH (c:ns0__Topic {rdfs__label: 'mobile operators'}), "
+                "entityPath = (c)-[:HAS_TOPIC]->(res)-[:HAS_CATEGORY]->(cat), "
+                "path = (cat)-[:skos__topConceptOf]->(parent)<-[:skos__topConceptOf]-(otherCat), "
+                "otherEntityPath = (otherCat)<-[:HAS_CATEGORY]-(otherWiki)<-[:HAS_TOPIC]-(other) "
+            "RETURN other.rdfs__label, "
+                "[(other)-[:HAS_TOPIC]->()-[:HAS_CATEGORY]->(entity) | entity.rdfs__label] AS otherCategories, "
+                "collect([node in nodes(path) | node.rdfs__label]) AS pathToOther "
+        )
+        result = tx.run(query, topic_name=topic_name)
+        return [row["path"] for row in result]
+
+    # CATEGORY MATCHING
     def match_categories(self):
         with self.driver.session() as session:
             aux_topic_list = []
@@ -217,19 +252,22 @@ class App:
         )
         result = tx.run(query, category_name=category_name)
         return [row["name"] for row in result]
-
-    #WORK IN PROGRESS
-    # @staticmethod
-    # def _find_and_return_topic_sim(tx, topic_name):
-    #     query = (
-    #         "MATCH (c:ns0__Topic {rdfs__label: 'internet'}) "
-    #         "path = (c)-[:ns0__contributesTo]->(wiki)-[:ns0__preferentialEquivalent]->(cat) "
-    #         "otherPath = (wiki)<-[:ns0__contributesTo]-(other) "
-    #         "return path, otherPath "
-    #         "limit 30;"
-    #     )
-    #     result = tx.run(query, broad_term=broad_term, concrete_term=concrete_term)
-    #     return [row["path"] for row in result]
+        
+    # CATEGORY SEARCH BY TYPE
+    def find_categories(self, category_type):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_categories, category_type)
+            for row in result:
+                buss_categories.append(row)
+                #print("Found category: {row}".format(row=row))
+    
+    @staticmethod
+    def _find_and_return_categories(tx, category_type):
+        query = (
+            "MATCH (t:skos__Concept)-[:skos__topConceptOf]->(t2:skos__ConceptScheme {rdfs__label: $category_type}) RETURN t.rdfs__label AS name"
+        )
+        result = tx.run(query, category_type=category_type)
+        return [row["name"] for row in result]
         
 if __name__ == "__main__":
     # Aura queries use an encrypted connection using the "neo4j+s" URI scheme
@@ -241,6 +279,7 @@ if __name__ == "__main__":
     args = sys.argv
     
     print(args[1])
+    print("HELLO")
     #print(args[2])
 
     # FRIST SEMANTIC REASONING
@@ -257,15 +296,14 @@ if __name__ == "__main__":
 
     # CENTRALITY REASONING
 
-    # AI4EU MATCHING (LEV DIST AND CONTAINS (DEL "AI FOR")) + NEW REL OF CAT DESC WITH TOPICS OR SECOND SIM
-    # MOST IMPORTANT ASPECT IS BROADER TOPIC
+    # AI4EU MATCHING
 
     #REMOVE TOO SIMILAR
     topic_list = ['cyber security', 'machine-learning', 'machine learning', 'artificial intelligence', 'logistic', 'logistic', 'sensor', 'sensor data', 'sensor data']
     topic_list = list(dict.fromkeys(topic_list))
     
-    buss_categories = []
     tech_categories = topic_list.copy()
+    app.find_categories("Business Categories")
 
     for topic in topic_list:
         buss_categories.append("AI for " + topic)
@@ -280,7 +318,7 @@ if __name__ == "__main__":
     result_cat.append(buss_categories)
     result_cat.append(tech_categories)
     result_cat.append(found_cat)
-    print(result_cat)
+    print(buss_categories)
     # TOPICS MATCHING
 
     # with open("queries.txt") as f:
