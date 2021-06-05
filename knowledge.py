@@ -1,7 +1,10 @@
+import Levenshtein
 from neo4j import GraphDatabase
 import logging
 from neo4j.exceptions import ServiceUnavailable
 import sys
+from Levenshtein import distance as levenshtein_distance
+import itertools
 
 topic_list = []
 found_cat = []
@@ -70,19 +73,20 @@ class App:
         return [row["name"] for row in result]
     
     # FRIST SEMANTIC REASONING
-    def find_relationship(self, topic_name1, topic_name2):
+    def find_relationship(self, topic_name):
         with self.driver.session() as session:
             session.read_transaction(self._inverse_super)
-            result1 = session.read_transaction(self._find_and_return_categories, topic_name1)
-            result2 = session.read_transaction(self._find_and_return_categories, topic_name2)
+            result = session.read_transaction(self._find_and_return_relationships, topic_name)
+            #result1 = session.read_transaction(self._find_and_return_categories, topic_name1)
+            #result2 = session.read_transaction(self._find_and_return_categories, topic_name2)
             session.read_transaction(self._inverse_super)
-            result = set.intersection(set(result1), set(result2))
+            #result = set.intersection(set(result1), set(result2))
         
-            for row in result:
-                print("Found commonality: {row}".format(row=row))
+            for nodes in result:
+                print("Found relationships: {nodes}".format(nodes=nodes))
                 
     @staticmethod
-    def _find_and_return_categories(tx, topic_name):
+    def _find_and_return_relationships(tx, topic_name):
         query = (
             "MATCH (c:ns0__Topic {rdfs__label: $topic_name}) "
             "CALL n10s.inference.nodesInCategory(c, { "
@@ -91,13 +95,14 @@ class App:
             "  subCatRel: 'ns0__superTopicOf' "
             "}) "
             "YIELD node "
-            "RETURN node.rdfs__label"
+            "WITH node.rdfs__label as nodes "
+            "RETURN nodes"
         )
-        intersect = (
-            "RETURN apoc.coll.intersection($result1, $result2)" 
-        )
+        # intersect = (
+        #     "RETURN apoc.coll.intersection($result1, $result2)" 
+        # )
         result = tx.run(query, topic_name=topic_name)
-        return [row["node.rdfs__label"] for row in result]
+        return [row["nodes"] for row in result]
 
     def inverse_super(self):
         with self.driver.session() as session:
@@ -266,6 +271,159 @@ class App:
         )
         result = tx.run(query, category_type=category_type)
         return [row["name"] for row in result]
+    
+    # FIND NODE BY ID
+    def find_node_id(self, node_name):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_node_id, node_name)
+            for nodeId in result:
+                print("Node id: {nodeId}".format(nodeId=nodeId))
+
+    @staticmethod
+    def _find_and_return_node_id(tx, node_name):
+        query = (
+            "MATCH (t) WHERE t.rdfs__label = $node_name RETURN id(t) AS id"
+        )
+        result = tx.run(query, node_name=node_name)
+        return [row["id"] for row in result]
+    
+    # CENTRALITY INFERENCE
+    def find_centrality(self, node_id):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_centrality, node_id)
+        
+            for nodeId in result:
+                print("Found similar: {nodeId}".format(nodeId=nodeId))
+
+    @staticmethod
+    def _find_and_return_centrality(tx, node_id):
+        query = (
+            "CALL gds.pageRank.stream( "
+            #"CALL gds.betweenness.stream( "
+                "graph "
+            ") "
+            "YIELD "
+                "nodeId, "
+                "score"
+        )
+        result = tx.run(query)
+        return [row["nodeId"] for row in result]
+    
+    # COMMUNITY INFERENCE
+    def find_community(self, node_id):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_community, node_id)
+        
+            for nodeId in result:
+                print("Found similar: {nodeId}".format(nodeId=nodeId))
+
+    @staticmethod
+    def _find_and_return_community(tx, node_id):
+        query = (
+            "CALL gds.louvain.stream( "
+                "'graph', { includeIntermediateCommunities: true } "
+            ") "
+            "YIELD "
+                "nodeId, "
+                "communityId, "
+                "intermediateCommunityIds"
+        )
+        result = tx.run(query)
+        return [row["communityId"] for row in result]
+    
+    # JACCARD INFERENCE
+    def find_jaccard_similarity(self, node_id):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_jaccard_similarity, node_id)
+        
+            for similarity in result:
+                print("Found similarity: {similarity}".format(similarity=similarity))
+
+    @staticmethod
+    def _find_and_return_jaccard_similarity(tx, node_id):
+        query = (
+            "CALL gds.nodeSimilarity.stream( "
+                "graph "
+            ") YIELD "
+                "node1, "
+                "node2, "
+                "similarity"
+        )
+        result = tx.run(query)
+        return [row["similarity"] for row in result]
+
+    # LINK PREDICTION INFERENCE
+    def find_link_prediction(self, first_term, second_term):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_link_prediction, first_term, second_term)
+        
+            for score in result:
+                print("Found similar: {score}".format(score=score))
+
+    @staticmethod
+    def _find_and_return_link_prediction(tx, first_term, second_term):
+        query = (
+            "MATCH (t1:ns0__Topic {rdfs__label: $first_term}) "
+            "MATCH (t2:ns0__Topic {rdfs__label: $second_term}) "
+            #RETURN gds.alpha.linkprediction.commonNeighbors(t1, t2) as score
+            "RETURN gds.alpha.linkprediction.adamicAdar(t1, t2) as score"
+        )
+        result = tx.run(query, first_term=first_term, second_term=second_term)
+        return [row["score"] for row in result]
+    
+    def create_graph_catalog(self):
+        with self.driver.session() as session:
+            session.read_transaction(self._create_graph_catalog)
+
+    @staticmethod
+    def _create_graph_catalog(tx):
+        query = (
+            "CALL gds.graph.create( "
+                "'graph', "
+                #"'ns0__Topic', "
+                "['ns0__Topic', 'AI_RESOURCE', 'skos__Concept'], "
+                "['ns0__superTopicOf', 'ns0__preferentialEquivalent', 'ns0__preferentialEquivalent', 'owl__sameAs', 'HAS_TOPIC', 'HAS_CATEGORY'] "
+            ")"
+        )
+        tx.run(query)
+    
+    def create_resource(self, res_name):
+        with self.driver.session() as session:
+            session.read_transaction(self._create_resource, res_name)
+
+    @staticmethod
+    def _create_resource(tx, res_name):
+        query = (
+            "CREATE (n:AI_RESOURCE {rdfs__label: $res_name})"
+        )
+        tx.run(query, res_name=res_name)
+
+    def add_topic(self, topic_name, res_name):
+        with self.driver.session() as session:
+            session.read_transaction(self._add_topic, topic_name, res_name)
+
+    @staticmethod
+    def _add_topic(tx, topic_name, res_name):
+        query = (
+            "MATCH (n1:ns0__Topic {rdfs__label: $topic_name}) "
+            "MATCH (n2:AI_RESOURCE {rdfs__label: $res_name}) "
+            "MERGE (n1)-[:HAS_TOPIC]->(n2)"
+        )
+        tx.run(query, topic_name=topic_name, res_name=res_name)
+
+    def add_category(self, category_name):
+        with self.driver.session() as session:
+            session.read_transaction(self._add_category, category_name, res_name)
+
+    @staticmethod
+    def _add_category(tx, category_name, res_name):
+        query = (
+            "MATCH (n1:skos__Concept {rdfs__label: $category_name}) "
+            "MATCH (n2:AI_RESOURCE {rdfs__label: $res_name}) "
+            "MERGE (n2)-[:HAS_CATEGORY]->(n1)"
+        )
+        tx.run(query, category_name=category_name, res_name=res_name)
+    
         
 if __name__ == "__main__":
     # Aura queries use an encrypted connection using the "neo4j+s" URI scheme
@@ -276,63 +434,84 @@ if __name__ == "__main__":
     
     args = sys.argv
     
-    print(args[1])
-    print("HELLO")
-    #print(args[2])
+    mode = args[1]
 
-    # FRIST SEMANTIC REASONING
-    app.find_relationship("internet","streaming")
-    
-    # SECOND SEMANTIC REASONING
-    #app.find_related_term("internet", "streaming")
-
-    # FRIST SIMILARITY REASONING
-    app.find_suggestion_similarity("MACHINE LOGISTICS SYSTEM")
-
-    # SECOND SIMILARITY REASONING
-    app.find_parent_similarity("mobile operators")
-
-    # CENTRALITY REASONING
-
-    # AI4EU MATCHING
-
-    #REMOVE TOO SIMILAR
-    topic_list = ['cyber security', 'machine-learning', 'machine learning', 'artificial intelligence', 'logistic', 'logistic', 'sensor', 'sensor data', 'sensor data']
-    topic_list = list(dict.fromkeys(topic_list))
-    
-    tech_categories = topic_list.copy()
-    app.find_categories("Business Categories")
-
-    for topic in topic_list:
-        buss_categories.append("AI for " + topic)
-
-    for topic in buss_categories:
-        topic_list.append(topic)
-
-    app.match_categories()
-
-    found_cat = list(dict.fromkeys(found_cat))
-    result_cat = []
-    result_cat.append(buss_categories)
-    result_cat.append(tech_categories)
-    result_cat.append(found_cat)
-    #print(buss_categories)
+    print(mode)
 
     # TOPICS MATCHING
 
     # with open("queries.txt") as f:
-    #     queries = f.readlines()
-    
-    # queries = [x.strip() for x in queries]
+    #     queries = [x.rstrip("\n") for x in f.readlines()]
+
+    #queries = [x.strip() for x in queries]
     #queries = list(dict.fromkeys(queries))
 
     # for x in queries:
     #     app.find_topic(x)
+
+    # AI4EU MATCHING
+
+    # topic_list = list(dict.fromkeys(topic_list))
+
+    # tech_categories = topic_list.copy()
+    # app.find_categories("Business Categories")
+
+    # for topic in topic_list:
+    #     buss_categories.append("AI for " + topic)
+
+    # for topic in buss_categories:
+    #     topic_list.append(topic)
+
+    # app.match_categories()
+
+    # found_cat = list(dict.fromkeys(found_cat))
+    # result_cat = []
+    # result_cat.append(buss_categories)
+    # result_cat.append(tech_categories)
+    # result_cat.append(found_cat)
+    # print(buss_categories)
+    # print(tech_categories)
+    # print(found_cat)
+
+    res_name = ''
+    for x in range(2, len(args)):
+        if(x==2):
+            res_name=res_name+args[x]
+        else:
+            res_name=res_name + " " + args[x]
+
+    simple_queries = []
+    with open("simple queries.txt") as f:
+        simple_queries = [x.rstrip("\n") for x in f.readlines()]
+
+    # FRIST SEMANTIC REASONING (WITH MATCHES) ->
+    app.find_relationship("internet")
     
+    # SECOND SEMANTIC REASONING (INPUT AND WITH SIMPLE_QUERIES) ->
+    app.find_related_term("internet", "streaming")
+
+    # FRIST SIMILARITY REASONING (WITH RES_NAME) ->
+    app.find_suggestion_similarity(res_name)
+
+    # SECOND SIMILARITY REASONING (WITH MATCHES???) ->
+    app.find_parent_similarity("mobile operators")
+
     app.close()
 
-    # INSERT AND DELETE TOPICS
+    # REFINEMENT REASONING
+    
+    #app.create_graph_catalog()
 
+    # app.find_centrality()
+
+    # app.find_community()
+
+    # app.find_jaccard_similarity()
+
+    # app.find_link_prediction()
+
+    
+    # INSERT TOPIC
     #app.insert_topic("convolutional_learning", "artificial intelligence")
 
     #app.delete_topic

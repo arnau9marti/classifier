@@ -7,7 +7,7 @@ LIBS=-lpugixml
 all:	classifier
 
 classifier: classifier.cc
-	g++  -o classifier classifier.cc $(LIBS)
+	g++  -o classifier classifier.cc $(LIBS) -std=c++11
 
 clean:
 	rm -f classifier

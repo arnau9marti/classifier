@@ -9,10 +9,11 @@
     <h1 style="font-family:garamond; font-size:50px"> AI Resource Classifier </h1>
 
     <form action="http://localhost:8080/result" method="POST">
-        <p>Write a description</p>
+        Resource name: <br>
+        <br><input type="text" name="lname"><br>
+        <p>Write a description:</p>
         <textarea rows="4" cols=50 name="fname"></textarea><br>
-        <!-- Mode (Leave blank): <input type="text" name="lname"><br> -->
-        <button type="submit">Classify</button>
+        <br><button type="submit">Classify</button>
     </form>
 </body>
 </html>

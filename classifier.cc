@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <set>
 #include <utility>
 #include <stdexcept>
 #include <sstream> 
@@ -14,8 +15,8 @@
 using namespace std;
 using namespace pugi;
 
-vector<string> pars;
-vector<string> found_cat;
+//vector<string> pars;
+//vector<string> found_cat;
 map<string, vector<string> > semantic_data;
 
 double min_ratio = 0.96;
@@ -27,7 +28,10 @@ map<string, vector<string> >  same_as;
 map<string, string> primary_labels;
 
 vector<string> queries;
-vector<string> tokens;
+vector<string> simple_queries;
+//vector<string> tokens;
+
+std::set<string> stopwords = {"", " ", ".", ":", ",", ")", "(", "/", "=", "<", ">", "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"};
 
 string eraseSubStr(string mainStr, string toErase, bool brackets)
 {
@@ -188,6 +192,11 @@ double check_sim (string s1, string s2) {
     return ratio;
 }
 
+bool stop_word (string word) {
+    if (find(stopwords.begin(), stopwords.end(), word) != stopwords.end()) return false;
+    else return true;
+}
+
 void insert_dep(xml_object_range<xml_node_iterator> childs){
 
     vector<string> sibwords;
@@ -204,69 +213,122 @@ void insert_dep(xml_object_range<xml_node_iterator> childs){
 
         string word = it3->last_attribute().value();
 
-        const char_t* att = "token";
-        string token = it3->attribute(att).value();
-        tokens.push_back(token);
+        // TOKENS
+        // const char_t* att = "token";
+        // string token = it3->attribute(att).value();
+        // tokens.push_back(token);
 
-        vector<string> targets = pars;
+        //vector<string> targets = pars;
 
-        //SINGLE
-        //queries.push_back("---SINGLE---");
-        string checkword = word;
-        queries.push_back(checkword);
-        for (int i = 0; i < targets.size(); ++i) {
-            if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
-        }
+        vector<string> syns = semantic_data[word];
+        syns.push_back(word);
 
-        //PARENT
-        //SIBLINGS + PARENT???
-        //queries.push_back("---PARENT---");
-        string parentword = it3->parent().last_attribute().value();
-        checkword = word + "_" + parentword;
-        queries.push_back(checkword);
-        for (int i = 0; i < targets.size(); ++i) {
-            if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
-        }
+        for (int i = 0; i< syns.size(); ++i) {
+            word = syns[i];
+        
+            //SINGLE
+            //queries.push_back("---SINGLE---");
+            string checkword = word;
 
-        //SIBLINGS
-        //queries.push_back("---SIBLINGS---");
-        for (int i = 0; i < sibwords.size(); ++i) {
-            if(sibwords[i] != word) {
-                checkword = word + "_" + sibwords[i];
+            if (stop_word(checkword)) {
                 queries.push_back(checkword);
-
+                simple_queries.push_back(checkword);
+                /*
                 for (int i = 0; i < targets.size(); ++i) {
                     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
                 }
-            }
-        }
+                */
 
-        //PARENT SIBLINGS
-        //queries.push_back("---PARENT SIBLINGS---");
-        xml_node parent = childs.begin()->parent().parent();
-        vector<string> parent_sibwords;
-        for (xml_node_iterator it3 = parent.begin(); it3 != parent.end(); ++it3) {
-            xml_attribute word = it3->last_attribute();
-            parent_sibwords.push_back(word.value());
-        }
+                //PARENT
+                //SIBLINGS + PARENT???
+                //queries.push_back("---PARENT---");
 
-        for (int i = 0; i < parent_sibwords.size(); ++i) {
-            if(parent_sibwords[i] != word) {
-                checkword = word + "_" + parent_sibwords[i];
-                queries.push_back(checkword);
+                string parentword = it3->parent().last_attribute().value();
+                if (stop_word(parentword)) {
+                    checkword = word + "_" + parentword;
+                    queries.push_back(checkword);
+                    // for (int i = 0; i < targets.size(); ++i) {
+                    //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                    // }
 
-                for (int i = 0; i < targets.size(); ++i) {
-                    if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                    //CHANGE ORDER
+                    checkword = parentword + "_" + word;
+                    queries.push_back(checkword);
+                    // for (int i = 0; i < targets.size(); ++i) {
+                    //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                    // }
+                }
+
+                //SIBLINGS
+                //queries.push_back("---SIBLINGS---");
+                for (int i = 0; i < sibwords.size(); ++i) {
+                    if (stop_word(sibwords[i])) {
+                        if(sibwords[i] != word) {
+                            checkword = word + "_" + sibwords[i];
+                            queries.push_back(checkword);
+
+                            // for (int i = 0; i < targets.size(); ++i) {
+                            //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                            // }
+
+                            //CHANGE ORDER
+                            checkword = sibwords[i] + "_" + word;
+                            queries.push_back(checkword);
+
+                            // for (int i = 0; i < targets.size(); ++i) {
+                            //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                            // }
+                        }
+                    }
+                }
+
+                //PARENT SIBLINGS
+                //queries.push_back("---PARENT SIBLINGS---");
+                xml_node parent = childs.begin()->parent().parent();
+                vector<string> parent_sibwords;
+                for (xml_node_iterator it3 = parent.begin(); it3 != parent.end(); ++it3) {
+                    xml_attribute word = it3->last_attribute();
+                    parent_sibwords.push_back(word.value());
+                }
+
+                for (int i = 0; i < parent_sibwords.size(); ++i) {
+                    if (stop_word(parent_sibwords[i])) {
+                        if(parent_sibwords[i] != word) {
+                            checkword = word + "_" + parent_sibwords[i];
+                            queries.push_back(checkword);
+
+                            // for (int i = 0; i < targets.size(); ++i) {
+                            //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                            // }
+                            
+                            //CHANGE ORDER
+                            checkword = parent_sibwords[i] + "_" + word;
+                            queries.push_back(checkword);
+
+                            // for (int i = 0; i < targets.size(); ++i) {
+                            //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                            // }
+                        }
+                    }
+                }
+
+                //PARENT NEXT SIBLING
+                //queries.push_back("---PARENT NEXT SIBLINGS---");
+                if (stop_word(parent_sibword)) {
+                    checkword = word + "_" + parent_sibword;
+                    queries.push_back(checkword);
+                    // for (int i = 0; i < targets.size(); ++i) {
+                    //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                    // }
+
+                    //CHANGE ORDER
+                    checkword = parent_sibword + "_" + word;
+                    queries.push_back(checkword);
+                    // for (int i = 0; i < targets.size(); ++i) {
+                    //     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
+                    // }
                 }
             }
-        }
-
-        //PARENT NEXT SIBLING
-        //queries.push_back("---PARENT NEXT SIBLINGS---");
-        checkword = word + "_" + parent_sibword;
-        queries.push_back(checkword);
-        for (int i = 0; i < targets.size(); ++i) {
-            if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
         }
 
         /* parent and sibiling words output check
@@ -316,44 +378,41 @@ inline bool file_exists (const std::string& name) {
 
 int main()
 {
-    if (!file_exists("pars.nt")) {
-        if (!file_exists("topics.ttl")) {
-            cout << "import a topics ontology to classify the file" << endl;
-            return -1;
-        }
-        else system("rapper  --input turtle topics.ttl >pars.nt");
-    }
+    // if (!file_exists("pars.nt")) {
+    //     if (!file_exists("topics.ttl")) {
+    //         cout << "import a topics ontology to classify the file" << endl;
+    //         return -1;
+    //     }
+    //     else system("rapper  --input turtle topics.ttl >pars.nt");
+    // }
 
-    if (!file_exists("res.xml")) {
-        if (!file_exists("file.txt")) {
-            cout << "create a file.txt with the description to start analyzing" << endl;
-            return -1;
-        }
-        else system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --output xml <file.txt >res.xml");
-    }
+    // if (!file_exists("res.xml")) {
+    //     if (!file_exists("file.txt")) {
+    //         cout << "create a file.txt with the description to start analyzing" << endl;
+    //         return -1;
+    //     }
+    //     else system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --output xml <file.txt >res.xml");
+    // }
+    
+    cout << "\nAnalyzing resource description text...\n\n";
+    // system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --output xml <file.txt >res.xml");
 
-    if (!file_exists("cso.nt")) {
-        cout << "add the cso.nt with the cso ontology to start analyzing" << endl;
-        return -1;
-    }
+    // if (!file_exists("cso.nt")) {
+    //     cout << "add the cso.nt with the cso ontology to start analyzing" << endl;
+    //     return -1;
+    // }
 
     //AI4EU ONTOLOGY PROCESSING
-    cout << "\nProcessing AI4EU ontology data...\n\n";
+    // cout << "\nProcessing AI4EU ontology data...\n\n";
 
-    pars = read_categories("pars.nt");
+    // pars = read_categories("pars.nt");
     
-    for (int i = 0; i < pars.size(); i++) {
-        pars[i] = eraseSubStr(pars[i], "http://www.ai4eu.eu/ontologies/ai4eu-categories#", true);
-    }
+    // for (int i = 0; i < pars.size(); i++) {
+    //     pars[i] = eraseSubStr(pars[i], "http://www.ai4eu.eu/ontologies/ai4eu-categories#", true);
+    // }
 
-    sort( pars.begin(), pars.end() );
-    pars.erase( unique( pars.begin(), pars.end() ), pars.end() );
-
-    /* matcher check
-    string s1 = "machine_learning";
-    string s2 = "MachineLearning";
-    cout << check_sim(s1,s2) << endl;
-    */
+    // sort( pars.begin(), pars.end() );
+    // pars.erase( unique( pars.begin(), pars.end() ), pars.end() );
 
     /*
     //CSO ONTOLOGY PROCESSING
@@ -377,24 +436,14 @@ int main()
     map_cso (cso);
     */
 
-    /* cso check
-    string out = primary_labels["cyber security"];
-    cout << "cso" << out << endl;
-    
-    for (int i = 0; i < out.size(); i++) {
-        cout << out[i] << endl;
-    }
-    */
-
     xml_document doc;
 
     if (!doc.load_file("res.xml")) return -1;
 
-    cout << "\nExtracting semantic data data...\n\n";
+    cout << "\nExtracting semantic data...\n\n";
 
     xml_node semantic = doc.child("document").child("semantic_graph");
-    
-    //FIX LEMMAS
+
     for (xml_node_iterator it = semantic.begin(); it != semantic.end(); ++it){
         string section = it->name();
         if (section == "entity") {
@@ -413,7 +462,7 @@ int main()
 
                     if (word_syn != entity) {
                         semantic_data[entity].push_back(word_syn);
-                        //cout << word_syn << endl;
+
                     } 
                 }
             }
@@ -421,9 +470,9 @@ int main()
 
     }
 
-    xml_node tools = doc.child("document").child("paragraph");
-
     cout << "\nExtracting dependency data...\n\n";
+
+    xml_node tools = doc.child("document").child("paragraph");
 
     for (xml_node_iterator it = tools.begin(); it != tools.end(); ++it){
         //cout << "sentence: ";
@@ -452,12 +501,14 @@ int main()
         }
     }
 
-    sort( found_cat.begin(), found_cat.end() );
-    found_cat.erase( unique( found_cat.begin(), found_cat.end() ), found_cat.end() );
     
     /*
     //AI4EU
     cout << "AI4EU CATEGORIES:" << endl;
+
+    sort( found_cat.begin(), found_cat.end() );
+    found_cat.erase( unique( found_cat.begin(), found_cat.end() ), found_cat.end() );
+
     for (int i = 0; i<found_cat.size(); ++i) {
         cout << found_cat[i] << endl;;
     }
@@ -520,19 +571,29 @@ int main()
     */
     
     queries.erase( unique( queries.begin(), queries.end() ), queries.end() );
-    tokens.erase( unique( tokens.begin(), tokens.end() ), tokens.end() );
+    //tokens.erase( unique( tokens.begin(), tokens.end() ), tokens.end() );
 
     ofstream queries_file ("queries.txt");
     for (int i = 0; i < queries.size(); ++i) {
         queries_file << queries[i] << endl;
     }
     queries_file.close();
+    
 
+    ofstream simple_queries_file ("simple queries.txt");
+    for (int i = 0; i < simple_queries.size(); ++i) {
+        simple_queries_file << simple_queries[i] << endl;
+    }
+    simple_queries_file.close();
+    
+    /*
     ofstream tokens_file ("tokens.txt");
     for (int i = 0; i < tokens.size(); ++i) {
         tokens_file << tokens[i] << endl;
     }
     tokens_file.close();
+    */
+    
 
     return 0;
 }

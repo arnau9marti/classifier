@@ -62,8 +62,6 @@ MATCH (c:ns0__Topic {rdfs__label: "mobile operators"}),
       otherPath = (other)-[:HAS_CATEGORY]->(cat)
 return path, otherPath
 
-COMMUNITY???
-
 OUTTA CAT:
 
 MATCH (c:ns0__Topic {rdfs__label: "mobile operators"}),
@@ -75,7 +73,9 @@ RETURN other.rdfs__label,
        collect([node in nodes(path) | node.rdfs__label]) AS pathToOther
 
 
+
                             ADD NEW NODES
+                            
 CREATE (n:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
 
 MATCH (n1:ns0__Topic {rdfs__label: 'mobile operators'})
