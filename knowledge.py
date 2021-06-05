@@ -79,7 +79,7 @@ class App:
             result = set.intersection(set(result1), set(result2))
         
             for row in result:
-                print("Found topic: {row}".format(row=row))
+                print("Found commonality: {row}".format(row=row))
                 
     @staticmethod
     def _find_and_return_categories(tx, topic_name):
@@ -97,8 +97,6 @@ class App:
             "RETURN apoc.coll.intersection($result1, $result2)" 
         )
         result = tx.run(query, topic_name=topic_name)
-        #intersection = tx.run(intersect, result1=result1, result2=result2)
-
         return [row["node.rdfs__label"] for row in result]
 
     def inverse_super(self):
@@ -119,8 +117,8 @@ class App:
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_related_term, first_term, second_term)
         
-        if result != None:
-            print("RELATED")
+            if result != None:
+                print(first_term + " and " + second_term + " are related topics")
 
     @staticmethod
     def _find_and_return_related_term(tx, broad_term, concrete_term):
@@ -132,59 +130,59 @@ class App:
         result = tx.run(query, broad_term=broad_term, concrete_term=concrete_term)
         return [row["path"] for row in result]
 
-    # FRIST SIMILARITY REASONING WIP
+    # FRIST SIMILARITY REASONING WIP (RESOURCE NAME = ACTUAL RESOURCE) BY THREE MOST HIT
     def find_suggestion_similarity(self, resource_name):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_similar_resources, resource_name)
-        
-        if result != None:
-            print("SUGGESTED")
 
+            for name in result:
+                print("Found similar: {name}".format(name=name))
+
+    @staticmethod
     def _find_and_return_similar_resources(tx, resource_name):
         query = (
-            #"MATCH (c:AI_RESOURCE {rdfs__label: $resource_name}), "
-            "MATCH (c:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'}), "
-            "path = (c)<-[:HAS_TOPIC]-(topic), "
-            "otherPath = (topic)-[:HAS_TOPIC]->(res) "
-            "RETURN path, otherPath"
+            "MATCH (c:AI_RESOURCE {rdfs__label: $resource_name}), "
+                "path = (c)<-[:HAS_TOPIC]-(topic), "
+                "otherPath = (topic)-[:HAS_TOPIC]->(res) "
+            "MATCH (res)<-[:HAS_TOPIC]-(newtopic) "
+            "WHERE newtopic <> topic "
+            "RETURN newtopic.rdfs__label AS name "
         )
         result = tx.run(query, resource_name=resource_name)
-        return [row["path"] for row in result]
+        return [row["name"] for row in result]
 
     # SECOND SIMILARITY REASONING WIP
     def find_parent_similarity(self, topic_name):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_outcat_path, topic_name)
         
-        if result != None:
-            print("SUGGESTED")
+            for name in result:
+                print("Found similar: {name}".format(name=name))
 
     @staticmethod
     def _find_and_return_incat_path(tx, topic_name):
         query = (
-            #"MATCH (c:ns0__Topic {rdfs__label: $topic_name}), "
-            "MATCH (c:ns0__Topic {rdfs__label: 'mobile operators'}), "
+            "MATCH (c:ns0__Topic {rdfs__label: $topic_name}), "
             "path = (c)-[:HAS_TOPIC]->(res)-[:HAS_CATEGORY]->(cat), "
             "otherPath = (other)-[:HAS_CATEGORY]->(cat) "
             "return path, otherPath"
         )
         result = tx.run(query, topic_name=topic_name)
-        return [row["path"] for row in result]
+        return [row["name"] for row in result]
 
     @staticmethod
     def _find_and_return_outcat_path(tx, topic_name):
         query = (
-            #"MATCH (c:ns0__Topic {rdfs__label: $topic_name}), "
-            "MATCH (c:ns0__Topic {rdfs__label: 'mobile operators'}), "
+            "MATCH (c:ns0__Topic {rdfs__label: $topic_name}), "
                 "entityPath = (c)-[:HAS_TOPIC]->(res)-[:HAS_CATEGORY]->(cat), "
                 "path = (cat)-[:skos__topConceptOf]->(parent)<-[:skos__topConceptOf]-(otherCat), "
                 "otherEntityPath = (otherCat)<-[:HAS_CATEGORY]-(otherWiki)<-[:HAS_TOPIC]-(other) "
-            "RETURN other.rdfs__label, "
+            "RETURN other.rdfs__label as name, "
                 "[(other)-[:HAS_TOPIC]->()-[:HAS_CATEGORY]->(entity) | entity.rdfs__label] AS otherCategories, "
                 "collect([node in nodes(path) | node.rdfs__label]) AS pathToOther "
         )
         result = tx.run(query, topic_name=topic_name)
-        return [row["path"] for row in result]
+        return [row["name"] for row in result]
 
     # CATEGORY MATCHING
     def match_categories(self):
@@ -283,16 +281,16 @@ if __name__ == "__main__":
     #print(args[2])
 
     # FRIST SEMANTIC REASONING
-    #app.find_relationship("internet","streaming")
+    app.find_relationship("internet","streaming")
     
     # SECOND SEMANTIC REASONING
     #app.find_related_term("internet", "streaming")
 
     # FRIST SIMILARITY REASONING
-    #app.find_suggestion_similarity()
+    app.find_suggestion_similarity("MACHINE LOGISTICS SYSTEM")
 
     # SECOND SIMILARITY REASONING
-    #app.find_parent_similarity()
+    app.find_parent_similarity("mobile operators")
 
     # CENTRALITY REASONING
 
@@ -318,7 +316,8 @@ if __name__ == "__main__":
     result_cat.append(buss_categories)
     result_cat.append(tech_categories)
     result_cat.append(found_cat)
-    print(buss_categories)
+    #print(buss_categories)
+
     # TOPICS MATCHING
 
     # with open("queries.txt") as f:

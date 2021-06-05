@@ -48,7 +48,9 @@ YIELD graphName, nodeCount, relationshipCount, createMillis;
 MATCH (c:AI_RESOURCE {rdfs__label: "MACHINE LOGISTICS SYSTEM"}),
       path = (c)<-[:HAS_TOPIC]-(topic),
       otherPath = (topic)-[:HAS_TOPIC]->(res)
-return path, otherPath
+MATCH (res)<-[:HAS_TOPIC]-(newtopic)
+WHERE newtopic <> topic
+RETURN newtopic.rdfs__label AS name
 
 
                             SECOND SIMILARITY
