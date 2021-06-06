@@ -565,6 +565,15 @@ if __name__ == "__main__":
 
     #app.create_graph_catalog()
 
+    # # RESOURCE NAME OBTENTION
+
+    # res_name = ''
+    # for x in range(2, len(args)):
+    #     if(x==2):
+    #         res_name=res_name+args[x]
+    #     else:
+    #         res_name=res_name + " " + args[x]
+    
     # TOPICS MATCHING
 
     with open("queries.txt") as f:
@@ -580,6 +589,12 @@ if __name__ == "__main__":
         print(topic)
     print("---------")
 
+    # RESOURCE CREATION
+
+    # #app.create_resource(res_name)
+    # for topic in topic_list:
+    #     app.add_topic(topic)
+    
     # # AI4EU MATCHING
 
     topic_list = list(dict.fromkeys(topic_list))
@@ -610,14 +625,6 @@ if __name__ == "__main__":
     for cat in found_cat:
         print(cat)
     print("---------")
-
-    # # RESOURCE NAME CHECK
-    # res_name = ''
-    # for x in range(2, len(args)):
-    #     if(x==2):
-    #         res_name=res_name+args[x]
-    #     else:
-    #         res_name=res_name + " " + args[x]
 
     # # LOAD SIMPLE QUERIES
     # simple_queries = []
@@ -670,6 +677,9 @@ if __name__ == "__main__":
 
     # # INSERT TOPIC
     # #app.insert_topic("convolutional_learning", "artificial intelligence")
+
+    # # RELATE CATEGORY
+    # # app.add_category(cat_name)
 
     # #app.delete_topic
     # #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t
