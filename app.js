@@ -26,100 +26,82 @@ app.set('view engine', 'handlebars');
 
 var categories;
 var description = "";
-
-var pos = ["0","3"]; //EXAMPLE TODO READ FROM TOKENS
+var res_name = "";
 
 function classify(desc, mode, res) {
     var exec = require('child_process').exec
 
     var child = exec('sh script.sh',
     function (error, stdout, stderr) {
-        //console.log(error)
-        //console.log(stdout)
-        //console.log(stderr)
-        
         categories = stdout;
         topics = "machine";
+
+        // let lines = eol.split(stdout)
         
-        let lines = eol.split(stdout)
-        lines.forEach(function(line) {
-            console.log(line)
+        // lines.forEach(function(line) {
+        //     console.log(line)
 
-        })
+        // })
 
+        console.log(stdout)
 
-        res.render('result', {text: description, tops: topics, cat: categories});    
+        res.render('result', {text: description, tops: topics, cat: categories, res: res_name, out: stdout});    
+
     });
-
     //child.stdin.setEncoding('utf-8');
     //child.stdin.write(mode+"\n");
 }
 
-function driver(desc, mode, res) {
-    var exec = require('child_process').exec
+function delfile(file_name) {
+    const { exec } = require("child_process");
 
-    var child = exec('python3 knowledge.py 3',
-    function (error, stdout, stderr) {
-        //console.log(error)
-        //console.log(stdout)
-        //console.log(stderr)
-        
-        categories = stdout;
-        topics = "machine";
-
-        console.log(stdout[0])
-        console.log(stdout[1])
-        console.log(stdout[2])
-        console.log(stdout[3])
-
-        res.render('result', {text: description, tops: topics, cat: categories});        
+    exec("rm "+file_name, (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        //console.log(`stdout: ${stdout}`);
     });
-
-    //child.stdin.setEncoding('utf-8');
-    //child.stdin.write(mode+"\n");
 }
 
-function delfile() {
+function newtxt(text, file_name) {
     const { exec } = require("child_process");
 
-exec("rm res.xml", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-});
+    exec("echo '"+text+ "' >"+file_name, (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        //console.log(`stdout: ${stdout}`);
+    });
 }
 
-function newtxt(desc) {
-    const { exec } = require("child_process");
-
-exec("echo '"+desc+ "' >file.txt", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-});
-}
 app.get('/', (req, res) => {
-    res.render('index', { name: "HOLA" });
+    res.render('index');
 });
 
 app.post('/result', (req, res) => {
     if (req.body.lname == "") mode = "1";
     else mode = "0";
     desc = req.body.fname;
-    //delfile();
-    //newtxt(desc);
+
+    res_name = req.body.lname;
+    res_name = "MACHINE LOGISTICS SYSTEM";
+    
+    newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
+    //newtxt("make\n./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
+
+    //delfile("res.xml");
+    //newtxt(desc, "file.txt");
+
     fs.readFile('file.txt', 'utf-8', (err, data) => {
         if (err) throw err;
         description=data;
@@ -135,5 +117,5 @@ app.post('/modify', (req, res) => {
 const port = 8080;
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  //console.log(`Server running on port ${port}`);
 });

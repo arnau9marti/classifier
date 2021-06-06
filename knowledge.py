@@ -4,12 +4,18 @@ import logging
 from neo4j.exceptions import ServiceUnavailable
 import sys
 from Levenshtein import distance as levenshtein_distance
-import itertools
+import pprint, pickle
 
 topic_list = []
-found_cat = []
 buss_categories = []
 tech_categories = []
+found_cat = []
+
+centrality = dict()
+community = dict()
+similarity = dict()
+
+suggestions = dict()
 
 class App:
 
@@ -24,8 +30,8 @@ class App:
         with self.driver.session() as session:
             result = session.write_transaction(
                 self._insert_and_return_topic, topic_name, super_topic_name)
-            for row in result:
-                print("Created super topic relationship between: {t} and {st}".format(t=row['t'], st=row['st']))
+            # for row in result:
+            #     print("Created super topic relationship between: {t} and {st}".format(t=row['t'], st=row['st']))
 
     @staticmethod
     def _insert_and_return_topic(tx, topic_name, super_topic_name):
@@ -50,7 +56,7 @@ class App:
             result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
             for row in result:
                 topic_list.append(row)
-                print("Found topic: {row}".format(row=row))
+                # print("Found topic: {row}".format(row=row))
 
     @staticmethod
     def _find_and_return_topic_exact(tx, topic_name):
@@ -75,16 +81,19 @@ class App:
     # FRIST SEMANTIC REASONING
     def find_relationship(self, topic_name):
         with self.driver.session() as session:
-            session.read_transaction(self._inverse_super)
+            #session.read_transaction(self._inverse_super)
             result = session.read_transaction(self._find_and_return_relationships, topic_name)
             #result1 = session.read_transaction(self._find_and_return_categories, topic_name1)
             #result2 = session.read_transaction(self._find_and_return_categories, topic_name2)
-            session.read_transaction(self._inverse_super)
+            #session.read_transaction(self._inverse_super)
             #result = set.intersection(set(result1), set(result2))
-        
+
+            rels = []
             for nodes in result:
-                print("Found relationships: {nodes}".format(nodes=nodes))
-                
+                rels.append(nodes)
+                #print("Found relationships: {nodes}".format(nodes=nodes))
+            return rels
+
     @staticmethod
     def _find_and_return_relationships(tx, topic_name):
         query = (
@@ -123,7 +132,10 @@ class App:
             result = session.read_transaction(self._find_and_return_related_term, first_term, second_term)
         
             if result != None:
-                print(first_term + " and " + second_term + " are related topics")
+                return 1
+                #print(first_term + " and " + second_term + " are related topics")
+            else:
+                return 0
 
     @staticmethod
     def _find_and_return_related_term(tx, broad_term, concrete_term):
@@ -139,9 +151,13 @@ class App:
     def find_suggestion_similarity(self, resource_name):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_similar_resources, resource_name)
-
+            
+            similars = []
             for name in result:
-                print("Found similar: {name}".format(name=name))
+                similars.append(name)
+            #     print("Found similar: {name}".format(name=name))
+
+            return similars
 
     @staticmethod
     def _find_and_return_similar_resources(tx, resource_name):
@@ -161,8 +177,12 @@ class App:
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_outcat_path, topic_name)
         
+            similars = []
             for name in result:
-                print("Found similar: {name}".format(name=name))
+                similars.append(name)
+            #     print("Found similar: {name}".format(name=name))
+
+            return similars
 
     @staticmethod
     def _find_and_return_incat_path(tx, topic_name):
@@ -277,7 +297,8 @@ class App:
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_node_id, node_name)
             for nodeId in result:
-                print("Node id: {nodeId}".format(nodeId=nodeId))
+                return nodeId
+                #print("Node id: {nodeId}".format(nodeId=nodeId))
 
     @staticmethod
     def _find_and_return_node_id(tx, node_name):
@@ -286,39 +307,60 @@ class App:
         )
         result = tx.run(query, node_name=node_name)
         return [row["id"] for row in result]
-    
-    # CENTRALITY INFERENCE
-    def find_centrality(self, node_id):
+
+
+    # FIND NODE LABEL BY ID
+    def find_node_label(self, node_id):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_centrality, node_id)
-        
-            for nodeId in result:
-                print("Found similar: {nodeId}".format(nodeId=nodeId))
+            result = session.read_transaction(self._find_and_return_node_label, node_id)
+            for node_name in result:
+                return node_name
+                #print("Node label: {node_name}".format(node_name=node_name))
 
     @staticmethod
-    def _find_and_return_centrality(tx, node_id):
+    def _find_and_return_node_label(tx, node_id):
+        query = (
+            "MATCH (t) WHERE id(t) = $node_id RETURN t.rdfs__label AS name"
+        )
+        result = tx.run(query, node_id=node_id)
+        return [row["name"] for row in result]
+    
+    # CENTRALITY INFERENCE
+    def find_centrality(self):
+        with self.driver.session() as session:
+            session.read_transaction(self._find_and_return_centrality)
+        
+            # for nodeId in result:                               
+            #     print("Found similar: {node_name}".format(node_name=node_name))
+
+    @staticmethod
+    def _find_and_return_centrality(tx):
         query = (
             "CALL gds.pageRank.stream( "
             #"CALL gds.betweenness.stream( "
-                "graph "
+                "'graph' "
             ") "
             "YIELD "
                 "nodeId, "
-                "score"
+                "score "
         )
         result = tx.run(query)
-        return [row["nodeId"] for row in result]
+
+        for row in result:
+            node_name = app.find_node_label(row["nodeId"])
+            centrality[node_name] = row["score"]
+            
     
     # COMMUNITY INFERENCE
-    def find_community(self, node_id):
+    def find_community(self):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_community, node_id)
-        
-            for nodeId in result:
-                print("Found similar: {nodeId}".format(nodeId=nodeId))
+            session.read_transaction(self._find_and_return_community)
+
+            # for nodeId in result:
+            #     print("Found similar: {node_name}".format(node_name=node_name))
 
     @staticmethod
-    def _find_and_return_community(tx, node_id):
+    def _find_and_return_community(tx):
         query = (
             "CALL gds.louvain.stream( "
                 "'graph', { includeIntermediateCommunities: true } "
@@ -329,28 +371,35 @@ class App:
                 "intermediateCommunityIds"
         )
         result = tx.run(query)
-        return [row["communityId"] for row in result]
+        
+        for row in result:
+            node_name = app.find_node_label(row["nodeId"])
+            community[node_name] = row["communityId"]
     
     # JACCARD INFERENCE
-    def find_jaccard_similarity(self, node_id):
+    def find_jaccard_similarity(self):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_jaccard_similarity, node_id)
+            session.read_transaction(self._find_and_return_jaccard_similarity)
         
-            for similarity in result:
-                print("Found similarity: {similarity}".format(similarity=similarity))
+            # for similarity in result:
+            #     print("Found similarity: {similarity}".format(similarity=similarity))
 
     @staticmethod
-    def _find_and_return_jaccard_similarity(tx, node_id):
+    def _find_and_return_jaccard_similarity(tx):
         query = (
             "CALL gds.nodeSimilarity.stream( "
-                "graph "
+                "'graph' "
             ") YIELD "
                 "node1, "
                 "node2, "
                 "similarity"
         )
         result = tx.run(query)
-        return [row["similarity"] for row in result]
+
+        for row in result:
+            node_1 = app.find_node_label(row["node1"])
+            node_2 = app.find_node_label(row["node2"])
+            similarity[node_1, node_2] = row["similarity"]
 
     # LINK PREDICTION INFERENCE
     def find_link_prediction(self, first_term, second_term):
@@ -424,7 +473,36 @@ class App:
         )
         tx.run(query, category_name=category_name, res_name=res_name)
     
+    def check_centrality(self, topic_name):
+        try: 
+            return centrality[topic_name]
+        except KeyError:
+            return 0.0
+            
+
+    def check_community(self, topic1_name, topic2_name):
+        try:
+            com1 = community[topic1_name]
+        except KeyError:
+            return -1
+
+        try:
+            com2 = community[topic2_name]
+        except KeyError:
+            return -1
         
+        if (com1==com2):
+             return 1
+        else:
+            return 0
+
+
+    def check_similarity(self, topic1_name, topic2_name):
+        try:
+            return similarity[topic1_name, topic2_name]
+        except KeyError:
+            return "not found"
+
 if __name__ == "__main__":
     # Aura queries use an encrypted connection using the "neo4j+s" URI scheme
     bolt_url = "bolt://localhost:7687"
@@ -432,22 +510,61 @@ if __name__ == "__main__":
     password = "1234"
     app = App(bolt_url, user, password)
     
+    print("---------")
+
     args = sys.argv
     
     mode = args[1]
+    
+    # PREPROCESS INFERENCE
 
-    print(mode)
+    # app.find_centrality()
+
+    # app.find_community()
+
+    # app.find_jaccard_similarity()
+
+    # PICKLE DUMP
+
+    # output = open('infer_data.pkl', 'wb')
+
+    # pickle.dump(centrality, output)
+    # pickle.dump(community, output)
+    # pickle.dump(similarity, output)
+
+    # output.close()
+
+    # PICKLE LOAD
+
+    pkl_file = open('infer_data.pkl', 'rb')
+
+    centrality = pickle.load(pkl_file)
+    #pprint.pprint(centrality)
+
+    community = pickle.load(pkl_file)
+    #pprint.pprint(community)
+
+    similarity = pickle.load(pkl_file)
+    #pprint.pprint(similarity)
+
+    pkl_file.close()
+
+    #app.create_graph_catalog()
 
     # TOPICS MATCHING
 
-    # with open("queries.txt") as f:
-    #     queries = [x.rstrip("\n") for x in f.readlines()]
+    with open("queries.txt") as f:
+        queries = [x.rstrip("\n") for x in f.readlines()]
 
-    #queries = [x.strip() for x in queries]
-    #queries = list(dict.fromkeys(queries))
+    queries = [x.strip() for x in queries]
+    queries = list(dict.fromkeys(queries))
 
-    # for x in queries:
-    #     app.find_topic(x)
+    for x in queries:
+        app.find_topic(x)
+
+    for topic in topic_list:
+        print(topic)
+    print("---------")
 
     # AI4EU MATCHING
 
@@ -473,6 +590,7 @@ if __name__ == "__main__":
     # print(tech_categories)
     # print(found_cat)
 
+    # RESOURCE NAME CHECK
     res_name = ''
     for x in range(2, len(args)):
         if(x==2):
@@ -480,40 +598,56 @@ if __name__ == "__main__":
         else:
             res_name=res_name + " " + args[x]
 
+    # LOAD SIMPLE QUERIES
     simple_queries = []
     with open("simple queries.txt") as f:
         simple_queries = [x.rstrip("\n") for x in f.readlines()]
 
     # FRIST SEMANTIC REASONING (WITH MATCHES) ->
-    app.find_relationship("internet")
-    
+    app.inverse_super()
+    for query in queries:
+        rels = app.find_relationship(query)
+    app.inverse_super()
+
+    #print(rels)
+
     # SECOND SEMANTIC REASONING (INPUT AND WITH SIMPLE_QUERIES) ->
-    app.find_related_term("internet", "streaming")
+    input = "internet"
+    for query in simple_queries:
+        rels_term = app.find_related_term(input, query)
 
     # FRIST SIMILARITY REASONING (WITH RES_NAME) ->
-    app.find_suggestion_similarity(res_name)
+    similars_sug = app.find_suggestion_similarity(res_name)
 
     # SECOND SIMILARITY REASONING (WITH MATCHES???) ->
-    app.find_parent_similarity("mobile operators")
-
-    app.close()
-
-    # REFINEMENT REASONING
+    for query in queries:
+        similars_par = app.find_parent_similarity(query)
     
-    #app.create_graph_catalog()
+    # REFINEMENT REASONING
+    topic1_name = "machine learning"
+    topic2_name = "artificial intelligence"
 
-    # app.find_centrality()
+    cent = app.check_centrality(topic1_name) # PAGE RANK
+    print("cent")
+    print(cent)
 
-    # app.find_community()
+    comm = app.check_community(topic1_name, topic2_name) # CHECK IF SAME COMM
+    print("comm")
+    print(comm)
 
-    # app.find_jaccard_similarity()
+    sim = app.check_similarity(topic1_name, topic2_name) # CHECK IF NODE SIM
+    print("sim")
+    print(sim)
 
-    # app.find_link_prediction()
+    print("link")
+    app.find_link_prediction(topic1_name, topic2_name) # CHECK IF NODE CLOSENESS
 
+    print(suggestions)
     
     # INSERT TOPIC
     #app.insert_topic("convolutional_learning", "artificial intelligence")
 
     #app.delete_topic
     #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t
-    
+
+    app.close()

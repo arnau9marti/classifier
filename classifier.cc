@@ -17,15 +17,16 @@ using namespace pugi;
 
 //vector<string> pars;
 //vector<string> found_cat;
+
 map<string, vector<string> > semantic_data;
 
-double min_ratio = 0.96;
+// double min_ratio = 0.96;
 
-vector<string> cso_topics;
-map<string, vector<string> >  broaders;
-map<string, vector<string> >  narrowers;
-map<string, vector<string> >  same_as;
-map<string, string> primary_labels;
+// vector<string> cso_topics;
+// map<string, vector<string> >  broaders;
+// map<string, vector<string> >  narrowers;
+// map<string, vector<string> >  same_as;
+// map<string, string> primary_labels;
 
 vector<string> queries;
 vector<string> simple_queries;
@@ -54,29 +55,29 @@ bool endsWith (string const &fullString, string const &ending) {
     }
 }
 
-void map_cso (vector<vector<string> > cso) {
-    for (int i = 0; i < cso.size(); i++) {
-        vector<string> triple = cso[i];
+// void map_cso (vector<vector<string> > cso) {
+//     for (int i = 0; i < cso.size(); i++) {
+//         vector<string> triple = cso[i];
 
-        if (triple[1] == "superTopicOf") {
-            broaders[triple[2]].push_back(triple[0]);
-            narrowers[triple[0]].push_back(triple[2]);
-        }
-        else if (triple[1] == "relatedEquivalent")
-        {
-            same_as[triple[2]].push_back(triple[0]);
+//         if (triple[1] == "superTopicOf") {
+//             broaders[triple[2]].push_back(triple[0]);
+//             narrowers[triple[0]].push_back(triple[2]);
+//         }
+//         else if (triple[1] == "relatedEquivalent")
+//         {
+//             same_as[triple[2]].push_back(triple[0]);
 
-        }
-        else if (endsWith(triple[1],"rdf-schema#label"))
-        {
-            cso_topics.push_back(triple[0]);
-        }
-        else if (triple[1] == "preferentialEquivalent")
-        {
-            primary_labels[triple[0]] = triple[2];
-        }
-    }
-}
+//         }
+//         else if (endsWith(triple[1],"rdf-schema#label"))
+//         {
+//             cso_topics.push_back(triple[0]);
+//         }
+//         else if (triple[1] == "preferentialEquivalent")
+//         {
+//             primary_labels[triple[0]] = triple[2];
+//         }
+//     }
+// }
 
 
 vector<string> read_categories(string filename){
@@ -394,8 +395,8 @@ int main()
     //     else system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --output xml <file.txt >res.xml");
     // }
     
-    cout << "\nAnalyzing resource description text...\n\n";
-    // system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --output xml <file.txt >res.xml");
+    //cout << "\nAnalyzing resource description text...\n\n";
+    //system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --output xml <file.txt >res.xml");
 
     // if (!file_exists("cso.nt")) {
     //     cout << "add the cso.nt with the cso ontology to start analyzing" << endl;
@@ -440,7 +441,7 @@ int main()
 
     if (!doc.load_file("res.xml")) return -1;
 
-    cout << "\nExtracting semantic data...\n\n";
+    //cout << "\nExtracting semantic data...\n\n";
 
     xml_node semantic = doc.child("document").child("semantic_graph");
 
@@ -470,7 +471,7 @@ int main()
 
     }
 
-    cout << "\nExtracting dependency data...\n\n";
+    //cout << "\nExtracting dependency data...\n\n";
 
     xml_node tools = doc.child("document").child("paragraph");
 

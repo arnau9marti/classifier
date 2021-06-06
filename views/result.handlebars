@@ -10,6 +10,8 @@
 		button {text-align: center; font-family:garamond;}
 	</style>
 
+  <h1> {{res}}</h1>
+
   <style>
   * {
     box-sizing: border-box;
@@ -294,6 +296,28 @@
 }
 </style>
 
+
+<h1 id="demo"></h1>
+
+
+<script type = "text/javascript">
+
+  var lines = "{{out}}"
+
+  var char = '\n';
+  var i = j = 0;
+
+  while ((j = lines.indexOf(char, i)) !== -1) {
+    //alert(lines.substring(i, j));
+    i = j + 1;
+  }
+  alert(lines.substring(i, j));
+
+
+  document.getElementById("demo").innerHTML = lines;
+
+</script>
+
 <script type = "text/javascript">
     $(document).ready(function() {
 
@@ -303,45 +327,46 @@
     p.dblclick(function(e) {
         var range = window.getSelection() || document.getSelection() || document.selection.createRange();
         var word = $.trim(range.toString());
-		var cypher = "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 2";
+		    var cypher = "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 2";
+        
         if(word != '#p1') {
-			redraw(cypher);
-            //alert(word);
+			    redraw(cypher);
+          //alert(word);
 
-			let nbut = 10;
-			let ides = 'id';
-			let idbr = 'br';
+          let nbut = 10;
+          let ides = 'id';
+          let idbr = 'br';
 
-			for (let i = 0; i<nbut; i++) {
-			 	let ideact = ides.concat(i.toString());
-				var elem = document.getElementById(ideact);
-				if (elem != null) elem.remove();
+          for (let i = 0; i<nbut; i++) {
+            let ideact = ides.concat(i.toString());
+            var elem = document.getElementById(ideact);
+            if (elem != null) elem.remove();
 
-				let bract = idbr.concat(i.toString());
-				elem = document.getElementById(bract);
-				if (elem != null) elem.remove();
-			}
-			
-			for (let i = 0; i<nbut; i++) {
-				let btn = document.createElement("button");
-				btn.id = ides.concat(i.toString());
-				btn.style.margin = "auto";
-				btn.style.alignItems = "center";
-				btn.style.display = "flex";
-				btn.style.fontSize = "16px";
-				btn.innerHTML = word;
-				btn.onclick = function () {
-					result = confirm(word);
-				};
-				document.body.appendChild(btn);
-				
-				linebreak = document.createElement("br");
-				linebreak.id = idbr.concat(i.toString());
+            let bract = idbr.concat(i.toString());
+            elem = document.getElementById(bract);
+            if (elem != null) elem.remove();
+          }
+          
+          for (let i = 0; i<nbut; i++) {
+            let btn = document.createElement("button");
+            btn.id = ides.concat(i.toString());
+            btn.style.margin = "auto";
+            btn.style.alignItems = "center";
+            btn.style.display = "flex";
+            btn.style.fontSize = "16px";
+            btn.innerHTML = word;
+            btn.onclick = function () {
+              result = confirm(word);
+            };
+            document.body.appendChild(btn);
+            
+            linebreak = document.createElement("br");
+            linebreak.id = idbr.concat(i.toString());
 
-				document.body.appendChild(linebreak);
-			}
+            document.body.appendChild(linebreak);
+          }
 
-			$.post( "/modify", { word: word} );
+          $.post( "/modify", { word: word} );
 
         }
         //range.collapse();
