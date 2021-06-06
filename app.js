@@ -24,28 +24,24 @@ app.use(express.static(__dirname));
 
 app.set('view engine', 'handlebars');
 
-var categories;
 var description = "";
 var res_name = "";
+var lines = "";
 
 function classify(desc, mode, res) {
     var exec = require('child_process').exec
 
     var child = exec('sh script.sh',
     function (error, stdout, stderr) {
-        categories = stdout;
         topics = "machine";
 
-        // let lines = eol.split(stdout)
+        lines = eol.split(stdout)
         
         // lines.forEach(function(line) {
         //     console.log(line)
-
         // })
-
-        console.log(stdout)
-
-        res.render('result', {text: description, tops: topics, cat: categories, res: res_name, out: stdout});    
+        
+        res.render('result', {text: description, res: res_name, out: lines});    
 
     });
     //child.stdin.setEncoding('utf-8');
@@ -86,6 +82,14 @@ function newtxt(text, file_name) {
 
 app.get('/', (req, res) => {
     res.render('index');
+});
+app.get('/result', (req, res) => {
+    if (req.query.action == "Apply") {
+        let superTopic = req.query.myTopic;
+        console.log(superTopic)
+    }
+    res.render('result', {text: description, res: res_name, out: lines});
+
 });
 
 app.post('/result', (req, res) => {

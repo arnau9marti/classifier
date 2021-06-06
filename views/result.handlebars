@@ -156,15 +156,61 @@
 }
 </style>
 
+<script type = "text/javascript">
+
+  var lines = "{{out}}"
+  var out = lines.split(',')
+
+  var topics = [];
+  var buss_categories = [];
+  var tech_categories = [];
+  var found_cat = [];
+  var all_topics = [];
+
+  let i = 0;
+
+  while (i<out.length && out[i]!="---------") {
+    topics.push(out[i]);
+    ++i;
+  }
+  ++i;
+
+  while (i<out.length && out[i]!="---------") {
+    buss_categories.push(out[i]);
+    ++i;
+  }
+  ++i;
+
+  while (i<out.length && out[i]!="---------") {
+    tech_categories.push(out[i]);
+    ++i;
+  }
+  ++i;
+
+  while (i<out.length && out[i]!="---------") {
+    found_cat.push(out[i]);
+    ++i;
+  }
+  ++i;
+
+  while (i<out.length && out[i]!="---------") {
+    all_topics.push(out[i]);
+    ++i;
+  }
+
+</script>
+
 <h1> <b>Resource description: </b> </h1> 
 
 <p id="p1"> {{text}}</p>
 
 <script type="text/javascript">
-	  var word = "{{position}}"
-    var str = document.getElementById("p1").innerHTML; 
-    var res = str.replace(word, "<span style='color:red'>"+word+"</span>");
-    document.getElementById("p1").innerHTML = res;
+    for (let i = 0; i<topics.length; i++) {
+      var word = topics[i]
+      var str = document.getElementById("p1").innerHTML; 
+      var res = str.replace(word, "<span style='color:red'>"+word+"</span>");
+      document.getElementById("p1").innerHTML = res;
+    }
 </script>
 
 <script>
@@ -216,22 +262,20 @@
 <br>
 
 <form>
-<label for="cars">Category:</label>
-
+<label for="cars">Tech Category:</label>
 <select id="myid"></select>
 </form>
 <script>
- var number=5;
  var optionList = "";
- for (var x=1; x<=number; x++) {
-  optionList += "<option>"+x+"</option>";
+ for (let i = 0; i<tech_categories.length; i++) {
+  optionList += "<option>"+tech_categories[i]+"</option>";
  }
  $("select#myid").html(optionList);
 </script>
 
 <div id="container"></div>
 
-<script>
+{{!-- <script>
 
 
   var values = ["dog", "cat", "parrot", "rabbit"];
@@ -252,9 +296,46 @@
   label.htmlFor = "pets";
 
   document.getElementById("container").appendChild(label).appendChild(select);
+</script> --}}
+
+<script>
+  let nbut = 0;
 </script>
 
+<script>
+function hide_suggestions() {
 
+  let ides = 'id';
+  let idbr = 'br';
+
+  for (let i = 0; i<nbut; i++) {
+    let ideact = ides.concat(i.toString());
+    var elem = document.getElementById(ideact);
+    if (elem != null) elem.remove();
+
+    let bract = idbr.concat(i.toString());
+    elem = document.getElementById(bract);
+    if (elem != null) elem.remove();
+  }
+  var x = document.getElementById("superTopic");
+  x.style.display = "none";
+}
+</script>
+
+<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> </h1> <button type="submit" onclick="hide_suggestions()"> Hide suggestions</button>
+
+
+
+<div id="suggestions"></div>
+
+<form id="superTopic" autocomplete="off">
+  <div class="autocomplete" style="width:300px;">
+    <input id="myInput" type="text" name="myTopic" placeholder="Topic">
+  </div>
+  <input type="submit" value="Apply" name="action">
+</form>
+
+<br>
 <div id="viz" class="center" style="align-content: center"></div>
 <button type="submit" style="margin:auto"> Reset</button>
 <!--
@@ -267,8 +348,6 @@
 
 </form>
 //-->
-
-<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> </h1>
 
 <script>
 	function redraw(cypher) {
@@ -296,28 +375,6 @@
 }
 </style>
 
-
-<h1 id="demo"></h1>
-
-
-<script type = "text/javascript">
-
-  var lines = "{{out}}"
-
-  var char = '\n';
-  var i = j = 0;
-
-  while ((j = lines.indexOf(char, i)) !== -1) {
-    //alert(lines.substring(i, j));
-    i = j + 1;
-  }
-  alert(lines.substring(i, j));
-
-
-  document.getElementById("demo").innerHTML = lines;
-
-</script>
-
 <script type = "text/javascript">
     $(document).ready(function() {
 
@@ -331,9 +388,8 @@
         
         if(word != '#p1') {
 			    redraw(cypher);
-          //alert(word);
 
-          let nbut = 10;
+          nbut = 5;
           let ides = 'id';
           let idbr = 'br';
 
@@ -358,14 +414,16 @@
             btn.onclick = function () {
               result = confirm(word);
             };
-            document.body.appendChild(btn);
+            document.getElementById("suggestions").appendChild(btn);
             
             linebreak = document.createElement("br");
             linebreak.id = idbr.concat(i.toString());
 
-            document.body.appendChild(linebreak);
-          }
+            document.getElementById("suggestions").appendChild(linebreak);
 
+            var x = document.getElementById("superTopic");
+            x.style.display = "block";
+          }
           $.post( "/modify", { word: word} );
 
         }
@@ -376,12 +434,6 @@
     
 </script>
 
-<form autocomplete="off">
-  <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="myCountry" placeholder="Country">
-  </div>
-  <input type="submit">
-</form>
 
 </body>
 
@@ -484,8 +536,11 @@ document.addEventListener("click", function (e) {
 });
 }
 
-var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+var countries = all_topics;
 autocomplete(document.getElementById("myInput"), countries);
+    
+var x = document.getElementById("superTopic");
+x.style.display = "none";
 
 
 </script>
