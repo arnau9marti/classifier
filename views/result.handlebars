@@ -164,9 +164,11 @@
   var topics = [];
   var buss_categories = [];
   var tech_categories = [];
-  var found_cat = [];
+  var buss_categories_sug = [];
+  var tech_categories_sug = [];
   var all_topics = [];
-
+  var suggest = [];
+  
   let i = 0;
 
   while (i<out.length && out[i]!="---------") {
@@ -188,11 +190,24 @@
   ++i;
 
   while (i<out.length && out[i]!="---------") {
-    found_cat.push(out[i]);
+    buss_categories_sug.push(out[i]);
     ++i;
   }
   ++i;
 
+  while (i<out.length && out[i]!="---------") {
+    tech_categories_sug.push(out[i]);
+    ++i;
+  }
+  ++i;
+
+  while (i<out.length && out[i]!="---------") {
+    suggest.push(out[i]);
+    ++i;
+  }
+  ++i;
+  console.log(buss_categories_sug)
+  console.log(tech_categories_sug)
   while (i<out.length && out[i]!="---------") {
     all_topics.push(out[i]);
     ++i;
@@ -234,7 +249,7 @@
 
 </script>
 
-<form >
+{{!-- <form >
   <label for="cars">Technology category:</label>
   <select name="cars" id="cars">
     <option value="volvo">Volvo</option>
@@ -258,20 +273,36 @@
   </select>
 <button type="submit" style="margin:auto"> Add new</button>
 
-</form>
+</form> --}}
+
 <br>
 
 <form>
-<label for="cars">Tech Category:</label>
+<label for="cars">Bussiness Category:</label>
 <select id="myid"></select>
 </form>
 <script>
  var optionList = "";
- for (let i = 0; i<tech_categories.length; i++) {
-  optionList += "<option>"+tech_categories[i]+"</option>";
+ for (let i = 0; i<buss_categories_sug.length; i++) {
+  optionList += "<option>"+buss_categories_sug[i] + " (suggested)"+"</option>";
  }
  $("select#myid").html(optionList);
 </script>
+
+<form>
+<label for="cars">Technical Category:</label>
+<select id="myid"></select>
+</form>
+<script>
+ var optionList = "";
+ for (let i = 0; i<tech_categories_sug.length; i++) {
+  optionList += "<option>"+tech_categories_sug[i] + " (suggested)"+"</option>";
+ }
+ $("select#myid").html(optionList);
+</script>
+
+<button type="submit" style="margin:auto"> Apply</button>
+
 
 <div id="container"></div>
 
@@ -323,8 +354,6 @@ function hide_suggestions() {
 </script>
 
 <h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> </h1> <button type="submit" onclick="hide_suggestions()"> Hide suggestions</button>
-
-
 
 <div id="suggestions"></div>
 
@@ -410,7 +439,7 @@ function hide_suggestions() {
             btn.style.alignItems = "center";
             btn.style.display = "flex";
             btn.style.fontSize = "16px";
-            btn.innerHTML = word;
+            btn.innerHTML = suggest[i];
             btn.onclick = function () {
               result = confirm(word);
             };

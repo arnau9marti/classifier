@@ -209,7 +209,8 @@ class App:
     # CATEGORY MATCHING
     def match_categories(self):
         with self.driver.session() as session:
-            aux_topic_list = topic_list.copy()
+
+            aux_topic_list = topic_list.copy() 
 
             for topic_name in topic_list:
                 result = session.read_transaction(self._find_and_return_same_as, topic_name)
@@ -223,12 +224,22 @@ class App:
                 result = session.read_transaction(self._find_and_return_parent, topic_name)
                 for row in result:
                     aux_topic_list.append(row)
+            
+            # Add "AI for " to all aux_topic_list
+            aux_buss_topic = []
+            for topic_name in aux_topic_list:
+                aux_buss_topic.append("AI for " + topic_name)
 
+            # Matching
             for topic_name in aux_topic_list:
                 result = session.read_transaction(self._find_and_return_category_sim, topic_name)
                 for row in result:
-                    found_cat.append(row)
-                    #print("Found category: {row}".format(row=row))
+                    tech_categories_sug.append(row)
+            
+            for topic_name in aux_buss_topic:
+                result = session.read_transaction(self._find_and_return_category_sim, topic_name)
+                for row in result:
+                    buss_categories_sug.append(row)
 
     @staticmethod
     def _find_and_return_same_as(tx, category_name):
@@ -257,7 +268,7 @@ class App:
     @staticmethod
     def _find_and_return_category_sim(tx, category_name):
         query = (
-            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.92 RETURN t.rdfs__label AS name"
+            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.8 RETURN t.rdfs__label AS name"
         )
         result = tx.run(query, category_name=category_name)
         return [row["name"] for row in result]
@@ -265,7 +276,7 @@ class App:
     @staticmethod
     def _find_and_return_category_parent_sim(tx, category_name):
         query = (
-            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.92 RETURN t.rdfs__label AS name"
+            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.8 RETURN t.rdfs__label AS name"
         )
         result = tx.run(query, category_name=category_name)
         return [row["name"] for row in result]
@@ -275,9 +286,6 @@ class App:
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_categories, category_type)
             return result
-            # for row in result:
-            #     buss_categories.append(row)
-            #     #print("Found category: {row}".format(row=row))
     
     @staticmethod
     def _find_and_return_categories(tx, category_type):
@@ -582,9 +590,9 @@ if __name__ == "__main__":
     for x in queries:
         app.find_topic(x)
 
-    # for topic in topic_list:
-    #     print(topic)
-    # print("---------")
+    for topic in topic_list:
+        print(topic)
+    print("---------")
 
     # RESOURCE CREATION
     # #app.create_resource(res_name)
@@ -602,27 +610,25 @@ if __name__ == "__main__":
     for row in cat:
         tech_categories.append(row)
 
-    for topic in topic_list:
-        buss_categories_sug.append("AI for " + topic)
-
-    tech_categories_sug = topic_list.copy()
-
     app.match_categories()
 
-    found_cat = list(dict.fromkeys(found_cat))
-    result_cat = []
-    result_cat.append(buss_categories)
-    result_cat.append(tech_categories)
-    result_cat.append(found_cat)
-    # for cat in buss_categories:
-    #     print(cat)
-    # print("---------")
-    # for cat in tech_categories:
-    #     print(cat)
-    # print("---------")
-    # for cat in found_cat:
-    #     print(cat)
-    # print("---------")
+    buss_categories_sug = list(dict.fromkeys(buss_categories_sug))
+    tech_categories_sug = list(dict.fromkeys(tech_categories_sug))
+
+    for cat in buss_categories:
+        print(cat)
+    print("---------")
+    for cat in tech_categories:
+        print(cat)
+    print("---------")
+
+    for cat in buss_categories_sug:
+        print(cat)
+    print("---------")
+
+    for cat in tech_categories_sug:
+        print(cat)
+    print("---------")
 
     # LOAD SIMPLE QUERIES
     simple_queries = []
@@ -644,8 +650,8 @@ if __name__ == "__main__":
     # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
     second_sem_sug = []
 
-    rels_term = app.find_related_term("internet", "streaming")
-    print(rels_term)
+    # rels_term = app.find_related_term("internet", "streaming")
+    # print(rels_term)
 
     # CHANGE FOR CLICK WORD INPUT
     rang = 5
@@ -681,18 +687,31 @@ if __name__ == "__main__":
             sim = app.check_similarity(query, similar) # CHECK IF NODE SIM
             if (sim>0.0):
                 second_sim_sug.append(similar)
-        
-    print(first_sem_sug)
+    
+    first_sem_sug = list(dict.fromkeys(first_sem_sug))
     second_sem_sug = list(dict.fromkeys(second_sem_sug))
-    #print(second_sem_sug)
-    print(first_sim_sug)
-    print(second_sim_sug)
+    first_sim_sug = list(dict.fromkeys(first_sim_sug))
+    second_sim_sug = list(dict.fromkeys(second_sim_sug))
 
     # COLLECT SUGGESTIONS
-    #print(suggestions)
+    for sug in first_sem_sug:
+        print(sug)
 
-    # app.return_topics()
-    # print("---------")
+    for sug in second_sem_sug:
+        print(sug)
+
+    for sug in first_sim_sug:
+        print(sug)
+
+    for sug in second_sim_sug:
+        print(sug)
+    print(second_sim_sug)
+
+    print("---------")
+
+    # COLLECT ALL TOPICS
+    app.return_topics()
+    print("---------")
 
     # INSERT TOPIC
     #app.insert_topic("convolutional_learning", "artificial intelligence")
