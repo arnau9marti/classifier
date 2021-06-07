@@ -98,7 +98,7 @@ app.post('/result', (req, res) => {
     desc = req.body.fname;
 
     res_name = req.body.lname;
-    res_name = "MACHINE LOGISTICS SYSTEM";
+    res_name = "IOT LOGISTICS SYSTEM";
     
     newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
     //newtxt("make\n./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");

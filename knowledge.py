@@ -455,6 +455,30 @@ class App:
         )
         tx.run(query)
     
+    def create_category(self, cat_name, cat_type):
+        with self.driver.session() as session:
+            session.read_transaction(self._create_category, cat_name, cat_type)
+
+    @staticmethod
+    def _create_category(tx, cat_name, cat_type):
+        if (cat_type == "buss"):
+            query = (
+                "MATCH (n2:skos__ConceptScheme {rdfs__label: 'Business Categories'}) "
+                "CREATE (n1:skos__Concept {rdfs__label: $cat_name}) "
+                "MERGE (n1)-[:skos__topConceptOf]->(n2)"
+            )
+        else:
+            query = (
+                "MATCH (n2:skos__ConceptScheme {rdfs__label: 'Technical Categories'}) "
+                "CREATE (n1:skos__Concept {rdfs__label: $cat_name}) "
+                "MERGE (n1)-[:skos__topConceptOf]->(n2)"
+            )
+        tx.run(query, cat_name=cat_name)
+
+    def add_topic(self, topic_name, res_name):
+        with self.driver.session() as session:
+            session.read_transaction(self._add_topic, topic_name, res_name)
+
     def create_resource(self, res_name):
         with self.driver.session() as session:
             session.read_transaction(self._create_resource, res_name)
@@ -597,9 +621,9 @@ if __name__ == "__main__":
         print("---------")
 
         # RESOURCE CREATION
-        # #app.create_resource(res_name)
-        # for topic in topic_list:
-        #     app.add_topic(topic)
+        app.create_resource(res_name)
+        for topic in topic_list:
+            app.add_topic(topic, res_name)
         
         # AI4EU MATCHING
         topic_list = list(dict.fromkeys(topic_list))
@@ -658,10 +682,10 @@ if __name__ == "__main__":
         app.inverse_super()
 
         # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
-        second_sem_sug = dict()
-        rang = 5
         # rels_term = app.find_related_term("internet", "streaming")
         # print(rels_term)
+        second_sem_sug = dict()
+        rang = 5
 
         for input in simple_queries:
             ind = simple_queries.index(input)
@@ -690,7 +714,7 @@ if __name__ == "__main__":
                 if (pred>0.0):
                     first_sim_sug[topic].append(similar)
 
-        # SECOND SIMILARITY REASONING (WITH MATCHES???) -> NODE SIMILARITY
+        # SECOND SIMILARITY REASONING (WITH MATCHES) -> NODE SIMILARITY
         second_sim_sug = dict()
         for topic in topic_list:
             second_sim_sug[topic] = []
@@ -755,7 +779,7 @@ if __name__ == "__main__":
             else:
                 cat_name=cat_name + " " + args[x]
 
-        #app.create_tech_category(cat_name)
+        app.create_category(cat_name, "buss")
 
     if (mode == "4"):
         # CREATE NEW TECH CATEGORY
@@ -766,19 +790,46 @@ if __name__ == "__main__":
             else:
                 cat_name=cat_name + " " + args[x]
 
-        #app.create_buss_category(cat_name)
+        app.create_category(cat_name, "tech")
+
+    if (mode == "4"):
+        # RELATE TOPIC
+        topic_name = ''
+        for x in range(2, len(args)):
+            if(x==2):
+                topic_name=topic_name+args[x]
+            else:
+                topic_name=topic_name + " " + args[x]
+        app.add_topic(topic_name)
 
     if (mode == "5"):
-        # INSERT TOPIC
-        app.insert_topic("convolutional_learning", "artificial intelligence")
+        # CREATE NEW TOPIC
+        topic_name = ''
+        super_name = ''
+        second = 0
+        second_x = 0
 
-    # RELATE CATEGORY
-    #app.add_category(cat_name)
+        #FIX
+        for x in range(2, len(args)):
+            if(args[x] == ("---------")):
+                second = 1
+                second_x = x
+
+            if(x==2 and second == 0):
+                topic_name=topic_name+args[x]
+            if(x!=2 and second == 0):
+                topic_name=topic_name + " " + args[x]
+            
+            if(x==second_x+1 and second == 1):
+                super_name=super_name+args[x]
+
+            if(x!=second_x and x!=second_x+1 and second == 1):
+                super_name=super_name + " " + args[x]
+
+        #app.insert_topic("convolutional_learning", "artificial intelligence")
 
     #app.delete_topic
     #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t
-
-    app.close()
 
     # PICKLE DUMP
     output = open('infer_data.pkl', 'wb')
@@ -788,22 +839,4 @@ if __name__ == "__main__":
     pickle.dump(similarity, output)
     output.close()
 
-    # TEST REFINEMENT REASONING TEST
-    # topic1_name = "machine learning"
-    # topic2_name = "artificial intelligence"
-
-    # cent = app.check_centrality(topic1_name) # PAGE RANK
-    # print("cent")
-    # print(cent)
-
-    # comm = app.check_community(topic1_name, topic2_name) # CHECK IF SAME COMM
-    # print("comm")
-    # print(comm)
-
-    # sim = app.check_similarity(topic1_name, topic2_name) # CHECK IF NODE SIM
-    # print("sim")
-    # print(sim)
-
-    # pred = app.find_link_prediction(topic1_name, topic2_name) # CHECK IF NODE CLOSENESS
-    # print("link")
-    # print(pred)
+    app.close()

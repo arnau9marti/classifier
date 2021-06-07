@@ -104,6 +104,9 @@
 		var viz;
 
 		function draw() {
+      var res_name = "{{res}}"
+      var cypher = "MATCH p=(n1:ns0__Topic)-[r:HAS_TOPIC]->(n2:AI_RESOURCE {rdfs__label: '"+ res_name + "'}) RETURN p"
+      console.log(cypher)
 			var config = {
 				container_id: "viz",
 				server_url: "bolt://localhost:7687",
@@ -133,7 +136,8 @@
 				},
 				//initial_cypher: "MATCH (t:ns0__Topic) WHERE t.rdfs__label = 'artificial intelligence' RETURN t"
 				//initial_cypher: "MATCH (n:ns0__Topic) RETURN n LIMIT 25"
-				initial_cypher: "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 25"
+        
+				initial_cypher: cypher
 			};
 
 			viz = new NeoVis.default(config);
@@ -295,7 +299,7 @@
  $("select#tech_form").html(optionList);
 </script>
 
-<button type="submit" style="margin:auto"> Apply</button>
+<button type="submit" style="margin:auto" value="2"> Apply</button>
 
 
 <div id="container"></div>
@@ -360,7 +364,7 @@ function hide_suggestions() {
 
 <br>
 <div id="viz" class="center" style="align-content: center"></div>
-<button type="submit" style="margin:auto"> Reset</button>
+{{!-- <button type="submit" style="margin:auto"> Reset</button> --}}
 <h1><b>Cypher manual query:</b></h1> 
 
 <form>
@@ -402,7 +406,7 @@ function hide_suggestions() {
     var p = $('p');
     p.css({ cursor: 'pointer' });
 
-    p.dblclick(function(e) {
+    p.click(function(e) {
         var range = window.getSelection() || document.getSelection() || document.selection.createRange();
         var word = $.trim(range.toString());
 		    var cypher = "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 2";

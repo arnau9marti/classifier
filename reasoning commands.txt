@@ -93,3 +93,4 @@ RETURN n
                             ONTOLOGY UPLOAD
 
 CALL n10s.rdf.import.fetch("file:///Users/arnau/Desktop/classifier/topics.ttl","Turtle");
+CALL n10s.rdf.import.fetch("file:///Users/arnau/Desktop/classifier/cso.ttl","Turtle");
