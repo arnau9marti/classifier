@@ -84,6 +84,7 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 app.get('/result', (req, res) => {
+    console.log(req.query.action)
     if (req.query.action == "Apply") {
         let superTopic = req.query.myTopic;
         console.log(superTopic)
