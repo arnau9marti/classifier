@@ -13,6 +13,7 @@ buss_categories_sug = []
 tech_categories_sug = []
 found_cat = []
 
+res_name = ""
 centrality = dict()
 community = dict()
 similarity = dict()
@@ -543,23 +544,11 @@ if __name__ == "__main__":
     app = App(bolt_url, user, password)
     
     args = sys.argv
-    
     mode = args[1]
-    
-    # PREPROCESS INFERENCE
-    # app.find_centrality()
-    # app.find_community()
-    # app.find_jaccard_similarity()
-
-    # PICKLE DUMP
-    # output = open('infer_data.pkl', 'wb')
-    # pickle.dump(centrality, output)
-    # pickle.dump(community, output)
-    # pickle.dump(similarity, output)
-    # output.close()
 
     # PICKLE LOAD
     pkl_file = open('infer_data.pkl', 'rb')
+    res_name = pickle.load(pkl_file)
     centrality = pickle.load(pkl_file)
     #pprint.pprint(centrality)
     community = pickle.load(pkl_file)
@@ -568,173 +557,220 @@ if __name__ == "__main__":
     #pprint.pprint(similarity)
     pkl_file.close()
 
-    # GRAPH CREATION GRAPH ALGORITHMS PLUGIN
-    #app.create_graph_catalog()
-    #app.create_graph_catalog_simple()
+    if (mode == "1"):
+        # GRAPH CREATION GRAPH ALGORITHMS PLUGIN
+        works = ""
+        try:
+            app.create_graph_catalog()
+        except:
+            works = "no"
+        try:
+            app.create_graph_catalog_simple()
+        except:
+            works = "no"
 
-    # RESOURCE NAME OBTENTION
-    res_name = ''
-    for x in range(2, len(args)):
-        if(x==2):
-            res_name=res_name+args[x]
-        else:
-            res_name=res_name + " " + args[x]
+        # PREPROCESS INFERENCE
+        # app.find_centrality()
+        # app.find_community()
+        # app.find_jaccard_similarity()
 
-    # TOPICS MATCHING
-    with open("queries.txt") as f:
-        queries = [x.rstrip("\n") for x in f.readlines()]
+        # RESOURCE NAME OBTENTION
+        res_name = ''
+        for x in range(2, len(args)):
+            if(x==2):
+                res_name=res_name+args[x]
+            else:
+                res_name=res_name + " " + args[x]
 
-    queries = [x.strip() for x in queries]
-    queries = list(dict.fromkeys(queries))
+        # TOPICS MATCHING
+        with open("queries.txt") as f:
+            queries = [x.rstrip("\n") for x in f.readlines()]
 
-    for x in queries:
-        app.find_topic(x)
+        queries = [x.strip() for x in queries]
+        queries = list(dict.fromkeys(queries))
 
-    for topic in topic_list:
-        print(topic)
-    print("---------")
+        for x in queries:
+            app.find_topic(x)
 
-    # RESOURCE CREATION
-    # #app.create_resource(res_name)
-    # for topic in topic_list:
-    #     app.add_topic(topic)
-    
-    # AI4EU MATCHING
-    topic_list = list(dict.fromkeys(topic_list))
-    
-    cat = app.find_categories("Business Categories")
-    for row in cat:
-        buss_categories.append(row)
-    
-    cat = app.find_categories("Technical Categories")
-    for row in cat:
-        tech_categories.append(row)
-
-    app.match_categories()
-
-    buss_categories_sug = list(dict.fromkeys(buss_categories_sug))
-    tech_categories_sug = list(dict.fromkeys(tech_categories_sug))
-
-    for cat in buss_categories:
-        print(cat)
-    print("---------")
-    for cat in tech_categories:
-        print(cat)
-    print("---------")
-
-    for cat in buss_categories_sug:
-        print(cat)
-    print("---------")
-
-    for cat in tech_categories_sug:
-        print(cat)
-    print("---------")
-
-    # LOAD SIMPLE QUERIES
-    simple_queries = []
-    with open("simple queries.txt") as f:
-        simple_queries = [x.rstrip("\n") for x in f.readlines()]
-
-    simplest_queries = []
-    with open("simplest queries.txt") as f:
-        simplest_queries = [x.rstrip("\n") for x in f.readlines()]
-
-    simple_queries = simplest_queries
-
-    # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
-    first_sem_sug = dict()
-
-    app.inverse_super()
-    for topic in topic_list:
-        first_sem_sug[topic] = []
-        rels = app.find_relationship(topic)
-        for rel in rels:
-            cent = app.check_centrality(rel)
-            if (cent > 0.0):
-                first_sem_sug[topic].append(rel)
-    
-    app.inverse_super()
-
-    # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
-    second_sem_sug = dict()
-    rang = 5
-    # rels_term = app.find_related_term("internet", "streaming")
-    # print(rels_term)
-
-    for input in simple_queries:
-        ind = simple_queries.index(input)
-        second_sem_sug[input] = []
-        for x in range(-rang,rang):
-            try:
-                query = simple_queries[ind+x]
-            except:
-                query = simple_queries[ind-rang-x]
-
-            rels_term = app.find_related_term(input, query)
-            for term in rels_term:
-                second_sem_sug[input].append(term)
-
-    # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
-    first_sim_sug = dict()
-    similars_sug = app.find_suggestion_similarity(res_name)
-    similars_sug = list(dict.fromkeys(similars_sug))
-
-    for topic in topic_list:
-        first_sim_sug[topic] = []
-
-    for similar in similars_sug:
         for topic in topic_list:
-            pred = app.find_link_prediction(topic, similar) # CHECK NODE CLOSENESS
-            if (pred>0.0):
-                first_sim_sug[topic].append(similar)
-
-    # SECOND SIMILARITY REASONING (WITH MATCHES???) -> NODE SIMILARITY
-    second_sim_sug = dict()
-    for topic in topic_list:
-        second_sim_sug[topic] = []
-        similars_par = app.find_parent_similarity(topic)
-        similars_par = list(dict.fromkeys(similars_par))
-        for similar in similars_par:
-            sim = app.check_similarity(query, similar) # CHECK IF NODE SIM
-            if (sim>0.0):
-                second_sim_sug[topic].append(similar)
-
-    # COLLECT SUGGESTIONS
-    for input in simple_queries:
-        suggestions[input] = []
-    for topic in topic_list:
-        suggestions[topic] = []
-
-    for key, value in first_sem_sug.items():
-        for sug in list(dict.fromkeys(value)):
-            suggestions[key].append(sug)
-
-    for key, value in second_sem_sug.items():
-        for sug in list(dict.fromkeys(value)):
-            suggestions[key].append(sug)
-
-    for key, value in first_sim_sug.items():
-        for sug in list(dict.fromkeys(value)):
-            suggestions[key].append(sug)
-
-    for key, value in second_sim_sug.items():
-        for sug in list(dict.fromkeys(value)):
-            suggestions[key].append(sug)
-
-    for key, value in suggestions.items():
-        print(key)
-        for sug in list(dict.fromkeys(value)):
-            print(sug)
+            print(topic)
         print("---------")
 
-    print("---------")
+        # RESOURCE CREATION
+        # #app.create_resource(res_name)
+        # for topic in topic_list:
+        #     app.add_topic(topic)
+        
+        # AI4EU MATCHING
+        topic_list = list(dict.fromkeys(topic_list))
+        
+        cat = app.find_categories("Business Categories")
+        for row in cat:
+            buss_categories.append(row)
+        
+        cat = app.find_categories("Technical Categories")
+        for row in cat:
+            tech_categories.append(row)
 
-    # COLLECT ALL TOPICS
-    app.return_topics()
-    print("---------")
+        app.match_categories()
 
-    # INSERT TOPIC
-    #app.insert_topic("convolutional_learning", "artificial intelligence")
+        buss_categories_sug = list(dict.fromkeys(buss_categories_sug))
+        tech_categories_sug = list(dict.fromkeys(tech_categories_sug))
+
+        for cat in buss_categories:
+            print(cat)
+        print("---------")
+        for cat in tech_categories:
+            print(cat)
+        print("---------")
+
+        for cat in buss_categories_sug:
+            print(cat)
+        print("---------")
+
+        for cat in tech_categories_sug:
+            print(cat)
+        print("---------")
+
+        # LOAD SIMPLE QUERIES
+        simple_queries = []
+        with open("simple queries.txt") as f:
+            simple_queries = [x.rstrip("\n") for x in f.readlines()]
+
+        simplest_queries = []
+        with open("simplest queries.txt") as f:
+            simplest_queries = [x.rstrip("\n") for x in f.readlines()]
+
+        simple_queries = simplest_queries
+
+        # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
+        first_sem_sug = dict()
+
+        app.inverse_super()
+        for topic in topic_list:
+            first_sem_sug[topic] = []
+            rels = app.find_relationship(topic)
+            for rel in rels:
+                cent = app.check_centrality(rel)
+                if (cent > 0.0):
+                    first_sem_sug[topic].append(rel)
+        
+        app.inverse_super()
+
+        # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
+        second_sem_sug = dict()
+        rang = 5
+        # rels_term = app.find_related_term("internet", "streaming")
+        # print(rels_term)
+
+        for input in simple_queries:
+            ind = simple_queries.index(input)
+            second_sem_sug[input] = []
+            for x in range(-rang,rang):
+                try:
+                    query = simple_queries[ind+x]
+                except:
+                    query = simple_queries[ind-rang-x]
+
+                rels_term = app.find_related_term(input, query)
+                for term in rels_term:
+                    second_sem_sug[input].append(term)
+
+        # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
+        first_sim_sug = dict()
+        similars_sug = app.find_suggestion_similarity(res_name)
+        similars_sug = list(dict.fromkeys(similars_sug))
+
+        for topic in topic_list:
+            first_sim_sug[topic] = []
+
+        for similar in similars_sug:
+            for topic in topic_list:
+                pred = app.find_link_prediction(topic, similar) # CHECK NODE CLOSENESS
+                if (pred>0.0):
+                    first_sim_sug[topic].append(similar)
+
+        # SECOND SIMILARITY REASONING (WITH MATCHES???) -> NODE SIMILARITY
+        second_sim_sug = dict()
+        for topic in topic_list:
+            second_sim_sug[topic] = []
+            similars_par = app.find_parent_similarity(topic)
+            similars_par = list(dict.fromkeys(similars_par))
+            for similar in similars_par:
+                sim = app.check_similarity(query, similar) # CHECK IF NODE SIM
+                if (sim>0.0):
+                    second_sim_sug[topic].append(similar)
+
+        # COLLECT SUGGESTIONS
+        for input in simple_queries:
+            suggestions[input] = []
+        for topic in topic_list:
+            suggestions[topic] = []
+
+        for key, value in first_sem_sug.items():
+            for sug in list(dict.fromkeys(value)):
+                suggestions[key].append(sug)
+
+        for key, value in second_sem_sug.items():
+            for sug in list(dict.fromkeys(value)):
+                suggestions[key].append(sug)
+
+        for key, value in first_sim_sug.items():
+            for sug in list(dict.fromkeys(value)):
+                suggestions[key].append(sug)
+
+        for key, value in second_sim_sug.items():
+            for sug in list(dict.fromkeys(value)):
+                suggestions[key].append(sug)
+
+        for key, value in suggestions.items():
+            print(key)
+            for sug in list(dict.fromkeys(value)):
+                print(sug)
+            print("---------")
+
+        print("---------")
+
+        # COLLECT ALL TOPICS
+        app.return_topics()
+        print("---------")
+
+    if (mode == "2"):
+        # RELATE CATEGORY
+        cat_name = ''
+        for x in range(2, len(args)):
+            if(x==2):
+                cat_name=cat_name+args[x]
+            else:
+                cat_name=cat_name + " " + args[x]
+
+        app.add_category(cat_name)
+
+    if (mode == "3"):
+        # CREATE NEW BUSINESS CATEGORY
+        cat_name = ''
+        for x in range(2, len(args)):
+            if(x==2):
+                cat_name=cat_name+args[x]
+            else:
+                cat_name=cat_name + " " + args[x]
+
+        #app.create_tech_category(cat_name)
+
+    if (mode == "4"):
+        # CREATE NEW TECH CATEGORY
+        cat_name = ''
+        for x in range(2, len(args)):
+            if(x==2):
+                cat_name=cat_name+args[x]
+            else:
+                cat_name=cat_name + " " + args[x]
+
+        #app.create_buss_category(cat_name)
+
+    if (mode == "5"):
+        # INSERT TOPIC
+        app.insert_topic("convolutional_learning", "artificial intelligence")
 
     # RELATE CATEGORY
     #app.add_category(cat_name)
@@ -743,6 +779,14 @@ if __name__ == "__main__":
     #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t
 
     app.close()
+
+    # PICKLE DUMP
+    output = open('infer_data.pkl', 'wb')
+    pickle.dump(res_name, output)
+    pickle.dump(centrality, output)
+    pickle.dump(community, output)
+    pickle.dump(similarity, output)
+    output.close()
 
     # TEST REFINEMENT REASONING TEST
     # topic1_name = "machine learning"
