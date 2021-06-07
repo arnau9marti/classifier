@@ -635,77 +635,97 @@ if __name__ == "__main__":
     with open("simple queries.txt") as f:
         simple_queries = [x.rstrip("\n") for x in f.readlines()]
 
+    simplest_queries = []
+    with open("simplest queries.txt") as f:
+        simplest_queries = [x.rstrip("\n") for x in f.readlines()]
+
+    simple_queries = simplest_queries
+
     # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
-    first_sem_sug = []
+    first_sem_sug = dict()
+
     app.inverse_super()
     for topic in topic_list:
+        first_sem_sug[topic] = []
         rels = app.find_relationship(topic)
         for rel in rels:
             cent = app.check_centrality(rel)
             if (cent > 0.0):
-                first_sem_sug.append(rel)
+                first_sem_sug[topic].append(rel)
     
     app.inverse_super()
 
     # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
-    second_sem_sug = []
-
+    second_sem_sug = dict()
+    rang = 5
     # rels_term = app.find_related_term("internet", "streaming")
     # print(rels_term)
 
-    # CHANGE FOR CLICK WORD INPUT
-    rang = 5
     for input in simple_queries:
         ind = simple_queries.index(input)
+        second_sem_sug[input] = []
         for x in range(-rang,rang):
             try:
                 query = simple_queries[ind+x]
             except:
                 query = simple_queries[ind-rang-x]
-            #print(query)
+
             rels_term = app.find_related_term(input, query)
             for term in rels_term:
-                second_sem_sug.append(term)
+                second_sem_sug[input].append(term)
 
     # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
-    first_sim_sug = []
+    first_sim_sug = dict()
     similars_sug = app.find_suggestion_similarity(res_name)
     similars_sug = list(dict.fromkeys(similars_sug))
+
+    for topic in topic_list:
+        first_sim_sug[topic] = []
+
     for similar in similars_sug:
         for topic in topic_list:
             pred = app.find_link_prediction(topic, similar) # CHECK NODE CLOSENESS
             if (pred>0.0):
-                first_sim_sug.append(similar)
+                first_sim_sug[topic].append(similar)
 
     # SECOND SIMILARITY REASONING (WITH MATCHES???) -> NODE SIMILARITY
-    second_sim_sug = []
+    second_sim_sug = dict()
     for topic in topic_list:
+        second_sim_sug[topic] = []
         similars_par = app.find_parent_similarity(topic)
         similars_par = list(dict.fromkeys(similars_par))
         for similar in similars_par:
-            print(similar)
             sim = app.check_similarity(query, similar) # CHECK IF NODE SIM
             if (sim>0.0):
-                second_sim_sug.append(similar)
-    
-    first_sem_sug = list(dict.fromkeys(first_sem_sug))
-    second_sem_sug = list(dict.fromkeys(second_sem_sug))
-    first_sim_sug = list(dict.fromkeys(first_sim_sug))
-    second_sim_sug = list(dict.fromkeys(second_sim_sug))
+                second_sim_sug[topic].append(similar)
 
     # COLLECT SUGGESTIONS
-    for sug in first_sem_sug:
-        print(sug)
+    for input in simple_queries:
+        suggestions[input] = []
+    for topic in topic_list:
+        suggestions[topic] = []
 
-    for sug in second_sem_sug:
-        print(sug)
+    for key, value in first_sem_sug.items():
+        for sug in list(dict.fromkeys(value)):
+            suggestions[key].append(sug)
 
-    for sug in first_sim_sug:
-        print(sug)
+    for key, value in second_sem_sug.items():
+        for sug in list(dict.fromkeys(value)):
+            suggestions[key].append(sug)
 
-    for sug in second_sim_sug:
-        print(sug)
-    print(second_sim_sug)
+    for key, value in first_sim_sug.items():
+        for sug in list(dict.fromkeys(value)):
+            suggestions[key].append(sug)
+
+    for key, value in second_sim_sug.items():
+        for sug in list(dict.fromkeys(value)):
+            suggestions[key].append(sug)
+
+    for key, value in suggestions.items():
+        print(key)
+        for sug in list(dict.fromkeys(value)):
+            print(sug)
+        print("---------")
 
     print("---------")
 

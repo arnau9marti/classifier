@@ -167,7 +167,7 @@
   var buss_categories_sug = [];
   var tech_categories_sug = [];
   var all_topics = [];
-  var suggest = [];
+  var suggest = {};
   
   let i = 0;
 
@@ -202,12 +202,17 @@
   ++i;
 
   while (i<out.length && out[i]!="---------") {
-    suggest.push(out[i]);
+    let key = out[i]
+    suggest[key] = []
+    ++i;
+    while (i<out.length && out[i]!="---------") {
+      suggest[key].push(out[i]);
+      ++i;
+    }
     ++i;
   }
   ++i;
-  console.log(buss_categories_sug)
-  console.log(tech_categories_sug)
+
   while (i<out.length && out[i]!="---------") {
     all_topics.push(out[i]);
     ++i;
@@ -249,56 +254,45 @@
 
 </script>
 
-{{!-- <form >
-  <label for="cars">Technology category:</label>
-  <select name="cars" id="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="opel">Opel</option>
-    <option value="audi">Audi</option>
-  </select>
-<button type="submit" style="margin:auto"> Add new</button>
-
-</form>
-
-<br>
-
-<form >
-  <label for="cars">Business category:</label>
-  <select name="cars" id="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="opel">Opel</option>
-    <option value="audi">Audi</option>
-  </select>
-<button type="submit" style="margin:auto"> Add new</button>
-
-</form> --}}
-
 <br>
 
 <form>
 <label for="cars">Bussiness Category:</label>
-<select id="myid"></select>
+<select id="buss_form"></select>
+<button type="submit" style="margin:auto"> Add new</button>
 </form>
 <script>
  var optionList = "";
- for (let i = 0; i<buss_categories_sug.length; i++) {
-  optionList += "<option>"+buss_categories_sug[i] + " (suggested)"+"</option>";
+ for (let i = 0; i<buss_categories.length; i++) {
+   if (buss_categories_sug.includes(buss_categories[i])) {
+      optionList += "<option>"+buss_categories[i] + " (suggested)"+"</option>";
+
+   }
+   else {
+      optionList += "<option>"+buss_categories[i] +"</option>";
+   }
  }
- $("select#myid").html(optionList);
+ $("select#buss_form").html(optionList);
+ 
 </script>
 
 <form>
 <label for="cars">Technical Category:</label>
-<select id="myid"></select>
+<select id="tech_form"></select>
+<button type="submit" style="margin:auto"> Add new</button>
 </form>
 <script>
  var optionList = "";
- for (let i = 0; i<tech_categories_sug.length; i++) {
-  optionList += "<option>"+tech_categories_sug[i] + " (suggested)"+"</option>";
+ for (let i = 0; i<tech_categories.length; i++) {
+   if (tech_categories_sug.includes(tech_categories[i])) {
+      optionList += "<option>"+tech_categories[i] + " (suggested)"+"</option>";
+
+   }
+   else {
+      optionList += "<option>"+tech_categories[i] +"</option>";
+   }
  }
- $("select#myid").html(optionList);
+ $("select#tech_form").html(optionList);
 </script>
 
 <button type="submit" style="margin:auto"> Apply</button>
@@ -353,7 +347,7 @@ function hide_suggestions() {
 }
 </script>
 
-<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> </h1> <button type="submit" onclick="hide_suggestions()"> Hide suggestions</button>
+<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> <button type="submit" onclick="hide_suggestions()"> Hide suggestions</button> </h1>
 
 <div id="suggestions"></div>
 
@@ -418,7 +412,6 @@ function hide_suggestions() {
         if(word != '#p1') {
 			    redraw(cypher);
 
-          nbut = 5;
           let ides = 'id';
           let idbr = 'br';
 
@@ -431,7 +424,12 @@ function hide_suggestions() {
             elem = document.getElementById(bract);
             if (elem != null) elem.remove();
           }
-          
+
+          word_sug = suggest[word];
+          console.log(word_sug)
+          if (word_sug == undefined) nbut = 0;
+          else nbut = word_sug.length;
+
           for (let i = 0; i<nbut; i++) {
             let btn = document.createElement("button");
             btn.id = ides.concat(i.toString());
@@ -439,7 +437,7 @@ function hide_suggestions() {
             btn.style.alignItems = "center";
             btn.style.display = "flex";
             btn.style.fontSize = "16px";
-            btn.innerHTML = suggest[i];
+            btn.innerHTML = word_sug[i];
             btn.onclick = function () {
               result = confirm(word);
             };

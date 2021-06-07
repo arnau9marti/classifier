@@ -30,6 +30,7 @@ map<string, vector<string> > semantic_data;
 
 vector<string> queries;
 vector<string> simple_queries;
+vector<string> simplest_queries;
 //vector<string> tokens;
 
 std::set<string> stopwords = {"", " ", ".", ":", ",", ")", "(", "/", "=", "<", ">", "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"};
@@ -234,6 +235,9 @@ void insert_dep(xml_object_range<xml_node_iterator> childs){
             if (stop_word(checkword)) {
                 queries.push_back(checkword);
                 simple_queries.push_back(checkword);
+                
+                if (i == syns.size()-1) simplest_queries.push_back(checkword);
+
                 /*
                 for (int i = 0; i < targets.size(); ++i) {
                     if (check_sim(checkword, targets[i]) > min_ratio) found_cat.push_back(targets[i]);
@@ -587,6 +591,12 @@ int main()
     }
     simple_queries_file.close();
     
+    ofstream simplest_queries_file ("simplest queries.txt");
+    for (int i = 0; i < simplest_queries.size(); ++i) {
+        simplest_queries_file << simplest_queries[i] << endl;
+    }
+    simplest_queries_file.close();
+
     /*
     ofstream tokens_file ("tokens.txt");
     for (int i = 0; i < tokens.size(); ++i) {

@@ -114,7 +114,7 @@ app.post('/result', (req, res) => {
 });
 
 app.post('/modify', (req, res) => {
-    console.log(req.body.word);
+    //console.log(req.body.word);
 
 });
 
