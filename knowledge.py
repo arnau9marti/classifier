@@ -132,24 +132,19 @@ class App:
     def find_related_term(self, first_term, second_term):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_related_term, first_term, second_term)
-        
-            if result != None:
-                return 1
-                #print(first_term + " and " + second_term + " are related topics")
-            else:
-                return 0
+            return result
 
     @staticmethod
     def _find_and_return_related_term(tx, broad_term, concrete_term):
         query = (
             "MATCH path = (c:ns0__Topic)-[:ns0__relatedEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: $broad_term}) "
             "WHERE c.rdfs__label contains $concrete_term "
-            "RETURN path"
+            "RETURN c.rdfs__label as name"
         )
         result = tx.run(query, broad_term=broad_term, concrete_term=concrete_term)
-        return [row["path"] for row in result]
+        return [row["name"] for row in result]
 
-    # FRIST SIMILARITY REASONING WIP (RESOURCE NAME = ACTUAL RESOURCE) BY THREE MOST HIT
+    # FRIST SIMILARITY REASONING
     def find_suggestion_similarity(self, resource_name):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_similar_resources, resource_name)
@@ -214,7 +209,7 @@ class App:
     # CATEGORY MATCHING
     def match_categories(self):
         with self.driver.session() as session:
-            aux_topic_list = []
+            aux_topic_list = topic_list.copy()
 
             for topic_name in topic_list:
                 result = session.read_transaction(self._find_and_return_same_as, topic_name)
@@ -228,11 +223,8 @@ class App:
                 result = session.read_transaction(self._find_and_return_parent, topic_name)
                 for row in result:
                     aux_topic_list.append(row)
-                
-            for topic in aux_topic_list:
-                topic_list.append(topic)
 
-            for topic_name in topic_list:
+            for topic_name in aux_topic_list:
                 result = session.read_transaction(self._find_and_return_category_sim, topic_name)
                 for row in result:
                     found_cat.append(row)
@@ -265,7 +257,7 @@ class App:
     @staticmethod
     def _find_and_return_category_sim(tx, category_name):
         query = (
-            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.8 RETURN t.rdfs__label AS name"
+            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.92 RETURN t.rdfs__label AS name"
         )
         result = tx.run(query, category_name=category_name)
         return [row["name"] for row in result]
@@ -273,7 +265,7 @@ class App:
     @staticmethod
     def _find_and_return_category_parent_sim(tx, category_name):
         query = (
-            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.8 RETURN t.rdfs__label AS name"
+            "MATCH (t:skos__Concept) WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $category_name) > 0.92 RETURN t.rdfs__label AS name"
         )
         result = tx.run(query, category_name=category_name)
         return [row["name"] for row in result]
@@ -282,9 +274,10 @@ class App:
     def find_categories(self, category_type):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_categories, category_type)
-            for row in result:
-                buss_categories.append(row)
-                #print("Found category: {row}".format(row=row))
+            return result
+            # for row in result:
+            #     buss_categories.append(row)
+            #     #print("Found category: {row}".format(row=row))
     
     @staticmethod
     def _find_and_return_categories(tx, category_type):
@@ -407,9 +400,10 @@ class App:
     def find_link_prediction(self, first_term, second_term):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_link_prediction, first_term, second_term)
-        
+             
             for score in result:
-                print("Found similar: {score}".format(score=score))
+                return score
+                #print("Found similar: {score}".format(score=score))
 
     @staticmethod
     def _find_and_return_link_prediction(tx, first_term, second_term):
@@ -431,9 +425,23 @@ class App:
         query = (
             "CALL gds.graph.create( "
                 "'graph', "
-                #"'ns0__Topic', "
                 "['ns0__Topic', 'AI_RESOURCE', 'skos__Concept'], "
-                "['ns0__superTopicOf', 'ns0__preferentialEquivalent', 'ns0__preferentialEquivalent', 'owl__sameAs', 'HAS_TOPIC', 'HAS_CATEGORY'] "
+                "['ns0__superTopicOf', 'ns0__preferentialEquivalent', 'ns0__relatedEquivalent', 'owl__sameAs', 'HAS_TOPIC', 'HAS_CATEGORY'] "
+            ")"
+        )
+        tx.run(query)
+
+    def create_graph_catalog_simple(self):
+        with self.driver.session() as session:
+            session.read_transaction(self._create_graph_catalog_simple)
+
+    @staticmethod
+    def _create_graph_catalog_simple(tx):
+        query = (
+            "CALL gds.graph.create( "
+                "'graph_topics', "
+                "'ns0__Topic', "
+                "['ns0__superTopicOf', 'ns0__preferentialEquivalent', 'ns0__relatedEquivalent', 'owl__sameAs'] "
             ")"
         )
         tx.run(query)
@@ -517,7 +525,7 @@ class App:
         try:
             return similarity[topic1_name, topic2_name]
         except KeyError:
-            return "not found"
+            return 0.0
 
 if __name__ == "__main__":
     # Aura queries use an encrypted connection using the "neo4j+s" URI scheme
@@ -531,51 +539,40 @@ if __name__ == "__main__":
     mode = args[1]
     
     # PREPROCESS INFERENCE
-
     # app.find_centrality()
-
     # app.find_community()
-
     # app.find_jaccard_similarity()
 
     # PICKLE DUMP
-
     # output = open('infer_data.pkl', 'wb')
-
     # pickle.dump(centrality, output)
     # pickle.dump(community, output)
     # pickle.dump(similarity, output)
-
     # output.close()
 
     # PICKLE LOAD
-
     pkl_file = open('infer_data.pkl', 'rb')
-
     centrality = pickle.load(pkl_file)
     #pprint.pprint(centrality)
-
     community = pickle.load(pkl_file)
     #pprint.pprint(community)
-
     similarity = pickle.load(pkl_file)
     #pprint.pprint(similarity)
-
     pkl_file.close()
 
+    # GRAPH CREATION GRAPH ALGORITHMS PLUGIN
     #app.create_graph_catalog()
+    #app.create_graph_catalog_simple()
 
-    # # RESOURCE NAME OBTENTION
+    # RESOURCE NAME OBTENTION
+    res_name = ''
+    for x in range(2, len(args)):
+        if(x==2):
+            res_name=res_name+args[x]
+        else:
+            res_name=res_name + " " + args[x]
 
-    # res_name = ''
-    # for x in range(2, len(args)):
-    #     if(x==2):
-    #         res_name=res_name+args[x]
-    #     else:
-    #         res_name=res_name + " " + args[x]
-    
     # TOPICS MATCHING
-
     with open("queries.txt") as f:
         queries = [x.rstrip("\n") for x in f.readlines()]
 
@@ -585,29 +582,30 @@ if __name__ == "__main__":
     for x in queries:
         app.find_topic(x)
 
-    for topic in topic_list:
-        print(topic)
-    print("---------")
+    # for topic in topic_list:
+    #     print(topic)
+    # print("---------")
 
     # RESOURCE CREATION
-
     # #app.create_resource(res_name)
     # for topic in topic_list:
     #     app.add_topic(topic)
     
-    # # AI4EU MATCHING
-
+    # AI4EU MATCHING
     topic_list = list(dict.fromkeys(topic_list))
-
-    tech_categories = topic_list.copy()
-    app.find_categories("Business Categories")
-    #app.find_categories("Technical Categories")
+    
+    cat = app.find_categories("Business Categories")
+    for row in cat:
+        buss_categories.append(row)
+    
+    cat = app.find_categories("Technical Categories")
+    for row in cat:
+        tech_categories.append(row)
 
     for topic in topic_list:
-        buss_categories.append("AI for " + topic)
+        buss_categories_sug.append("AI for " + topic)
 
-    for topic in buss_categories:
-        topic_list.append(topic)
+    tech_categories_sug = topic_list.copy()
 
     app.match_categories()
 
@@ -616,42 +614,98 @@ if __name__ == "__main__":
     result_cat.append(buss_categories)
     result_cat.append(tech_categories)
     result_cat.append(found_cat)
-    for cat in buss_categories:
-        print(cat)
-    print("---------")
-    for cat in tech_categories:
-        print(cat)
-    print("---------")
-    for cat in found_cat:
-        print(cat)
-    print("---------")
+    # for cat in buss_categories:
+    #     print(cat)
+    # print("---------")
+    # for cat in tech_categories:
+    #     print(cat)
+    # print("---------")
+    # for cat in found_cat:
+    #     print(cat)
+    # print("---------")
 
-    # # LOAD SIMPLE QUERIES
-    # simple_queries = []
-    # with open("simple queries.txt") as f:
-    #     simple_queries = [x.rstrip("\n") for x in f.readlines()]
+    # LOAD SIMPLE QUERIES
+    simple_queries = []
+    with open("simple queries.txt") as f:
+        simple_queries = [x.rstrip("\n") for x in f.readlines()]
 
-    # # FRIST SEMANTIC REASONING (WITH MATCHES) ->
-    # app.inverse_super()
-    # for query in queries:
-    #     rels = app.find_relationship(query)
-    # app.inverse_super()
-
-    # #print(rels)
-
-    # # SECOND SEMANTIC REASONING (INPUT AND WITH SIMPLE_QUERIES) ->
-    # input = "internet"
-    # for query in simple_queries:
-    #     rels_term = app.find_related_term(input, query)
-
-    # # FRIST SIMILARITY REASONING (WITH RES_NAME) ->
-    # similars_sug = app.find_suggestion_similarity(res_name)
-
-    # # SECOND SIMILARITY REASONING (WITH MATCHES???) ->
-    # for query in queries:
-    #     similars_par = app.find_parent_similarity(query)
+    # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
+    first_sem_sug = []
+    app.inverse_super()
+    for topic in topic_list:
+        rels = app.find_relationship(topic)
+        for rel in rels:
+            cent = app.check_centrality(rel)
+            if (cent > 0.0):
+                first_sem_sug.append(rel)
     
-    # # REFINEMENT REASONING
+    app.inverse_super()
+
+    # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
+    second_sem_sug = []
+
+    rels_term = app.find_related_term("internet", "streaming")
+    print(rels_term)
+
+    # CHANGE FOR CLICK WORD INPUT
+    rang = 5
+    for input in simple_queries:
+        ind = simple_queries.index(input)
+        for x in range(-rang,rang):
+            try:
+                query = simple_queries[ind+x]
+            except:
+                query = simple_queries[ind-rang-x]
+            #print(query)
+            rels_term = app.find_related_term(input, query)
+            for term in rels_term:
+                second_sem_sug.append(term)
+
+    # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
+    first_sim_sug = []
+    similars_sug = app.find_suggestion_similarity(res_name)
+    similars_sug = list(dict.fromkeys(similars_sug))
+    for similar in similars_sug:
+        for topic in topic_list:
+            pred = app.find_link_prediction(topic, similar) # CHECK NODE CLOSENESS
+            if (pred>0.0):
+                first_sim_sug.append(similar)
+
+    # SECOND SIMILARITY REASONING (WITH MATCHES???) -> NODE SIMILARITY
+    second_sim_sug = []
+    for topic in topic_list:
+        similars_par = app.find_parent_similarity(topic)
+        similars_par = list(dict.fromkeys(similars_par))
+        for similar in similars_par:
+            print(similar)
+            sim = app.check_similarity(query, similar) # CHECK IF NODE SIM
+            if (sim>0.0):
+                second_sim_sug.append(similar)
+        
+    print(first_sem_sug)
+    second_sem_sug = list(dict.fromkeys(second_sem_sug))
+    #print(second_sem_sug)
+    print(first_sim_sug)
+    print(second_sim_sug)
+
+    # COLLECT SUGGESTIONS
+    #print(suggestions)
+
+    # app.return_topics()
+    # print("---------")
+
+    # INSERT TOPIC
+    #app.insert_topic("convolutional_learning", "artificial intelligence")
+
+    # RELATE CATEGORY
+    #app.add_category(cat_name)
+
+    #app.delete_topic
+    #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t
+
+    app.close()
+
+    # TEST REFINEMENT REASONING TEST
     # topic1_name = "machine learning"
     # topic2_name = "artificial intelligence"
 
@@ -667,21 +721,6 @@ if __name__ == "__main__":
     # print("sim")
     # print(sim)
 
+    # pred = app.find_link_prediction(topic1_name, topic2_name) # CHECK IF NODE CLOSENESS
     # print("link")
-    # app.find_link_prediction(topic1_name, topic2_name) # CHECK IF NODE CLOSENESS
-
-    # print(suggestions)
-
-    app.return_topics()
-    print("---------")
-
-    # # INSERT TOPIC
-    # #app.insert_topic("convolutional_learning", "artificial intelligence")
-
-    # # RELATE CATEGORY
-    # # app.add_category(cat_name)
-
-    # #app.delete_topic
-    # #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t
-
-    app.close()
+    # print(pred)
