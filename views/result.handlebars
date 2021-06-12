@@ -105,7 +105,7 @@
 
 		function draw() {
       var res_name = "{{res}}"
-      var cypher = "MATCH p=(n1:ns0__Topic)-[r:HAS_TOPIC]->(n2:AI_RESOURCE {rdfs__label: '"+ res_name + "'}) RETURN p"
+      var cypher = "MATCH p= (n0:ns0__Topic)-[r1:ns0__superTopicOf]->(n1:ns0__Topic)-[r2:HAS_TOPIC]->(n2:AI_RESOURCE)  WHERE id(n2) = "+ res_id +" RETURN p"
       //console.log(cypher)
 			var config = {
 				container_id: "viz",
@@ -165,7 +165,7 @@
   var lines = "{{out}}"
   var out = lines.split(',')
   
-  var sub_topic = ""
+  let nbut = 0;
   var res_id;
   var topics = [];
   var buss_categories = [];
@@ -277,11 +277,30 @@
 
 <br>
 
+<script>
+  function addNewTechCategory() {
+    new_cat_name = prompt("Enter a new technical category name");
+    if (new_cat_name != null) {
+      $.post( "/modify", { mode: "1", word: new_cat_name} );
+      alert(new_cat_name+" category added to technical.")
+    }
+  }
+  function addNewBussCategory() {
+    new_cat_name = prompt("Enter a new business category name");
+    if (new_cat_name != null) {
+      $.post( "/modify", { mode: "2", word: new_cat_name} );
+      alert(new_cat_name+" category added to business.")
+    }
+  }
+</script>
+
+
 <form>
 <label for="cars">Bussiness Category:</label>
 <select id="buss_form"></select>
-<button type="submit" style="margin:auto"> Add new</button>
+<button type="submit" style="margin:auto" onclick="addNewBussCategory()"> Add new</button>
 </form>
+
 <script>
  var optionList = "";
  for (let i = 0; i<buss_categories.length; i++) {
@@ -300,8 +319,9 @@
 <form>
 <label for="cars">Technical Category:</label>
 <select id="tech_form"></select>
-<button type="submit" style="margin:auto"> Add new</button>
+<button type="submit" style="margin:auto" onclick="addNewTechCategory()"> Add new</button>
 </form>
+
 <script>
  var optionList = "";
  for (let i = 0; i<tech_categories.length; i++) {
@@ -316,45 +336,28 @@
  $("select#tech_form").html(optionList);
 </script>
 
-    <style>
+<style>
     .text-center {
   text-align: center;
 }
 </style>
+
 <br>
-<div class="text-center">
-<button type="submit" style="margin:auto" value="AI for Machine" name="action"> Apply</button>
-</div>
-
-
-<div id="container"></div>
-
-{{!-- <script>
-
-
-  var values = ["dog", "cat", "parrot", "rabbit"];
-
-  var select = document.createElement("select");
-  select.name = "pets";
-  select.id = "pets"
-
-  for (const val of values) {
-    var option = document.createElement("option");
-    option.value = val;
-    option.text = val.charAt(0).toUpperCase() + val.slice(1);
-    select.appendChild(option);
-  }
-
-  var label = document.createElement("label");
-  label.innerHTML = "Choose your pets: "
-  label.htmlFor = "pets";
-
-  document.getElementById("container").appendChild(label).appendChild(select);
-</script> --}}
 
 <script>
-  let nbut = 0;
+  function end_function() {
+    tech_cat = document.getElementById("tech_form").value;
+    buss_cat = document.getElementById("tech_form").value;
+    $.post( "/modify", { mode: "5", tech_cat: tech_cat, buss_cat: buss_cat} );
+    alert("AI Resource added.")
+  }
 </script>
+
+<div class="text-center">
+<button type="submit" style="margin:auto" onclick="end_function()"> Apply</button>
+</div>
+
+<div id="container"></div>
 
 <script>
 function hide_suggestions() {
@@ -383,19 +386,30 @@ function hide_suggestions() {
 }
 </script>
 
+<script>
+  function newTopic() {
+    superTopic = document.getElementById("myInput").value;
+    topic = document.getElementById("idinput").value;
+    if (superTopic != null && topic != null) {
+      $.post( "/modify", { mode: "4", topic: topic, superTopic: superTopic} );
+      alert("New topic "+topic+" added with super topic relation to "+superTopic ".")
+    }
+  }
+</script>
+
 <h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> 
 <div class="text-center">
 
 <button type="submit" onclick="hide_suggestions()"> Hide suggestions</button> </h1>
 </div>
 
-<div id="suggestions"></div>
+<div id="suggestions" float="center"> </div>
 
 <form id="superTopic" autocomplete="off">
   <div class="autocomplete" style="width:300px;">
     <input id="myInput" type="text" name="superTopic" placeholder="Super Topic">
   </div>
-  <input type="submit" value="Insert" name="Apply">
+  <input type="submit" value="Insert" name="Apply" onclick="newTopic()">
 </form>
 
 <br>
@@ -435,6 +449,7 @@ function hide_suggestions() {
   cursor: pointer;
 }
 </style>
+
 
 <script type = "text/javascript">
     $(document).ready(function() {
@@ -500,12 +515,8 @@ function hide_suggestions() {
             btn.onclick = function () {
               result = confirm(btn.innerHTML);
               if (result) {
-                topic_selected = document.getElementById("idtop");
-                if (topic_selected != null) {
-                  topic_selected.innerHTML = btn.innerHTML;
-                  sub_topic = btn.innerHTML;
-                  alert(input.innerText)
-                }
+                $.post( "/modify", { mode: "3", word: btn.innerHTML} );
+                alert(btn.innerHTML+" is now related to this resource.")
               }
             };
             document.getElementById("suggestions").appendChild(btn);
@@ -525,9 +536,9 @@ function hide_suggestions() {
           topic_selected.style.alignItems = "center";
           topic_selected.style.display = "flex";
           topic_selected.style.fontSize = "16px";
-          topic_selected.innerHTML= "Choose a suggested topic or insert a new one:";
+          topic_selected.innerHTML= "Choose a suggested topic or insert a new one here:";
 
-          document.getElementById("suggestions").appendChild(topic_selected)
+          document.getElementById("suggestions").appendChild(topic_selected);
 
           var input = document.createElement("input");
           input.id = "idinput"
@@ -535,9 +546,6 @@ function hide_suggestions() {
           input.style.float = "center"
 
           document.getElementById("suggestions").appendChild(input)
-
-          $.post( "/modify", { word: word} );
-
         }
         //range.collapse();
        //e.stopPropagation();

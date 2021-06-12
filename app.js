@@ -51,7 +51,7 @@ function explore(res) {
 
     var exec = require('child_process').exec
 
-    var child = exec('python3 knowledge.py 6',
+    var child = exec('python3 knowledge.py 7',
     function (error, stdout, stderr) {
 
         lines = eol.split(stdout)
@@ -60,6 +60,14 @@ function explore(res) {
 
     });
 
+}
+
+function execute (res,comm) {
+    var exec = require('child_process').exec
+    var child = exec(comm,
+    function (error, stdout, stderr) {
+        res.render('result', {text: description, res: res_name, out: lines});    
+    });
 }
 
 function delfile(file_name) {
@@ -98,14 +106,14 @@ app.get('/', (req, res) => {
     explore(res);
 });
 app.get('/result', (req, res) => {
-    console.log(req.query.subTopic)
-    if (req.query.action == "Apply") {
-        let superTopic = req.query.superTopic;
-        console.log(superTopic)
-    }
+    // console.log(req.query.subTopic)
+    // if (req.query.action == "Apply") {
+    //     let superTopic = req.query.superTopic;
+    //     console.log(superTopic)
+    // }
     buss_cat = "Learning"
     tech_cat = "AI"
-    
+
     newtxt("python3 knowledge.py 2 "+buss_cat+"\n" + "python3 knowledge.py 2 "+tech_cat+"\n" + "python3 knowledge.py 7", "end_script.sh");
 
     res.render('result', {text: description, res: res_name, out: lines});
@@ -134,7 +142,43 @@ app.post('/result', (req, res) => {
 });
 
 app.post('/modify', (req, res) => {
-    //console.log(req.body.word);
+    mode = req.body.mode;
+
+    // NEW TECH CATEGORY
+    if (mode == "1") {
+        cat_name = req.body.word;
+        comm = "python3 knowledge.py 4 "+cat_name
+        execute(res, comm)
+    }
+    // NEW BUSS CATEGORY
+    if (mode == "2") {
+        cat_name = req.body.word;
+        comm = "python3 knowledge.py 3 "+cat_name
+        execute(res, comm)
+    }
+    // ADD TOPIC RELATION
+    if (mode == "3") {
+        word = req.body.word;
+        comm = "python3 knowledge.py 5 "+word
+        execute(res, comm)
+    }
+    // NEW TOPIC
+    if (mode == "4") {
+        topic = req.body.topic;
+        superTopic = req.body.superTopic;
+        comm = "python3 knowledge.py 6 " + topic + " --------- " + superTopic
+        execute(res, comm)
+    }
+    // END
+    if (mode == "5") {
+        newtxt("python3 knowledge.py 2 "+buss_cat+"\n" + "python3 knowledge.py 2 "+tech_cat+"\n" + "python3 knowledge.py 8", "end_script.sh");
+        var exec = require('child_process').exec
+
+        var child = exec('sh end_script.sh',
+        function (error, stdout, stderr) {
+            res.render('index');
+        });
+    }
 
 });
 

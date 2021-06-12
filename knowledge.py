@@ -800,7 +800,7 @@ if __name__ == "__main__":
 
         app.create_category(cat_name, "tech")
 
-    if (mode == "4"):
+    if (mode == "5"):
         # RELATE TOPIC
         topic_name = ''
         for x in range(2, len(args)):
@@ -810,7 +810,7 @@ if __name__ == "__main__":
                 topic_name=topic_name + " " + args[x]
         app.add_topic(topic_name)
 
-    if (mode == "5"):
+    if (mode == "6"):
         # CREATE NEW TOPIC
         topic_name = ''
         super_name = ''
@@ -834,6 +834,8 @@ if __name__ == "__main__":
             if(x!=second_x and x!=second_x+1 and second == 1):
                 super_name=super_name + " " + args[x]
 
+        print(topic_name)
+        print(super_name)
         similar_topic_name = app.find_similar_topic(topic_name)
         if (similar_topic_name is None):
             app.insert_topic(topic_name, super_name)
@@ -841,7 +843,7 @@ if __name__ == "__main__":
             app.insert_topic(similar_topic_name, super_name)
 
 
-    if (mode == "6"):
+    if (mode == "7"):
         # COLLECT SIMPLE CATEGORIES
         cat = app.find_categories("Business Categories")
         for row in cat:
@@ -858,7 +860,7 @@ if __name__ == "__main__":
             print(cat)
         print("---------")
 
-    if (mode == "7"):
+    if (mode == "8"):
         # RECALCULATE GRAPH INFERENCE PREPROCESSING
         app.find_centrality()
         app.find_community()
