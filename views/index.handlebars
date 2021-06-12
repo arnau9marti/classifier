@@ -1,5 +1,99 @@
 <!DOCTYPE html>
 <html>
+
+<title>Index</title>
+<style type="text/css">
+    html, body {
+        font: 16pt arial;
+    }
+
+    #viz {
+        width: 900px;
+        height: 700px;
+        border: 1px solid lightgray;
+        font: 22pt arial;
+    }
+
+</style>
+
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+</style>
+
+<script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+		var viz;
+
+		function draw() {
+      var res_name = "{{res}}"
+      //var cypher = "MATCH p=(n1:ns0__Topic)-[r:HAS_TOPIC]->(n2:AI_RESOURCE {rdfs__label: '"+ res_name + "'}) RETURN p"
+
+			var config = {
+				container_id: "viz",
+				server_url: "bolt://localhost:7687",
+				server_user: "neo4j",
+				server_password: "1234",
+				arrows: true,
+                labels: {
+					"Resource": {
+						"caption": "rdfs__label",
+						//"size": "pagerank",
+						//"community": "community"
+						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+					},
+					"ns0__Topic": {
+						"caption": "rdfs__label",
+						//"size": "pagerank",
+						//"community": "community"
+						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+					}
+				},
+				relationships: {
+					"ns0__superTopicOf": {
+						//"thickness": "weight",
+						//"caption": false
+					}
+					
+				},
+				//initial_cypher: "MATCH (t:ns0__Topic) WHERE t.rdfs__label = 'artificial intelligence' RETURN t"
+				initial_cypher: "MATCH (n:ns0__Topic) RETURN n LIMIT 25"
+        
+				//initial_cypher: cypher
+			};
+
+			viz = new NeoVis.default(config);
+			viz.render();
+			console.log(viz);
+		}
+    </script>
+
+</head>
+
+<body onload="draw()">
+
+<script>
+	function redraw(cypher) {
+        console.log(cypher)
+		if (cypher.length > 3) {
+			viz.renderWithCypher(cypher);
+		} else {
+			console.log("reload");
+			viz.reload();
+		}
+	}
+</script>
+
 <style>
     h1 {text-align: center;}
     p {text-align: center; font-family:garamond;}
@@ -8,6 +102,76 @@
     
 </style>
             
+
+        <script>
+        var lines = "{{out}}"
+        var out = lines.split(',')
+        
+        var buss_categories = [];
+        var tech_categories = [];
+        let i = 0;
+
+        while (i<out.length && out[i]!="---------") {
+            buss_categories.push(out[i]);
+            ++i;
+        }
+        ++i;
+
+        while (i<out.length && out[i]!="---------") {
+            tech_categories.push(out[i]);
+            ++i;
+        }
+
+    </script>
+
+
+    <script>
+        function showCategories (){
+            console.log(buss_categories.length)
+            ides = "id"
+            idbr = "br"
+            for (let i = 0; i<buss_categories.length; i++) {
+                let btn = document.createElement("button");
+                btn.id = ides.concat(i.toString());
+                btn.innerHTML = buss_categories[i];
+
+                btn.onclick = function () {
+                    var comm = "MATCH (n:skos__Concept {rdfs__label: '" + buss_categories[i] + "'}), path = (n2:AI_RESOURCE)-[:HAS_CATEGORY]->(n) RETURN path"
+                    var x = document.getElementById("viz");
+                    x.style.display = "block";
+                    redraw(comm);
+                };
+                document.getElementById("buss").appendChild(btn);
+                
+                linebreak = document.createElement("br");
+                linebreak.id = idbr.concat(i.toString());
+
+                document.getElementById("buss").appendChild(linebreak);
+            }
+            for (let i = 0; i<tech_categories.length; i++) {
+                let btn = document.createElement("button");
+                btn.id = ides.concat(i.toString());
+                btn.innerHTML = tech_categories[i];
+
+                btn.onclick = function () {
+                    var comm = "MATCH (n:skos__Concept {rdfs__label: '" + tech_categories[i] + "'}), path = (n2:AI_RESOURCE)-[:HAS_CATEGORY]->(n) RETURN path"
+                    var x = document.getElementById("viz");
+                    x.style.display = "block";
+                    redraw(comm);
+
+                };
+                document.getElementById("tech").appendChild(btn);
+                
+                linebreak = document.createElement("br");
+                linebreak.id = idbr.concat(i.toString());
+
+                document.getElementById("tech").appendChild(linebreak);
+                var x = document.getElementById("cats");
+                x.style.display = "block";
+            }
+        }
+    </script>
+
     <h1 style="font-family:garamond; font-size:50px"> AI Resource Classifier </h1>
 
     <form action="http://localhost:8080/result" method="POST">
@@ -17,5 +181,58 @@
         <textarea rows="4" cols=50 name="fname"></textarea><br>
         <br><button type="submit">Classify</button>
     </form>
+
+    <p>Or:</p>
+
+    <style>
+    .text-center {
+  text-align: center;
+}
+</style>
+
+<div class="text-center">
+    <button type="submit" onclick="showCategories()">Explore</button>
+</div>
+
+<style>
+#cats, {
+    width:100px;
+    height:100px;
+    margin-right:10px;
+    float:left;
+}
+.child_div_1{
+    float:left;
+    margin-right:10px;
+}
+.child_div_1{
+    float:left;
+    margin-right:10px;
+}
+</style>
+
+<style>
+#wrapper {
+    width: 20%;
+    margin: 0 auto;
+}
+</style>
+
+<div id="wrapper">
+<div id='cats' class="cats">
+<div id="tech" class ='child_div_1'>Technology: <br> </div>
+<div id="buss" class ='child_div_2'>Business: <br></div>
+</div>
+</div>
+
+    <div id="viz" class="center" style="align-content: center"></div>
+
+    <script>
+            var x = document.getElementById("viz");
+            x.style.display = "none";
+            var x = document.getElementById("cats");
+            x.style.display = "none";
+    </script>
+
 </body>
 </html>

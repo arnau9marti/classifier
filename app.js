@@ -33,7 +33,6 @@ function classify(desc, mode, res) {
 
     var child = exec('sh script.sh',
     function (error, stdout, stderr) {
-        topics = "machine";
 
         lines = eol.split(stdout)
         
@@ -46,6 +45,21 @@ function classify(desc, mode, res) {
     });
     //child.stdin.setEncoding('utf-8');
     //child.stdin.write(mode+"\n");
+}
+
+function explore(res) {
+
+    var exec = require('child_process').exec
+
+    var child = exec('python3 knowledge.py 6',
+    function (error, stdout, stderr) {
+
+        lines = eol.split(stdout)
+        
+        res.render('index', {out: lines});    
+
+    });
+
 }
 
 function delfile(file_name) {
@@ -81,7 +95,7 @@ function newtxt(text, file_name) {
 }
 
 app.get('/', (req, res) => {
-    res.render('index');
+    explore(res);
 });
 app.get('/result', (req, res) => {
     console.log(req.query.action)

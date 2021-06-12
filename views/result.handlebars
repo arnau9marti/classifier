@@ -106,7 +106,7 @@
 		function draw() {
       var res_name = "{{res}}"
       var cypher = "MATCH p=(n1:ns0__Topic)-[r:HAS_TOPIC]->(n2:AI_RESOURCE {rdfs__label: '"+ res_name + "'}) RETURN p"
-      console.log(cypher)
+      //console.log(cypher)
 			var config = {
 				container_id: "viz",
 				server_url: "bolt://localhost:7687",
@@ -165,6 +165,7 @@
   var lines = "{{out}}"
   var out = lines.split(',')
 
+  var res_id;
   var topics = [];
   var buss_categories = [];
   var tech_categories = [];
@@ -219,6 +220,12 @@
 
   while (i<out.length && out[i]!="---------") {
     all_topics.push(out[i]);
+    ++i;
+  }
+  ++i;
+
+  while (i<out.length && out[i]!="---------") {
+    res_id = out[i]
     ++i;
   }
 
@@ -299,9 +306,15 @@
  $("select#tech_form").html(optionList);
 </script>
 
-<form>
+    <style>
+    .text-center {
+  text-align: center;
+}
+</style>
+<br>
+<div class="text-center">
 <button type="submit" style="margin:auto" value="AI for Machine" name="action"> Apply</button>
-</form>
+</div>
 
 
 <div id="container"></div>
@@ -353,7 +366,11 @@ function hide_suggestions() {
 }
 </script>
 
-<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> <button type="submit" onclick="hide_suggestions()"> Hide suggestions</button> </h1>
+<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> 
+<div class="text-center">
+
+<button type="submit" onclick="hide_suggestions()"> Hide suggestions</button> </h1>
+</div>
 
 <div id="suggestions"></div>
 
@@ -408,11 +425,22 @@ function hide_suggestions() {
     var p = $('p');
     p.css({ cursor: 'pointer' });
 
-    p.click(function(e) {
+    function getSelectedText() {
+        if (window.getSelection) {
+            return window.getSelection().toString();
+        } else if (document.selection) {
+            return document.selection.createRange().text;
+        }
+        return '';
+    }
+    function showSuggestions (mode) {
         var range = window.getSelection() || document.getSelection() || document.selection.createRange();
         var word = $.trim(range.toString());
 		    var cypher = "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 2";
         
+        if (mode == "1") alert(getSelectedText());
+        if (mode == "2") alert(word);
+
         if(word != '#p1') {
 			    redraw(cypher);
 
@@ -431,6 +459,7 @@ function hide_suggestions() {
 
           word_sug = suggest[word];
           console.log(word_sug)
+
           if (word_sug == undefined) nbut = 0;
           else nbut = word_sug.length;
 
@@ -460,6 +489,14 @@ function hide_suggestions() {
         }
         //range.collapse();
        //e.stopPropagation();
+    }
+    /*
+    p.mouseup(function () {
+        showSuggestions("1");
+    });
+    */
+    p.click(function () {
+        showSuggestions("2");
     });
 });
     

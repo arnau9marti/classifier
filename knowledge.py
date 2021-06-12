@@ -13,7 +13,8 @@ buss_categories_sug = []
 tech_categories_sug = []
 found_cat = []
 
-res_name = ""
+res_id = ""
+
 centrality = dict()
 community = dict()
 similarity = dict()
@@ -41,7 +42,7 @@ class App:
         query = (
             "MATCH (st:ns0__Topic) WHERE st.rdfs__label = $super_topic_name "
             "MERGE (t:ns0__Topic { rdfs__label: $topic_name }) "
-            "CREATE (st)-[:ns0__superTopicOf]->(t) "
+            "MERGE (st)-[:ns0__superTopicOf]->(t) "
             "RETURN t, st"
         )
         result = tx.run(query, topic_name=topic_name, super_topic_name=super_topic_name)
@@ -53,6 +54,13 @@ class App:
                 query=query, exception=exception))
             raise
     
+    # SEARCH SIMILAR TOPIC TO INPUT AND RETURN SIMILAR ONE
+    def find_similar_topic(self, topic_name):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
+            for row in result:
+                return row
+
     # TOPIC SEARCH
     def find_topic(self, topic_name):
         with self.driver.session() as session:
@@ -146,28 +154,27 @@ class App:
         return [row["name"] for row in result]
 
     # FRIST SIMILARITY REASONING
-    def find_suggestion_similarity(self, resource_name):
+    def find_suggestion_similarity(self):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_similar_resources, resource_name)
+            result = session.read_transaction(self._find_and_return_similar_resources)
             
             similars = []
             for name in result:
                 similars.append(name)
             #     print("Found similar: {name}".format(name=name))
-
             return similars
 
     @staticmethod
-    def _find_and_return_similar_resources(tx, resource_name):
+    def _find_and_return_similar_resources(tx):
         query = (
-            "MATCH (c:AI_RESOURCE {rdfs__label: $resource_name}), "
-                "path = (c)<-[:HAS_TOPIC]-(topic), "
+            "MATCH (c:AI_RESOURCE) WHERE id(c) = $res_id "
+            "WITH (c) MATCH path = (c)<-[:HAS_TOPIC]-(topic), "
                 "otherPath = (topic)-[:HAS_TOPIC]->(res) "
             "MATCH (res)<-[:HAS_TOPIC]-(newtopic) "
             "WHERE newtopic <> topic "
             "RETURN newtopic.rdfs__label AS name "
         )
-        result = tx.run(query, resource_name=resource_name)
+        result = tx.run(query, res_id=res_id)
         return [row["name"] for row in result]
 
     # SECOND SIMILARITY REASONING WIP
@@ -312,7 +319,6 @@ class App:
         result = tx.run(query, node_name=node_name)
         return [row["id"] for row in result]
 
-
     # FIND NODE LABEL BY ID
     def find_node_label(self, node_id):
         with self.driver.session() as session:
@@ -353,7 +359,6 @@ class App:
         for row in result:
             node_name = app.find_node_label(row["nodeId"])
             centrality[node_name] = row["score"]
-            
     
     # COMMUNITY INFERENCE
     def find_community(self):
@@ -464,44 +469,44 @@ class App:
         if (cat_type == "buss"):
             query = (
                 "MATCH (n2:skos__ConceptScheme {rdfs__label: 'Business Categories'}) "
-                "CREATE (n1:skos__Concept {rdfs__label: $cat_name}) "
+                "MERGE (n1:skos__Concept {rdfs__label: $cat_name}) "
                 "MERGE (n1)-[:skos__topConceptOf]->(n2)"
             )
         else:
             query = (
                 "MATCH (n2:skos__ConceptScheme {rdfs__label: 'Technical Categories'}) "
-                "CREATE (n1:skos__Concept {rdfs__label: $cat_name}) "
+                "MERGE (n1:skos__Concept {rdfs__label: $cat_name}) "
                 "MERGE (n1)-[:skos__topConceptOf]->(n2)"
             )
         tx.run(query, cat_name=cat_name)
 
-    def add_topic(self, topic_name, res_name):
-        with self.driver.session() as session:
-            session.read_transaction(self._add_topic, topic_name, res_name)
-
     def create_resource(self, res_name):
         with self.driver.session() as session:
-            session.read_transaction(self._create_resource, res_name)
+            result = session.read_transaction(self._create_resource, res_name)
+            for id in result:
+                return id
 
     @staticmethod
     def _create_resource(tx, res_name):
         query = (
-            "CREATE (n:AI_RESOURCE {rdfs__label: $res_name})"
+            "CREATE (n:AI_RESOURCE {rdfs__label: $res_name}) "
+            "RETURN id(n)"
         )
-        tx.run(query, res_name=res_name)
+        result = tx.run(query, res_name=res_name)
+        return [row["id(n)"] for row in result]
 
-    def add_topic(self, topic_name, res_name):
+    def add_topic(self, topic_name):
         with self.driver.session() as session:
-            session.read_transaction(self._add_topic, topic_name, res_name)
+            session.read_transaction(self._add_topic, topic_name)
 
     @staticmethod
-    def _add_topic(tx, topic_name, res_name):
+    def _add_topic(tx, topic_name):
         query = (
             "MATCH (n1:ns0__Topic {rdfs__label: $topic_name}) "
-            "MATCH (n2:AI_RESOURCE {rdfs__label: $res_name}) "
+            "MATCH (n2:AI_RESOURCE) WHERE id(n2) = $res_id "
             "MERGE (n1)-[:HAS_TOPIC]->(n2)"
         )
-        tx.run(query, topic_name=topic_name, res_name=res_name)
+        tx.run(query, topic_name=topic_name, res_id=res_id)
     
     def return_topics(self):
         with self.driver.session() as session:
@@ -519,23 +524,22 @@ class App:
 
     def add_category(self, category_name):
         with self.driver.session() as session:
-            session.read_transaction(self._add_category, category_name, res_name)
+            session.read_transaction(self._add_category, category_name)
 
     @staticmethod
-    def _add_category(tx, category_name, res_name):
+    def _add_category(tx, category_name):
         query = (
             "MATCH (n1:skos__Concept {rdfs__label: $category_name}) "
-            "MATCH (n2:AI_RESOURCE {rdfs__label: $res_name}) "
+            "MATCH (n2:AI_RESOURCE) WHERE id(n2) = $res_id "
             "MERGE (n2)-[:HAS_CATEGORY]->(n1)"
         )
-        tx.run(query, category_name=category_name, res_name=res_name)
+        tx.run(query, category_name=category_name, res_id=res_id)
     
     def check_centrality(self, topic_name):
         try: 
             return centrality[topic_name]
         except KeyError:
             return 0.0
-            
 
     def check_community(self, topic1_name, topic2_name):
         try:
@@ -552,7 +556,6 @@ class App:
              return 1
         else:
             return 0
-
 
     def check_similarity(self, topic1_name, topic2_name):
         try:
@@ -572,7 +575,7 @@ if __name__ == "__main__":
 
     # PICKLE LOAD
     pkl_file = open('infer_data.pkl', 'rb')
-    res_name = pickle.load(pkl_file)
+    res_id = pickle.load(pkl_file)
     centrality = pickle.load(pkl_file)
     #pprint.pprint(centrality)
     community = pickle.load(pkl_file)
@@ -620,12 +623,12 @@ if __name__ == "__main__":
             print(topic)
         print("---------")
 
-        # RESOURCE CREATION
-        app.create_resource(res_name)
+        # RESOURCE CREATION AND TOPIC RELATION
+        res_id = app.create_resource(res_name)
         for topic in topic_list:
-            app.add_topic(topic, res_name)
+            app.add_topic(topic)
         
-        # AI4EU MATCHING
+        # AI4EU CATEGORICAL MATCHING
         topic_list = list(dict.fromkeys(topic_list))
         
         cat = app.find_categories("Business Categories")
@@ -637,7 +640,8 @@ if __name__ == "__main__":
             tech_categories.append(row)
 
         app.match_categories()
-
+        
+        # COLLECT CATEGORIES
         buss_categories_sug = list(dict.fromkeys(buss_categories_sug))
         tech_categories_sug = list(dict.fromkeys(tech_categories_sug))
 
@@ -702,7 +706,7 @@ if __name__ == "__main__":
 
         # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
         first_sim_sug = dict()
-        similars_sug = app.find_suggestion_similarity(res_name)
+        similars_sug = app.find_suggestion_similarity()
         similars_sug = list(dict.fromkeys(similars_sug))
 
         for topic in topic_list:
@@ -759,6 +763,10 @@ if __name__ == "__main__":
         app.return_topics()
         print("---------")
 
+        # COLLECT RESOURCE ID
+        print(res_id)
+        print("---------")
+
     if (mode == "2"):
         # RELATE CATEGORY
         cat_name = ''
@@ -809,7 +817,7 @@ if __name__ == "__main__":
         second = 0
         second_x = 0
 
-        #FIX
+        #FIX MESS
         for x in range(2, len(args)):
             if(args[x] == ("---------")):
                 second = 1
@@ -826,14 +834,38 @@ if __name__ == "__main__":
             if(x!=second_x and x!=second_x+1 and second == 1):
                 super_name=super_name + " " + args[x]
 
-        #app.insert_topic("convolutional_learning", "artificial intelligence")
+        # topic_name = app.find_similar_topic(topic_name)
+        app.insert_topic(topic_name, super_name)
+
+    if (mode == "6"):
+        # COLLECT SIMPLE CATEGORIES
+        cat = app.find_categories("Business Categories")
+        for row in cat:
+            buss_categories.append(row)
+        
+        cat = app.find_categories("Technical Categories")
+        for row in cat:
+            tech_categories.append(row)
+        
+        for cat in buss_categories:
+            print(cat)
+        print("---------")
+        for cat in tech_categories:
+            print(cat)
+        print("---------")
+
+    if (mode == "7"):
+        # RECALCULATE GRAPH INFERENCE PREPROCESSING
+        app.find_centrality()
+        app.find_community()
+        app.find_jaccard_similarity()
 
     #app.delete_topic
     #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t
 
     # PICKLE DUMP
     output = open('infer_data.pkl', 'wb')
-    pickle.dump(res_name, output)
+    pickle.dump(res_id, output)
     pickle.dump(centrality, output)
     pickle.dump(community, output)
     pickle.dump(similarity, output)
