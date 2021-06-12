@@ -142,7 +142,7 @@
 
 			viz = new NeoVis.default(config);
 			viz.render();
-			console.log(viz);
+			//console.log(viz);
 
 		}
     </script>
@@ -164,7 +164,8 @@
 
   var lines = "{{out}}"
   var out = lines.split(',')
-
+  
+  var sub_topic = ""
   var res_id;
   var topics = [];
   var buss_categories = [];
@@ -228,6 +229,15 @@
     res_id = out[i]
     ++i;
   }
+  
+  for (var key in suggest) {
+    suggest[key] = suggest[key].filter( function( el ) {
+      return topics.indexOf( el ) < 0;
+    } );
+  }
+
+  console.log("SUGGESTIONS")
+  console.log(suggest)
 
 </script>
 
@@ -363,6 +373,13 @@ function hide_suggestions() {
   }
   var x = document.getElementById("superTopic");
   x.style.display = "none";
+
+  elem = document.getElementById("idtop");
+  if (elem != null) elem.remove();
+
+  elem = document.getElementById("idinput");
+  if (elem != null) elem.remove();
+
 }
 </script>
 
@@ -376,9 +393,9 @@ function hide_suggestions() {
 
 <form id="superTopic" autocomplete="off">
   <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="myTopic" placeholder="Topic">
+    <input id="myInput" type="text" name="superTopic" placeholder="Super Topic">
   </div>
-  <input type="submit" value="Apply" name="action">
+  <input type="submit" value="Insert" name="Apply">
 </form>
 
 <br>
@@ -438,7 +455,10 @@ function hide_suggestions() {
         var word = $.trim(range.toString());
 		    var cypher = "MATCH p=()-[r:ns0__superTopicOf]->() RETURN p LIMIT 2";
         
-        if (mode == "1") alert(getSelectedText());
+        if (mode == "1") {
+          word = getSelectedText();
+          alert(word);
+        }
         if (mode == "2") alert(word);
 
         if(word != '#p1') {
@@ -455,10 +475,16 @@ function hide_suggestions() {
             let bract = idbr.concat(i.toString());
             elem = document.getElementById(bract);
             if (elem != null) elem.remove();
+
+            elem = document.getElementById("idtop");
+            if (elem != null) elem.remove();
+
+            elem = document.getElementById("idinput");
+            if (elem != null) elem.remove();
           }
 
           word_sug = suggest[word];
-          console.log(word_sug)
+          //console.log(word_sug)
 
           if (word_sug == undefined) nbut = 0;
           else nbut = word_sug.length;
@@ -472,7 +498,15 @@ function hide_suggestions() {
             btn.style.fontSize = "16px";
             btn.innerHTML = word_sug[i];
             btn.onclick = function () {
-              result = confirm(word);
+              result = confirm(btn.innerHTML);
+              if (result) {
+                topic_selected = document.getElementById("idtop");
+                if (topic_selected != null) {
+                  topic_selected.innerHTML = btn.innerHTML;
+                  sub_topic = btn.innerHTML;
+                  alert(input.innerText)
+                }
+              }
             };
             document.getElementById("suggestions").appendChild(btn);
             
@@ -480,24 +514,43 @@ function hide_suggestions() {
             linebreak.id = idbr.concat(i.toString());
 
             document.getElementById("suggestions").appendChild(linebreak);
-
-            var x = document.getElementById("superTopic");
-            x.style.display = "block";
+            
           }
+          var x = document.getElementById("superTopic");
+          x.style.display = "block";
+          
+          topic_selected = document.createElement("p");
+          topic_selected.id="idtop";
+          topic_selected.style.margin = "auto";
+          topic_selected.style.alignItems = "center";
+          topic_selected.style.display = "flex";
+          topic_selected.style.fontSize = "16px";
+          topic_selected.innerHTML= "Choose a suggested topic or insert a new one:";
+
+          document.getElementById("suggestions").appendChild(topic_selected)
+
+          var input = document.createElement("input");
+          input.id = "idinput"
+          input.placeholder = "Topic"
+          input.style.float = "center"
+
+          document.getElementById("suggestions").appendChild(input)
+
           $.post( "/modify", { word: word} );
 
         }
         //range.collapse();
        //e.stopPropagation();
     }
-    /*
+    
     p.mouseup(function () {
         showSuggestions("1");
     });
-    */
+    /*
     p.click(function () {
         showSuggestions("2");
     });
+    */
 });
     
 </script>

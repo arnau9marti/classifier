@@ -98,11 +98,16 @@ app.get('/', (req, res) => {
     explore(res);
 });
 app.get('/result', (req, res) => {
-    console.log(req.query.action)
+    console.log(req.query.subTopic)
     if (req.query.action == "Apply") {
-        let superTopic = req.query.myTopic;
+        let superTopic = req.query.superTopic;
         console.log(superTopic)
     }
+    buss_cat = "Learning"
+    tech_cat = "AI"
+    
+    newtxt("python3 knowledge.py 2 "+buss_cat+"\n" + "python3 knowledge.py 2 "+tech_cat+"\n" + "python3 knowledge.py 7", "end_script.sh");
+
     res.render('result', {text: description, res: res_name, out: lines});
 
 });

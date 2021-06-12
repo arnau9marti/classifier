@@ -671,7 +671,7 @@ if __name__ == "__main__":
 
         simple_queries = simplest_queries
 
-        # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
+        # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY
         first_sem_sug = dict()
 
         app.inverse_super()
@@ -834,8 +834,12 @@ if __name__ == "__main__":
             if(x!=second_x and x!=second_x+1 and second == 1):
                 super_name=super_name + " " + args[x]
 
-        # topic_name = app.find_similar_topic(topic_name)
-        app.insert_topic(topic_name, super_name)
+        similar_topic_name = app.find_similar_topic(topic_name)
+        if (similar_topic_name is None):
+            app.insert_topic(topic_name, super_name)
+        else:
+            app.insert_topic(similar_topic_name, super_name)
+
 
     if (mode == "6"):
         # COLLECT SIMPLE CATEGORIES
