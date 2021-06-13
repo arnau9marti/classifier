@@ -671,7 +671,7 @@ if __name__ == "__main__":
 
         simple_queries = simplest_queries
 
-        # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY
+        # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
         first_sem_sug = dict()
 
         app.inverse_super()
@@ -680,7 +680,7 @@ if __name__ == "__main__":
             rels = app.find_relationship(topic)
             for rel in rels:
                 cent = app.check_centrality(rel)
-                if (cent > 0.0):
+                if (cent > 0.0 or app.check_community(rel, topic) == 1):
                     first_sem_sug[topic].append(rel)
         
         app.inverse_super()
@@ -703,6 +703,8 @@ if __name__ == "__main__":
                 rels_term = app.find_related_term(input, query)
                 for term in rels_term:
                     second_sem_sug[input].append(term)
+                    # if(app.check_community() == 1): 
+                    #     second_sem_sug[input].append(term)
 
         # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
         first_sim_sug = dict()
