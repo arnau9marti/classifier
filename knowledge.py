@@ -679,8 +679,7 @@ if __name__ == "__main__":
             first_sem_sug[topic] = []
             rels = app.find_relationship(topic)
             for rel in rels:
-                cent = app.check_centrality(rel)
-                if (cent > 0.0 or (app.check_community(rel, topic) == 1 and app.find_link_prediction(rel,topic) > 0.0)):
+                if (app.check_centrality(rel) > 0.0 or (app.check_community(rel, topic) == 1 and app.find_link_prediction(rel,topic) > 1.0)):
                     first_sem_sug[topic].append(rel)
         
         app.inverse_super()
