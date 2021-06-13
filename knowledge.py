@@ -679,13 +679,15 @@ if __name__ == "__main__":
             first_sem_sug[topic] = []
             rels = app.find_relationship(topic)
             for rel in rels:
-                if (app.check_centrality(rel) > 0.0 or (app.check_community(rel, topic) == 1 and app.find_link_prediction(rel,topic) > 1.0)):
+                # if (app.check_centrality(rel) > 1.0 or (app.check_community(rel, topic) == 1 and app.find_link_prediction(rel,topic) > 5.0)):
+                if (app.check_centrality(rel) > 0.0):
                     first_sem_sug[topic].append(rel)
         
         app.inverse_super()
 
         # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
         # rels_term = app.find_related_term("internet", "streaming")
+        # print(app.check_community("internet", "streaming"))
         # print(rels_term)
         second_sem_sug = dict()
         rang = 5
@@ -701,9 +703,8 @@ if __name__ == "__main__":
 
                 rels_term = app.find_related_term(input, query)
                 for term in rels_term:
-                    second_sem_sug[input].append(term)
-                    # if(app.check_community() == 1): 
-                    #     second_sem_sug[input].append(term)
+                    if(app.check_community(input,term) == 1): 
+                        second_sem_sug[input].append(term)
 
         # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
         first_sim_sug = dict()
@@ -767,7 +768,7 @@ if __name__ == "__main__":
         # COLLECT RESOURCE ID
         print(res_id)
         print("---------")
-
+        
     if (mode == "2"):
         # RELATE CATEGORY
         cat_name = ''
@@ -866,6 +867,10 @@ if __name__ == "__main__":
         app.find_centrality()
         app.find_community()
         app.find_jaccard_similarity()
+
+    if (mode == "9"):
+        # INVERSE ON DEMAND FOR GRAPH VISUAL
+        app.inverse_super()
 
     #app.delete_topic
     #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t

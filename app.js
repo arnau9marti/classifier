@@ -33,7 +33,11 @@ function classify(desc, mode, res) {
         // })
         
         res.render('result', {text: description, res: res_name, out: lines});    
+        var exec2 = require('child_process').exec
+        var child = exec2("python3 knowledge.py 9 ",
+        function (error, stdout, stderr) {
 
+        });
     });
     //child.stdin.setEncoding('utf-8');
     //child.stdin.write(mode+"\n");
@@ -56,9 +60,16 @@ function explore(res) {
 
 function execute (res,comm) {
     var exec = require('child_process').exec
+    com = com + "\npython3 knowledge.py 9 "
     var child = exec(comm,
     function (error, stdout, stderr) {
-        res.render('result', {text: description, res: res_name, out: lines});    
+        res.render('result', {text: description, res: res_name, out: lines});  
+        
+        var exec2 = require('child_process').exec
+        var child = exec2(comm,
+        function (error, stdout, stderr) {
+
+        });
     });
 }
 
@@ -97,8 +108,23 @@ function newtxt(text, file_name) {
 app.get('/', (req, res) => {
     explore(res);
 });
+
 app.get('/result', (req, res) => {
-    res.render('result', {text: description, res: res_name, out: lines});
+    // var exec = require('child_process').exec
+    // com = "python3 knowledge.py 9 "
+    // var child = exec(comm,
+    // function (error, stdout, stderr) {
+    //     res.render('result', {text: description, res: res_name, out: lines});  
+        
+    //     var exec2 = require('child_process').exec
+    //     var child = exec2(comm,
+    //     function (error, stdout, stderr) {
+
+    //     });
+    // });
+
+    res.render('result', {text: description, res: res_name, out: lines});  
+
 });
 
 app.post('/result', (req, res) => {
@@ -109,8 +135,8 @@ app.post('/result', (req, res) => {
     res_name = req.body.lname;
     res_name = "IOT LOGISTICS SYSTEM";
     
-    newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
-    //newtxt("make\n./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
+    //newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
+    newtxt("./classifier\npython3 knowledge.py 1 "+res_name+"\npython3 knowledge.py 9 ", "script.sh");
 
     //delfile("res.xml");
     //newtxt(desc, "file.txt");

@@ -139,7 +139,6 @@
         
 				initial_cypher: cypher
 			};
-
 			viz = new NeoVis.default(config);
 			viz.render();
 			//console.log(viz);
@@ -148,6 +147,7 @@
     </script>
 
 </head>
+
 
 <body onload="draw()">
 
@@ -241,6 +241,18 @@
   console.log(suggest)
 
 </script>
+
+<script>
+	function redraw(cypher) {
+		if (cypher.length > 3) {
+			viz.renderWithCypher(cypher);
+		} else {
+			console.log("reload");
+			viz.reload();
+		}
+	}
+</script>
+
 
 <h1> <b>Resource description: </b> </h1> 
 
@@ -395,7 +407,7 @@ function hide_suggestions() {
   }
 </script>
 
-<h1> <b>Click a word to show suggestions below and/or visualize a graph explanation:</b> 
+<h1> <b>Select words to show suggestions below or check the graph explanation:</b> 
 <div class="text-center">
 
 <button type="submit" onclick="hide_suggestions()"> Hide suggestions</button> </h1>
@@ -425,17 +437,6 @@ function hide_suggestions() {
 <input style="font-family:garamond" type="submit" value="Stabilize" id="stabilize">
 
 </form>
-
-<script>
-	function redraw(cypher) {
-		if (cypher.length > 3) {
-			viz.renderWithCypher(cypher);
-		} else {
-			console.log("reload");
-			viz.reload();
-		}
-	}
-</script>
 
 <style>
 .button {
@@ -479,8 +480,7 @@ function hide_suggestions() {
         if (mode == "2") alert(word);
 
         if(word != '#p1') {
-			    //redraw(cypher);
-
+          draw()
           let ides = 'id';
           let idbr = 'br';
 
@@ -517,7 +517,7 @@ function hide_suggestions() {
               if (result) {
                 $.post( "/modify", { mode: "3", word: btn.innerHTML} );
                 alert(btn.innerHTML+" is now related to this resource.");
-                draw();
+                maindraw();
               }
             };
 
@@ -665,5 +665,6 @@ x.style.display = "none";
 
 
 </script>
+
 
 </html>
