@@ -235,7 +235,8 @@
       return topics.indexOf( el ) < 0;
     } );
   }
-
+  console.log("TOPICS")
+  console.log(topics)
   console.log("SUGGESTIONS")
   console.log(suggest)
 
@@ -377,9 +378,6 @@ function hide_suggestions() {
   var x = document.getElementById("superTopic");
   x.style.display = "none";
 
-  elem = document.getElementById("idtop");
-  if (elem != null) elem.remove();
-
   elem = document.getElementById("idinput");
   if (elem != null) elem.remove();
 
@@ -392,7 +390,7 @@ function hide_suggestions() {
     topic = document.getElementById("idinput").value;
     if (superTopic != null && topic != null) {
       $.post( "/modify", { mode: "4", topic: topic, superTopic: superTopic} );
-      alert("New topic "+topic+" added with super topic relation to "+superTopic ".")
+      alert("New topic "+topic+" added with super topic relation to "+superTopic+ ".")
     }
   }
 </script>
@@ -404,6 +402,10 @@ function hide_suggestions() {
 </div>
 
 <div id="suggestions" float="center"> </div>
+
+<form id="subTopic">
+
+</form>
 
 <form id="superTopic" autocomplete="off">
   <div class="autocomplete" style="width:300px;">
@@ -477,7 +479,7 @@ function hide_suggestions() {
         if (mode == "2") alert(word);
 
         if(word != '#p1') {
-			    redraw(cypher);
+			    //redraw(cypher);
 
           let ides = 'id';
           let idbr = 'br';
@@ -489,9 +491,6 @@ function hide_suggestions() {
 
             let bract = idbr.concat(i.toString());
             elem = document.getElementById(bract);
-            if (elem != null) elem.remove();
-
-            elem = document.getElementById("idtop");
             if (elem != null) elem.remove();
 
             elem = document.getElementById("idinput");
@@ -512,13 +511,16 @@ function hide_suggestions() {
             btn.style.display = "flex";
             btn.style.fontSize = "16px";
             btn.innerHTML = word_sug[i];
+
             btn.onclick = function () {
               result = confirm(btn.innerHTML);
               if (result) {
                 $.post( "/modify", { mode: "3", word: btn.innerHTML} );
-                alert(btn.innerHTML+" is now related to this resource.")
+                alert(btn.innerHTML+" is now related to this resource.");
+                draw();
               }
             };
+
             document.getElementById("suggestions").appendChild(btn);
             
             linebreak = document.createElement("br");
@@ -529,23 +531,13 @@ function hide_suggestions() {
           }
           var x = document.getElementById("superTopic");
           x.style.display = "block";
-          
-          topic_selected = document.createElement("p");
-          topic_selected.id="idtop";
-          topic_selected.style.margin = "auto";
-          topic_selected.style.alignItems = "center";
-          topic_selected.style.display = "flex";
-          topic_selected.style.fontSize = "16px";
-          topic_selected.innerHTML= "Choose a suggested topic or insert a new one here:";
-
-          document.getElementById("suggestions").appendChild(topic_selected);
 
           var input = document.createElement("input");
           input.id = "idinput"
           input.placeholder = "Topic"
           input.style.float = "center"
 
-          document.getElementById("suggestions").appendChild(input)
+          document.getElementById("subTopic").appendChild(input)
         }
         //range.collapse();
        //e.stopPropagation();

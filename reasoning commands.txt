@@ -73,23 +73,6 @@ RETURN other.rdfs__label,
        collect([node in nodes(path) | node.rdfs__label]) AS pathToOther
 
 
-
-                            ADD NEW NODES
-                            
-CREATE (n:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
-
-MATCH (n1:ns0__Topic {rdfs__label: 'mobile operators'})
-MATCH (n2:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
-MERGE (n1)-[:HAS_TOPIC]->(n2)
-
-MATCH (n1:skos__Concept {rdfs__label: 'AI for Ambient Intelligence'})
-MATCH (n2:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
-MERGE (n2)-[:HAS_CATEGORY]->(n1)
-
-
-MATCH (n:AI_RESOURCE {rdfs__label: 'MACHINE LOGISTICS SYSTEM'})
-RETURN n
-
                             ONTOLOGY UPLOAD
 
 CALL n10s.rdf.import.fetch("file:///Users/arnau/Desktop/classifier/topics.ttl","Turtle");

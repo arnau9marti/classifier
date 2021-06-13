@@ -103,7 +103,8 @@
 </style>
             
 
-        <script>
+    <script>
+        var shown = 0;
         var lines = "{{out}}"
         var out = lines.split(',')
         
@@ -129,44 +130,48 @@
         function showCategories (){
             ides = "id"
             idbr = "br"
-            for (let i = 0; i<buss_categories.length; i++) {
-                let btn = document.createElement("button");
-                btn.id = ides.concat(i.toString());
-                btn.innerHTML = buss_categories[i];
+            if (shown == 0) {
+                for (let i = 0; i<buss_categories.length; i++) {
+                    let btn = document.createElement("button");
+                    btn.id = ides.concat(i.toString());
+                    btn.innerHTML = buss_categories[i];
 
-                btn.onclick = function () {
-                    var comm = "MATCH (n:skos__Concept {rdfs__label: '" + buss_categories[i] + "'}), path = (n2:AI_RESOURCE)-[:HAS_CATEGORY]->(n) RETURN path"
-                    var x = document.getElementById("viz");
+                    btn.onclick = function () {
+                        var comm = "MATCH (n:skos__Concept {rdfs__label: '" + buss_categories[i] + "'}), path = (n2:AI_RESOURCE)-[:HAS_CATEGORY]->(n) RETURN path"
+                        var x = document.getElementById("viz");
+                        x.style.display = "block";
+                        redraw(comm);
+                    };
+                    document.getElementById("buss").appendChild(btn);
+                    
+                    linebreak = document.createElement("br");
+                    linebreak.id = idbr.concat(i.toString());
+
+                    document.getElementById("buss").appendChild(linebreak);
+                }
+                for (let i = 0; i<tech_categories.length; i++) {
+                    let btn = document.createElement("button");
+                    btn.id = ides.concat(i.toString());
+                    btn.innerHTML = tech_categories[i];
+
+                    btn.onclick = function () {
+                        var comm = "MATCH (n:skos__Concept {rdfs__label: '" + tech_categories[i] + "'}), path = (n2:AI_RESOURCE)-[:HAS_CATEGORY]->(n) RETURN path"
+                        var x = document.getElementById("viz");
+                        x.style.display = "block";
+                        redraw(comm);
+
+                    };
+                    document.getElementById("tech").appendChild(btn);
+                    
+                    linebreak = document.createElement("br");
+                    linebreak.id = idbr.concat(i.toString());
+
+                    document.getElementById("tech").appendChild(linebreak);
+                    var x = document.getElementById("cats");
                     x.style.display = "block";
-                    redraw(comm);
-                };
-                document.getElementById("buss").appendChild(btn);
-                
-                linebreak = document.createElement("br");
-                linebreak.id = idbr.concat(i.toString());
 
-                document.getElementById("buss").appendChild(linebreak);
-            }
-            for (let i = 0; i<tech_categories.length; i++) {
-                let btn = document.createElement("button");
-                btn.id = ides.concat(i.toString());
-                btn.innerHTML = tech_categories[i];
-
-                btn.onclick = function () {
-                    var comm = "MATCH (n:skos__Concept {rdfs__label: '" + tech_categories[i] + "'}), path = (n2:AI_RESOURCE)-[:HAS_CATEGORY]->(n) RETURN path"
-                    var x = document.getElementById("viz");
-                    x.style.display = "block";
-                    redraw(comm);
-
-                };
-                document.getElementById("tech").appendChild(btn);
-                
-                linebreak = document.createElement("br");
-                linebreak.id = idbr.concat(i.toString());
-
-                document.getElementById("tech").appendChild(linebreak);
-                var x = document.getElementById("cats");
-                x.style.display = "block";
+                    shown = 1;
+                }
             }
         }
     </script>
@@ -216,11 +221,11 @@
     margin: 0 auto;
 }
 </style>
-
+<br>
 <div id="wrapper">
 <div id='cats' class="cats">
-<div id="tech" class ='child_div_1'>Technology: <br> </div>
-<div id="buss" class ='child_div_2'>Business: <br></div>
+<div id="tech" class ='child_div_1'>Technology Categories  ----------------------------- <br> </div>
+<div id="buss" class ='child_div_2'>Business Categories: <br></div>
 </div>
 </div>
 
