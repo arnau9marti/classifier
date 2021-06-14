@@ -586,15 +586,14 @@ if __name__ == "__main__":
 
     if (mode == "1"):
         # GRAPH CREATION GRAPH ALGORITHMS PLUGIN
-        works = ""
         try:
             app.create_graph_catalog()
         except:
-            works = "no"
-        try:
-            app.create_graph_catalog_simple()
-        except:
-            works = "no"
+            pass
+        # try:
+        #     app.create_graph_catalog_simple()
+        # except:
+        #     pass
 
         # PREPROCESS INFERENCE
         # app.find_centrality()
@@ -863,6 +862,16 @@ if __name__ == "__main__":
         print("---------")
 
     if (mode == "8"):
+        # GRAPH CREATION GRAPH ALGORITHMS PLUGIN
+        try:
+            app.create_graph_catalog()
+        except:
+            pass
+        # try:
+        #     app.create_graph_catalog_simple()
+        # except:
+        #     pass
+        
         # RECALCULATE GRAPH INFERENCE PREPROCESSING
         app.find_centrality()
         app.find_community()
