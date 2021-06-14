@@ -878,7 +878,7 @@ if __name__ == "__main__":
         app.find_jaccard_similarity()
 
     if (mode == "9"):
-        # INVERSE ON DEMAND FOR GRAPH VISUAL
+        # INVERSE ON DEMAND
         app.inverse_super()
 
     #app.delete_topic

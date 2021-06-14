@@ -105,7 +105,7 @@
 
 		function draw() {
       var res_name = "{{res}}"
-      var cypher = "MATCH p= (n0:ns0__Topic)-[r1:ns0__superTopicOf]->(n1:ns0__Topic)-[r2:HAS_TOPIC]->(n2:AI_RESOURCE)  WHERE id(n2) = "+ res_id +" RETURN p"
+      var cypher = "MATCH p= (n0:ns0__Topic)<-[r1:ns0__superTopicOf]-(n1:ns0__Topic)-[r2:HAS_TOPIC]->(n2:AI_RESOURCE)  WHERE id(n2) = "+ res_id +" RETURN p"
       //console.log(cypher)
 			var config = {
 				container_id: "viz",
