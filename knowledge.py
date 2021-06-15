@@ -697,7 +697,7 @@ if __name__ == "__main__":
             for i in range(len(sub_sug_list)):
                 aux_dict[sub_sug_list[i]] = sub_pred_list[i]
 
-            ith_better_sugs = dict(sorted(aux_dict.iteritems(), key=operator.itemgetter(1), reverse=True)[:15])
+            ith_better_sugs = dict(sorted(aux_dict.items(), key=operator.itemgetter(1), reverse=True)[:15])
             first_sem_sug[topic] = ith_better_sugs
 
         app.inverse_super()
@@ -750,7 +750,7 @@ if __name__ == "__main__":
             for i in range(len(sub_sug_list)):
                 aux_dict[sub_sug_list[i]] = sub_pred_list[i]
 
-            ith_better_sugs = dict(sorted(aux_dict.iteritems(), key=operator.itemgetter(1), reverse=True)[:15])
+            ith_better_sugs = dict(sorted(aux_dict.items(), key=operator.itemgetter(1), reverse=True)[:15])
             first_sim_sug[topic] = ith_better_sugs
 
         # SECOND SIMILARITY REASONING (WITH MATCHES) -> NODE SIMILARITY
@@ -779,7 +779,7 @@ if __name__ == "__main__":
             for i in range(len(sub_sug_list)):
                 aux_dict[sub_sug_list[i]] = sub_pred_list[i]
 
-            ith_better_sugs = dict(sorted(aux_dict.iteritems(), key=operator.itemgetter(1), reverse=True)[:15])
+            ith_better_sugs = dict(sorted(aux_dict.items(), key=operator.itemgetter(1), reverse=True)[:15])
             second_sim_sug[topic] = ith_better_sugs
         
         # COLLECT SUGGESTIONS

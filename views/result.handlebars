@@ -167,7 +167,6 @@
   
   let nbut = 0;
   var res_id;
-  var terms = []
   var topics = [];
   var buss_categories = [];
   var tech_categories = [];
@@ -243,6 +242,7 @@
       return topics.indexOf( el ) < 0;
     } );
   }
+
   console.log("TOPICS")
   console.log(topics)
   console.log("SUGGESTIONS")
@@ -269,6 +269,7 @@
 <script type="text/javascript">
     for (let i = 0; i<topics.length; i++) {
       var word = terms[i]
+      if(word != undefined) word = word.replace(/_/g, ' ');
       var str = document.getElementById("p1").innerHTML; 
       var res = str.replace(word, "<span style='color:red'>"+word+"</span>");
       document.getElementById("p1").innerHTML = res;
@@ -369,6 +370,9 @@
   function end_function() {
     tech_cat = document.getElementById("tech_form").value;
     buss_cat = document.getElementById("tech_form").value;
+    buss_cat.replace(" (suggested)", "");
+    tech_cat.replace(" (suggested)", "");
+    
     $.post( "/modify", { mode: "5", tech_cat: tech_cat, buss_cat: buss_cat} );
     alert("AI Resource added.")
   }
