@@ -400,6 +400,7 @@ int main()
     // }
     
     //cout << "\nAnalyzing resource description text...\n\n";
+    system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --dep lstm --output xml <file.txt >res.xml");
     //system("/usr/local/bin/analyze -f en.cfg --outlv semgraph --nec --ner --loc --sense ukb --output xml <file.txt >res.xml");
 
     // if (!file_exists("cso.nt")) {

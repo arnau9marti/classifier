@@ -5,7 +5,9 @@ from neo4j.exceptions import ServiceUnavailable
 import sys
 from Levenshtein import distance as levenshtein_distance
 import pprint, pickle
+import operator
 
+term_list = []
 topic_list = []
 buss_categories = []
 tech_categories = []
@@ -67,6 +69,7 @@ class App:
             result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
             for row in result:
                 topic_list.append(row)
+                term_list.append(topic_name)
                 # print("Found topic: {row}".format(row=row))
 
     @staticmethod
@@ -595,7 +598,7 @@ if __name__ == "__main__":
         # except:
         #     pass
 
-        # PREPROCESS INFERENCE
+        # PREPROCESS INFERENCE (SETUP)
         # app.find_centrality()
         # app.find_community()
         # app.find_jaccard_similarity()
@@ -672,16 +675,31 @@ if __name__ == "__main__":
 
         # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
         first_sem_sug = dict()
+        first_sem_sug_term = dict()
+        first_sem_sug_pred = dict()
 
         app.inverse_super()
         for topic in topic_list:
             first_sem_sug[topic] = []
+            first_sem_sug_term[topic] = []
+            first_sem_sug_pred[topic] = []
             rels = app.find_relationship(topic)
             for rel in rels:
                 # if (app.check_centrality(rel) > 1.0 or (app.check_community(rel, topic) == 1 and app.find_link_prediction(rel,topic) > 5.0)):
                 if (app.check_centrality(rel) > 0.0):
-                    first_sem_sug[topic].append(rel)
+                    first_sem_sug_term[topic].append(rel)
+                    first_sem_sug_pred[topic].append(rel)
         
+        for topic in topic_list:
+            aux_dict = dict()
+            sub_sug_list = first_sem_sug_term[topic]
+            sub_pred_list = first_sem_sug_pred[topic]
+            for i in range(len(sub_sug_list)):
+                aux_dict[sub_sug_list[i]] = sub_pred_list[i]
+
+            ith_better_sugs = dict(sorted(aux_dict.iteritems(), key=operator.itemgetter(1), reverse=True)[:15])
+            first_sem_sug[topic] = ith_better_sugs
+
         app.inverse_super()
 
         # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
@@ -707,29 +725,63 @@ if __name__ == "__main__":
 
         # FRIST SIMILARITY REASONING (WITH RES_NAME) -> LINK PREDICTION
         first_sim_sug = dict()
+        first_sim_sug_term = dict()
+        first_sim_sug_pred = dict()
+
         similars_sug = app.find_suggestion_similarity()
         similars_sug = list(dict.fromkeys(similars_sug))
 
         for topic in topic_list:
             first_sim_sug[topic] = []
-
+            first_sim_sug_term[topic] = []
+            first_sim_sug_pred[topic] = []
+    
         for similar in similars_sug:
             for topic in topic_list:
                 pred = app.find_link_prediction(topic, similar) # CHECK NODE CLOSENESS
                 if (pred>0.0):
-                    first_sim_sug[topic].append(similar)
+                    first_sim_sug_term[topic].append(similar)
+                    first_sim_sug_pred[topic].append(pred)
+
+        for topic in topic_list:
+            aux_dict = dict()
+            sub_sug_list = first_sim_sug_term[topic]
+            sub_pred_list = first_sim_sug_pred[topic]
+            for i in range(len(sub_sug_list)):
+                aux_dict[sub_sug_list[i]] = sub_pred_list[i]
+
+            ith_better_sugs = dict(sorted(aux_dict.iteritems(), key=operator.itemgetter(1), reverse=True)[:15])
+            first_sim_sug[topic] = ith_better_sugs
 
         # SECOND SIMILARITY REASONING (WITH MATCHES) -> NODE SIMILARITY
         second_sim_sug = dict()
+        second_sim_sug_term = dict()
+        second_sim_sug_pred = dict()
+
+        second_sim_sug = dict()
         for topic in topic_list:
             second_sim_sug[topic] = []
+            second_sim_sug_term[topic] = []
+            second_sim_sug_pred[topic] = []
+
             similars_par = app.find_parent_similarity(topic)
             similars_par = list(dict.fromkeys(similars_par))
             for similar in similars_par:
                 sim = app.check_similarity(query, similar) # CHECK IF NODE SIM
                 if (sim>0.0):
-                    second_sim_sug[topic].append(similar)
+                    second_sim_sug_term[topic].append(similar)
+                    second_sim_sug_pred[topic].append(similar)
 
+        for topic in topic_list:
+            aux_dict = dict()
+            sub_sug_list = second_sim_sug_term[topic]
+            sub_pred_list = second_sim_sug_pred[topic]
+            for i in range(len(sub_sug_list)):
+                aux_dict[sub_sug_list[i]] = sub_pred_list[i]
+
+            ith_better_sugs = dict(sorted(aux_dict.iteritems(), key=operator.itemgetter(1), reverse=True)[:15])
+            second_sim_sug[topic] = ith_better_sugs
+        
         # COLLECT SUGGESTIONS
         for input in simple_queries:
             suggestions[input] = []
@@ -762,6 +814,12 @@ if __name__ == "__main__":
 
         # COLLECT ALL TOPICS
         app.return_topics()
+        print("---------")
+
+        # COLLECT ALL TERMS FOR TEXT MATCHED UI
+        term_list = list(dict.fromkeys(term_list))
+        for term in term_list:
+            print(term)
         print("---------")
 
         # COLLECT RESOURCE ID
@@ -835,14 +893,13 @@ if __name__ == "__main__":
             if(x!=second_x and x!=second_x+1 and second == 1):
                 super_name=super_name + " " + args[x]
 
-        print(topic_name)
-        print(super_name)
         similar_topic_name = app.find_similar_topic(topic_name)
         if (similar_topic_name is None):
             app.insert_topic(topic_name, super_name)
+            app.add_topic(topic_name)
         else:
             app.insert_topic(similar_topic_name, super_name)
-
+            app.add_topic(similar_topic_name)
 
     if (mode == "7"):
         # COLLECT SIMPLE CATEGORIES
@@ -876,10 +933,6 @@ if __name__ == "__main__":
         app.find_centrality()
         app.find_community()
         app.find_jaccard_similarity()
-
-    if (mode == "9"):
-        # INVERSE ON DEMAND
-        app.inverse_super()
 
     #app.delete_topic
     #MATCH (t:ns0__Topic) WHERE t.rdfs__label = "convolutional_learning" DETACH DELETE t

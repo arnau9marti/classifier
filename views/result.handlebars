@@ -167,6 +167,7 @@
   
   let nbut = 0;
   var res_id;
+  var terms = []
   var topics = [];
   var buss_categories = [];
   var tech_categories = [];
@@ -174,6 +175,7 @@
   var tech_categories_sug = [];
   var all_topics = [];
   var suggest = {};
+  var terms = []
   
   let i = 0;
 
@@ -226,6 +228,12 @@
   ++i;
 
   while (i<out.length && out[i]!="---------") {
+    terms.push(out[i]);
+    ++i;
+  }
+  ++i;
+
+  while (i<out.length && out[i]!="---------") {
     res_id = out[i]
     ++i;
   }
@@ -260,7 +268,7 @@
 
 <script type="text/javascript">
     for (let i = 0; i<topics.length; i++) {
-      var word = topics[i]
+      var word = terms[i]
       var str = document.getElementById("p1").innerHTML; 
       var res = str.replace(word, "<span style='color:red'>"+word+"</span>");
       document.getElementById("p1").innerHTML = res;
