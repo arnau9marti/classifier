@@ -448,6 +448,17 @@ class App:
         )
         tx.run(query)
 
+    def drop_graph_catalog(self):
+        with self.driver.session() as session:
+            session.read_transaction(self._drop_graph_catalog)
+
+    @staticmethod
+    def _drop_graph_catalog(tx):
+        query = (
+            "CALL gds.graph.drop('graph')" 
+        )
+        tx.run(query)
+
     def create_graph_catalog_simple(self):
         with self.driver.session() as session:
             session.read_transaction(self._create_graph_catalog_simple)
@@ -589,6 +600,10 @@ if __name__ == "__main__":
 
     if (mode == "1"):
         # GRAPH CREATION GRAPH ALGORITHMS PLUGIN
+        try:
+            app.drop_graph_catalog()
+        except:
+            pass
         try:
             app.create_graph_catalog()
         except:
@@ -920,6 +935,10 @@ if __name__ == "__main__":
 
     if (mode == "8"):
         # GRAPH CREATION GRAPH ALGORITHMS PLUGIN
+        try:
+            app.drop_graph_catalog()
+        except:
+            pass
         try:
             app.create_graph_catalog()
         except:
