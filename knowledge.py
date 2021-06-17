@@ -839,7 +839,6 @@ if __name__ == "__main__":
         print("---------")
 
         # CREATE TEXT FILE FOR INFERENCE TESTING PURPOSES
-
         first_sem_sug = dict( [(k,v) for k,v in first_sem_sug.items() if len(v)>0])
         second_sem_sug = dict( [(k,v) for k,v in second_sem_sug.items() if len(v)>0])
         first_sim_sug = dict( [(k,v) for k,v in first_sim_sug.items() if len(v)>0])

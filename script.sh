@@ -1,2 +1,2 @@
 ./classifier
-python3 knowledge.py 1 Document search
+python3 knowledge.py 1 SAMPLE NAME
