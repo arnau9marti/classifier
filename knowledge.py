@@ -697,9 +697,10 @@ if __name__ == "__main__":
             rels = app.find_relationship(topic)
             for rel in rels:
                 # if (app.check_centrality(rel) > 1.0 or (app.check_community(rel, topic) == 1 and app.find_link_prediction(rel,topic) > 5.0)):
-                if (app.check_centrality(rel) > 0.0):
+                pred = app.check_centrality(rel)
+                if (pred > 0.0):
                     first_sem_sug_term[topic].append(rel)
-                    first_sem_sug_pred[topic].append(rel)
+                    first_sem_sug_pred[topic].append(pred)
         
         for topic in topic_list:
             aux_dict = dict()
@@ -709,7 +710,7 @@ if __name__ == "__main__":
                 aux_dict[sub_sug_list[i]] = sub_pred_list[i]
 
             ith_better_sugs = dict(sorted(aux_dict.items(), key=operator.itemgetter(1), reverse=True)[:15])
-            first_sem_sug[topic] = ith_better_sugs
+            first_sem_sug[topic] = list(ith_better_sugs.keys())
 
         app.inverse_super()
 
@@ -762,7 +763,7 @@ if __name__ == "__main__":
                 aux_dict[sub_sug_list[i]] = sub_pred_list[i]
 
             ith_better_sugs = dict(sorted(aux_dict.items(), key=operator.itemgetter(1), reverse=True)[:15])
-            first_sim_sug[topic] = ith_better_sugs
+            first_sim_sug[topic] = list(ith_better_sugs.keys())
 
         # SECOND SIMILARITY REASONING (WITH MATCHES) -> NODE SIMILARITY
         second_sim_sug = dict()
@@ -778,10 +779,10 @@ if __name__ == "__main__":
             similars_par = app.find_parent_similarity(topic)
             similars_par = list(dict.fromkeys(similars_par))
             for similar in similars_par:
-                sim = app.check_similarity(query, similar) # CHECK IF NODE SIM
-                if (sim>0.0):
+                pred = app.check_similarity(query, similar) # CHECK IF NODE SIM
+                if (pred>0.0):
                     second_sim_sug_term[topic].append(similar)
-                    second_sim_sug_pred[topic].append(similar)
+                    second_sim_sug_pred[topic].append(pred)
 
         for topic in topic_list:
             aux_dict = dict()
@@ -791,7 +792,7 @@ if __name__ == "__main__":
                 aux_dict[sub_sug_list[i]] = sub_pred_list[i]
 
             ith_better_sugs = dict(sorted(aux_dict.items(), key=operator.itemgetter(1), reverse=True)[:15])
-            second_sim_sug[topic] = ith_better_sugs
+            second_sim_sug[topic] = list(ith_better_sugs.keys())
         
         # COLLECT SUGGESTIONS
         for input in simple_queries:
@@ -838,6 +839,12 @@ if __name__ == "__main__":
         print("---------")
 
         # CREATE TEXT FILE FOR INFERENCE TESTING PURPOSES
+
+        first_sem_sug = dict( [(k,v) for k,v in first_sem_sug.items() if len(v)>0])
+        second_sem_sug = dict( [(k,v) for k,v in second_sem_sug.items() if len(v)>0])
+        first_sim_sug = dict( [(k,v) for k,v in first_sim_sug.items() if len(v)>0])
+        second_sim_sug = dict( [(k,v) for k,v in second_sim_sug.items() if len(v)>0])
+
         with open('first_sem_sug.txt', 'w') as convert_file:
             convert_file.write(json.dumps(first_sem_sug))
             

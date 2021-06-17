@@ -20,7 +20,7 @@ var description = "";
 var res_name = "";
 var lines = "";
 
-function classify(desc, mode, res) {
+function classify(res) {
     var exec = require('child_process').exec
 
     var child = exec('sh script.sh',
@@ -79,8 +79,10 @@ function delfile(file_name) {
 
 function newtxt(text, file_name) {
     const { exec } = require("child_process");
+    
+    text=text.replace(/['"]+/g, '');
 
-    exec("echo '"+text+ "' >"+file_name, (error, stdout, stderr) => {
+    exec('echo "'+text+'" >'+file_name, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
@@ -102,26 +104,29 @@ app.get('/result', (req, res) => {
 });
 
 app.post('/result', (req, res) => {
-    if (req.body.lname == "") mode = "1";
+    if (req.body.lname == "" || req.body.fname == "") mode = "1";
     else mode = "0";
-    desc = req.body.fname;
-
+        
     if(mode == "0") res_name = req.body.lname;
-    if(mode == "1") res_name = "IOT LOGISTICS SYSTEM";
+    if(mode == "1") res_name = "SAMPLE NAME";
     
     //newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
     newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
 
     if(mode == "0") {
+        description = req.body.fname;
         delfile("res.xml");
-        newtxt(desc, "file.txt");
+        newtxt(description, "file.txt");
     }
 
-    fs.readFile('file.txt', 'utf-8', (err, data) => {
-        if (err) throw err;
-        description=data;
-    })
-    classify(desc, mode, res);
+    if (mode == "1") {
+        fs.readFile('file.txt', 'utf-8', (err, data) => {
+            if (err) throw err;
+            description = data;
+        })
+    }
+
+    classify(res);
 });
 
 app.post('/modify', (req, res) => {

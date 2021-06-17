@@ -299,24 +299,6 @@
 
 <br>
 
-<script>
-  function addNewTechCategory() {
-    new_cat_name = prompt("Enter a new technical category name");
-    if (new_cat_name != null) {
-      $.post( "/modify", { mode: "1", word: new_cat_name} );
-      alert(new_cat_name+" category added to technical.")
-    }
-  }
-  function addNewBussCategory() {
-    new_cat_name = prompt("Enter a new business category name");
-    if (new_cat_name != null) {
-      $.post( "/modify", { mode: "2", word: new_cat_name} );
-      alert(new_cat_name+" category added to business.")
-    }
-  }
-</script>
-
-
 <form>
 <label for="cars">Bussiness Category:</label>
 <select id="buss_form"></select>
@@ -324,17 +306,17 @@
 </form>
 
 <script>
- var optionList = "";
+ var optionList_buss = "";
  for (let i = 0; i<buss_categories.length; i++) {
    if (buss_categories_sug.includes(buss_categories[i])) {
-      optionList += "<option>"+buss_categories[i] + " (suggested)"+"</option>";
+      optionList_buss += "<option>"+buss_categories[i] + " (suggested)"+"</option>";
 
    }
    else {
-      optionList += "<option>"+buss_categories[i] +"</option>";
+      optionList_buss += "<option>"+buss_categories[i] +"</option>";
    }
  }
- $("select#buss_form").html(optionList);
+ $("select#buss_form").html(optionList_buss);
  
 </script>
 
@@ -345,17 +327,42 @@
 </form>
 
 <script>
- var optionList = "";
+ var optionList_tech = "";
  for (let i = 0; i<tech_categories.length; i++) {
    if (tech_categories_sug.includes(tech_categories[i])) {
-      optionList += "<option>"+tech_categories[i] + " (suggested)"+"</option>";
+      optionList_tech += "<option>"+tech_categories[i] + " (suggested)"+"</option>";
 
    }
    else {
-      optionList += "<option>"+tech_categories[i] +"</option>";
+      optionList_tech += "<option>"+tech_categories[i] +"</option>";
    }
  }
- $("select#tech_form").html(optionList);
+ $("select#tech_form").html(optionList_tech);
+</script>
+
+<script>
+  function addNewTechCategory() {
+    new_cat_name = prompt("Enter a new technical category name");
+    if (new_cat_name != null) {
+      if (!tech_categories.includes(new_cat_name)) {
+        optionList_tech += "<option>"+new_cat_name+"</option>";
+         $("select#tech_form").html(optionList_tech);
+      }
+      $.post( "/modify", { mode: "1", word: new_cat_name} );
+      alert(new_cat_name+" category added to technical.")
+    }
+  }
+  function addNewBussCategory() {
+    new_cat_name = prompt("Enter a new business category name");
+    if (new_cat_name != null) {
+      if (!buss_categories.includes(new_cat_name)) {
+        optionList_buss += "<option>"+new_cat_name+"</option>";
+         $("select#buss_form").html(optionList_buss);
+      }
+      $.post( "/modify", { mode: "2", word: new_cat_name} );
+      alert(new_cat_name+" category added to business.")
+    }
+  }
 </script>
 
 <style>
