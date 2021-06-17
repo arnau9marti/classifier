@@ -245,8 +245,24 @@
 
   console.log("TOPICS")
   console.log(topics)
+  
+  //console.log("SUGGESTIONS")
+  //console.log(suggest)
+
+  highlights = {}
+
+  for (var key in suggest) {
+    if (suggest[key].length > 0) {
+      highlights[key] = suggest[key]
+    }
+  }
   console.log("SUGGESTIONS")
-  console.log(suggest)
+  console.log(highlights)
+
+  for (var key in highlights) {
+    terms.push(key);
+  }
+
 
 </script>
 
@@ -267,7 +283,7 @@
 <p id="p1"> {{text}}</p>
 
 <script type="text/javascript">
-    for (let i = 0; i<topics.length; i++) {
+    for (let i = 0; i<terms.length; i++) {
       var word = terms[i]
       if(word != undefined) word = word.replace(/_/g, ' ');
       var str = document.getElementById("p1").innerHTML; 
