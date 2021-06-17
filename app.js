@@ -154,12 +154,16 @@ app.post('/modify', (req, res) => {
     }
     // END
     if (mode == "5") {
+        buss_cat = req.body.buss_cat;
+        tech_cat = req.body.tech_cat;
         newtxt("python3 knowledge.py 2 "+buss_cat+"\n" + "python3 knowledge.py 2 "+tech_cat+"\n" + "python3 knowledge.py 8", "end_script.sh");
-        var exec = require('child_process').exec
 
-        var child = exec('sh end_script.sh',
+        var exec2 = require('child_process').exec
+
+        var child2 = exec2('sh end_script.sh',
         function (error, stdout, stderr) {
-            res.render('index');
+            console.log("REASONING MODULE UPDATED")
+            res.render('result', {text: description, res: res_name, out: lines});  
         });
     }
 

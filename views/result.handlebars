@@ -105,7 +105,7 @@
 
 		function draw() {
       var res_name = "{{res}}"
-      var cypher = "MATCH p= (n0:ns0__Topic)<-[r1:ns0__superTopicOf]-(n1:ns0__Topic)-[r2:HAS_TOPIC]->(n2:AI_RESOURCE)  WHERE id(n2) = "+ res_id +" RETURN p"
+      var cypher = "MATCH p= (n0:ns0__Topic)-[r1:ns0__superTopicOf]->(n1:ns0__Topic)-[r2:HAS_TOPIC]->(n2:AI_RESOURCE)  WHERE id(n2) = "+ res_id +" RETURN p"
       //console.log(cypher)
 			var config = {
 				container_id: "viz",
@@ -369,9 +369,10 @@
 <script>
   function end_function() {
     tech_cat = document.getElementById("tech_form").value;
-    buss_cat = document.getElementById("tech_form").value;
-    buss_cat.replace(" (suggested)", "");
-    tech_cat.replace(" (suggested)", "");
+    buss_cat = document.getElementById("buss_form").value;
+    
+    tech_cat = tech_cat.replace(" (suggested)", "");
+    buss_cat = buss_cat.replace(" (suggested)", "");
     
     $.post( "/modify", { mode: "5", tech_cat: tech_cat, buss_cat: buss_cat} );
     alert("AI Resource added.")

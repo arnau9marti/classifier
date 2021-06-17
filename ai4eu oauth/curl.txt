@@ -1,3 +1,0 @@
-curl -u arnau.marti.llobet@estudiantat.upc.edu:Tfg_2021 --cookie-jar ./ai4eucook -L https://www.ai4eu.eu/user/oauth2 -o output.html
-
-curl --cookie ./ai4eucook -L https://www.ai4eu.eu/resource/iot-data-analysis-model -o resource.html

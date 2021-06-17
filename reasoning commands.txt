@@ -44,7 +44,7 @@ YIELD graphName, nodeCount, relationshipCount, createMillis;
 
 
 
-                            FIRST SIMILARITY (SIMPLE)
+                            FIRST SIMILARITY
 MATCH (c:AI_RESOURCE {rdfs__label: "MACHINE LOGISTICS SYSTEM"}),
       path = (c)<-[:HAS_TOPIC]-(topic),
       otherPath = (topic)-[:HAS_TOPIC]->(res)

@@ -1,11 +1,10 @@
-import Levenshtein
 from neo4j import GraphDatabase
 import logging
 from neo4j.exceptions import ServiceUnavailable
 import sys
-from Levenshtein import distance as levenshtein_distance
 import pprint, pickle
 import operator
+import json
 
 term_list = []
 topic_list = []
@@ -149,7 +148,7 @@ class App:
     @staticmethod
     def _find_and_return_related_term(tx, broad_term, concrete_term):
         query = (
-            "MATCH path = (c:ns0__Topic)-[:ns0__relatedEquivalent]->(category)-[:ns0__superTopicOf*]->(:ns0__Topic {rdfs__label: $broad_term}) "
+            "MATCH path = (c:ns0__Topic)-[:ns0__relatedEquivalent]->(category)<-[:ns0__superTopicOf*]-(:ns0__Topic {rdfs__label: $broad_term}) "
             "WHERE c.rdfs__label contains $concrete_term "
             "RETURN c.rdfs__label as name"
         )
@@ -467,7 +466,7 @@ class App:
     def _create_graph_catalog_simple(tx):
         query = (
             "CALL gds.graph.create( "
-                "'graph_topics', "
+                "'graph', "
                 "'ns0__Topic', "
                 "['ns0__superTopicOf', 'ns0__preferentialEquivalent', 'ns0__relatedEquivalent', 'owl__sameAs'] "
             ")"
@@ -607,11 +606,7 @@ if __name__ == "__main__":
         try:
             app.create_graph_catalog()
         except:
-            pass
-        # try:
-        #     app.create_graph_catalog_simple()
-        # except:
-        #     pass
+            app.create_graph_catalog_simple()
 
         # PREPROCESS INFERENCE (SETUP)
         # app.find_centrality()
@@ -687,6 +682,7 @@ if __name__ == "__main__":
             simplest_queries = [x.rstrip("\n") for x in f.readlines()]
 
         simple_queries = simplest_queries
+        simple_queries = list(dict.fromkeys(simple_queries))
 
         # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
         first_sem_sug = dict()
@@ -840,6 +836,19 @@ if __name__ == "__main__":
         # COLLECT RESOURCE ID
         print(res_id)
         print("---------")
+
+        # CREATE TEXT FILE FOR INFERENCE TESTING PURPOSES
+        with open('first_sem_sug.txt', 'w') as convert_file:
+            convert_file.write(json.dumps(first_sem_sug))
+            
+        with open('second_sem_sug.txt', 'w') as convert_file:
+            convert_file.write(json.dumps(second_sem_sug))
+
+        with open('first_sim_sug.txt', 'w') as convert_file:
+            convert_file.write(json.dumps(first_sim_sug))
+
+        with open('second_sim_sug.txt', 'w') as convert_file:
+            convert_file.write(json.dumps(second_sim_sug))
         
     if (mode == "2"):
         # RELATE CATEGORY
@@ -942,11 +951,7 @@ if __name__ == "__main__":
         try:
             app.create_graph_catalog()
         except:
-            pass
-        # try:
-        #     app.create_graph_catalog_simple()
-        # except:
-        #     pass
+            app.create_graph_catalog_simple()
         
         # RECALCULATE GRAPH INFERENCE PREPROCESSING
         app.find_centrality()
