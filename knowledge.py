@@ -85,7 +85,7 @@ class App:
     def _find_and_return_topic_sim(tx, topic_name):
         query = (
             "MATCH (t:ns0__Topic) "
-            "WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $topic_name) > 0.92 "
+            "WHERE apoc.text.levenshteinSimilarity(t.rdfs__label, $topic_name) > 0.9 "
             "RETURN t.rdfs__label AS name"
         )
         result = tx.run(query, topic_name=topic_name)
@@ -179,7 +179,7 @@ class App:
         result = tx.run(query, res_id=res_id)
         return [row["name"] for row in result]
 
-    # SECOND SIMILARITY REASONING WIP
+    # SECOND SIMILARITY REASONING
     def find_parent_similarity(self, topic_name):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_outcat_path, topic_name)
@@ -779,7 +779,7 @@ if __name__ == "__main__":
             similars_par = app.find_parent_similarity(topic)
             similars_par = list(dict.fromkeys(similars_par))
             for similar in similars_par:
-                pred = app.check_similarity(query, similar) # CHECK IF NODE SIM
+                pred = app.check_similarity(topic, similar) # CHECK IF NODE SIM
                 if (pred>0.0):
                     second_sim_sug_term[topic].append(similar)
                     second_sim_sug_pred[topic].append(pred)
