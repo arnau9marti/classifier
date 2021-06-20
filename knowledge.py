@@ -44,6 +44,8 @@ class App:
             "MATCH (st:ns0__Topic) WHERE st.rdfs__label = $super_topic_name "
             "MERGE (t:ns0__Topic { rdfs__label: $topic_name }) "
             "MERGE (st)-[:ns0__superTopicOf]->(t) "
+            "MERGE (st)<-[:ns0__relatedEquivalent]-(t) "
+            "MERGE (st)-[:ns0__relatedEquivalent]->(t) "
             "RETURN t, st"
         )
         result = tx.run(query, topic_name=topic_name, super_topic_name=super_topic_name)
@@ -65,21 +67,11 @@ class App:
     # TOPIC SEARCH
     def find_topic(self, topic_name):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_topic_sim, topic_name)
+            result = session.read_transaction(self._find_and_return_topic_sim, topic_name.lower())
             for row in result:
                 topic_list.append(row)
                 term_list.append(topic_name)
                 # print("Found topic: {row}".format(row=row))
-
-    @staticmethod
-    def _find_and_return_topic_exact(tx, topic_name):
-        query = (
-            "MATCH (t:ns0__Topic) "
-            "WHERE t.rdfs__label = $topic_name "
-            "RETURN t.rdfs__label AS name"
-        )
-        result = tx.run(query, topic_name=topic_name)
-        return [row["name"] for row in result]
 
     @staticmethod
     def _find_and_return_topic_sim(tx, topic_name):
