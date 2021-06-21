@@ -952,6 +952,9 @@ if __name__ == "__main__":
             app.create_graph_catalog_simple()
         
         # RECALCULATE GRAPH INFERENCE PREPROCESSING
+        centrality = dict()
+        community = dict()
+        similarity = dict()
         app.find_centrality()
         app.find_community()
         app.find_jaccard_similarity()

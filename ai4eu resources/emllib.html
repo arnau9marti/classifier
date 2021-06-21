@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head>
+    <meta charset="utf-8" />
+<link rel="canonical" href="https://www.ai4europe.eu/research/ai-catalog/emllib" />
+<meta name="robots" content="index, follow" />
+<meta name="news_keywords" content="Optimisation, asdf asfa sfd" />
+<meta name="description" content="A Python library to embed ML models in declarative optimization models" />
+<meta name="Generator" content="Drupal 9 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/sites/default/files/favicon.png" type="image/png" />
+<link rel="revision" href="https://www.ai4europe.eu/research/ai-catalog/emllib" />
+
+    <title>EMLlib | AI4EU</title>
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_Un11fxT-EIAABSjPnPsqT4-jeVrmUmn1uk9hoyVi3ks.css" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_UgLj8iQwfjCa4sBEmNpXtM8iV84MNaKFo3HlzsZ4wLc.css" />
+
+    <script src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" defer crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.1/js/v4-shims.js" defer crossorigin="anonymous"></script>
+
+      <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/81","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"ajaxPageState":{"libraries":"content_designer\/ai_assets-layout-id-default,content_designer\/global,cookies\/cookiesjsr.cdn,cookies\/cookiesjsr.styles,cookies_instagram\/default,cookies_twitter_media\/default,core\/picturefill,fontawesome\/fontawesome.svg,fontawesome\/fontawesome.svg.shim,lazy_responsive_images\/image_styles,mathilda\/aos,mathilda\/global-scripts,mathilda\/global-styling,media\/filter.caption,moderated_content_bulk_publish\/moderated-content-bulk-publish,responsive_menu\/responsive_menu.config,responsive_menu\/responsive_menu.styling,statistics\/drupal.statistics,system\/base","theme":"mathilda","theme_token":null},"ajaxTrustedUrl":[],"responsive_menu":{"position":"right","theme":"theme-dark","pagedim":"none","modifyViewport":true,"use_bootstrap":false,"breakpoint":"(min-width: 960px)","drag":true},"statistics":{"data":{"nid":"81"},"url":"\/core\/modules\/statistics\/statistics.php"},"cookiesjsr":{"config":{"cookie":{"name":"cookiesjsr","expires":31536000000,"domain":"","sameSite":"Lax","secure":false},"library":{"libBasePath":"https:\/\/cdn.jsdelivr.net\/gh\/jfeltkamp\/cookiesjsr@1\/dist","libPath":"https:\/\/cdn.jsdelivr.net\/gh\/jfeltkamp\/cookiesjsr@1\/dist\/cookiesjsr.min.js","scrollLimit":0,"timeoutApp":0},"callback":[],"interface":{"openSettingsHash":"#editCookieSettings","showDenyAll":true,"settingsAsLink":true,"availableLangs":["en"],"defaultLang":"en","groupConsent":true,"cookieDocs":true}},"services":{"default":{"id":"default","services":[{"key":"base","type":"default","name":"Required cookies","uri":"\/cookie-info","needConsent":false}],"weight":1},"social":{"id":"social","services":[{"key":"instagram","type":"social","name":"Instagram","uri":"https:\/\/help.instagram.com\/196883487377501","needConsent":true},{"key":"twitter","type":"social","name":"Twitter media","uri":"https:\/\/help.twitter.com\/en\/rules-and-policies\/twitter-cookies","needConsent":true}],"weight":20},"video":{"id":"video","services":[{"key":"youtube","type":"video","name":"Youtube","uri":"","needConsent":true}],"weight":40}},"translation":{"langcode":"en","default_langcode":"en","bannerText":"We use a selection of our own and third-party cookies on the pages of this website: Essential cookies, which are required in order to use the website; functional cookies, which provide better easy of use when using the website; performance cookies, which we use to generate aggregated data on website use and statistics; and marketing cookies, which are used to display relevant content and advertising. If you choose \u0022ACCEPT ALL\u0022, you consent to the use of all cookies. You can accept and reject individual cookie types and  revoke your consent for the future at any time under \u0022Settings\u0022.","privacyPolicy":"","privacyUri":"","imprint":"Legal Notice","imprintUri":"\/legal-notice","cookieDocs":"","cookieDocsUri":"","denyAll":"Deny all","settings":"Settings","acceptAll":"Accept all","allowAll":"Accept all","cookieSettings":"Cookie settings","close":"Close","officialWebsite":"View official website","requiredCookies":"Required cookies","readMore":"Read more","allowed":"allowed","denied":"denied","alwaysActive":"Always active","settingsAllServices":"Settings for all services","saveSettings":"Save","credit":"","_core":{"default_config_hash":"X8VxTkyAAEb9q-EhYz30-BkJ9Ftv5-u1H7BXLXHQe1o"},"default":{"title":"What are Cookies?","details":"Cookies are small text files that are placed by your browser on your device in order to store certain information. Using the information that is stored and returned, a website can recognize that you have previously accessed and visited it using the browser on your end device. We use this information to arrange and display the website optimally in accordance with your preferences. Within this process, only the cookie itself is identified on your device. Personal data is only stored following your express consent or where this is absolutely necessary to enable use the service provided by us and accessed by you."},"social":{"title":"Social Plugins","details":"Comments managers facilitate the filing of comments and fight against spam."},"video":{"title":"Video","details":"Video sharing services help to add rich media on the site and increase its visibility."}}},"breakpoints":{"xs":"(min-width: 1px)","s":"(max-width: 735px)","m":"(min-width: 736px)","l":"(min-width: 980px)","xl":"(min-width: 1280px)","xxl":"(min-width: 1690px)","portrait":"(orientation:portrait)","landscape":"(orientation:landscape)"},"user":{"uid":0,"permissionsHash":"49809fae3a8eb7bda50c7f3be44a14ebb09b929b2e0e768b1a3ec7f20707e2ac"}}</script>
+<script src="/sites/default/files/js/js_0rAAi3qtEpQOfQhnfYPX0jKKnB_MUXod5Wbm2yj-sns.js"></script>
+<script src="/modules/contrib/cookies/js/cookiesjsr.conf.js?v=9.1.9"></script>
+<script src="https://cdn.jsdelivr.net/gh/jfeltkamp/cookiesjsr@1/dist/cookiesjsr-preloader.min.js" defer></script>
+<script src="/modules/custom/lazy_responsive_images/js/load_image_on_scroll.js?v=9.1.9" data-swup-reload-script></script>
+
+  </head>
+
+
+  
+  <body class="node-81 path-research-ai-catalog-emllib set-colors fs-1 pt0 mb0">
+
+        <a href="#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+
+
+
+
+<div class="layout-container cd-main d-f flx-d-clmn">
+  <header role="banner"  class="set-colors d-f bs p-stcky pos-t nan algn-c page-header fs-2 fs-1-m p0_5 pl1 pr1 m0 flx-ai-c w12">
+    <div class="header-inside maxw60-grd algn-c flx-ai-c d-f w12">
+          
+
+
+<div  class="set-colors d-f flx-o branding" >
+    <a href="/" rel="home">
+      <img src="/sites/default/files/logo_ai4eu.svg" alt="Home" />
+    </a>
+      
+</div><div class="main-menu">
+    <nav role="navigation" aria-labelledby="block-mathilda-main-menu-menu" id="block-mathilda-main-menu" class="settings-tray-editable" data-drupal-settingstray="editable">
+                      
+    <h2 class="visually-hidden" id="block-mathilda-main-menu-menu">Main navigation</h2>
+    
+
+              
+        <ul class="menu level-0">
+                  <li class="menu-item menu-item--expanded">
+
+                                  
+        
+
+        
+        <a href="/ai-community" data-drupal-link-system-path="node/54">AI Community</a>
+                            <ul class="menu">
+                    <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/ai-community/organizations" data-drupal-link-system-path="ai-community/organizations">Organizations</a>
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/ai-community/projects" data-drupal-link-system-path="ai-community/projects">Projects</a>
+        
+      </li>
+      </ul>
+    
+        
+      </li>
+                <li class="menu-item menu-item--expanded">
+
+                                  
+        
+
+        
+        <a href="/Business-Home" data-drupal-link-system-path="node/57">Business &amp; Industry</a>
+                            <ul class="menu">
+                    <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/business-and-industry" title="Industrial Verticals" data-drupal-link-system-path="node/23">Industrial Verticals</a>
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/Open-Calls" data-drupal-link-system-path="node/89">Open Calls</a>
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/business-and-industry/case-studies" data-drupal-link-system-path="business-and-industry/case-studies">Case Studies</a>
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/business-and-industry/open-calls" data-drupal-link-system-path="business-and-industry/open-calls">Open Calls</a>
+        
+      </li>
+      </ul>
+    
+        
+      </li>
+                <li class="menu-item menu-item--expanded menu-item--active-trail">
+
+                                  
+        
+
+        
+        <a href="/research" data-drupal-link-system-path="node/52">Research</a>
+                            <ul class="menu">
+                    <li class="menu-item menu-item--active-trail">
+
+                                  
+        
+
+        
+        <a href="/research/ai-catalog" data-drupal-link-system-path="research/ai-catalog">AI Catalog</a>
+        
+      </li>
+      </ul>
+    
+        
+      </li>
+                <li class="menu-item menu-item--expanded">
+
+                                  
+        
+
+        
+        <a href="/education" data-drupal-link-system-path="node/42">Education</a>
+                            <ul class="menu">
+                    <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/education/education-initiatives" title="Education Initiatives" data-drupal-link-system-path="node/44">Education Initiatives</a>
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/news-and-events/news?category=6#edit-category" title="Education related news" data-drupal-link-query="{&quot;category&quot;:&quot;6&quot;}" data-drupal-link-system-path="news-and-events/news">Education related news</a>
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/education/pan-european-course" title="Pan European Course" data-drupal-link-system-path="node/43">Pan European Course</a>
+        
+      </li>
+      </ul>
+    
+        
+      </li>
+                <li class="menu-item menu-item--expanded">
+
+                                  
+        
+
+        
+        <a href="/ethics" data-drupal-link-system-path="node/24">Ethics</a>
+                            <ul class="menu">
+                    <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/ethics/osai" data-drupal-link-system-path="node/25">The Observatory on Society and Artificial Intelligence</a>
+        
+      </li>
+      </ul>
+    
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/development" title="Services" data-drupal-link-system-path="node/16">Services</a>
+        
+      </li>
+                <li class="menu-item menu-item--expanded">
+
+                                  
+        
+
+        
+        <a href="/news-and-events" title="News &amp; Media" data-drupal-link-system-path="node/3">News &amp; Events</a>
+                            <ul class="menu">
+                    <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/news-and-events/news" data-drupal-link-system-path="news-and-events/news">News</a>
+        
+      </li>
+                <li class="menu-item menu-item--expanded">
+
+                                  
+        
+
+        
+        <a href="/news-and-events/events" data-drupal-link-system-path="news-and-events/events">Events</a>
+                            <ul class="menu">
+                    <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/news-and-events/events/past-events" data-drupal-link-system-path="news-and-events/events/past-events">Past Events</a>
+        
+      </li>
+      </ul>
+    
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+        
+
+        
+        <a href="/news-and-events/events/webcafes" data-drupal-link-system-path="node/32">Web Cafés</a>
+        
+      </li>
+      </ul>
+    
+        
+      </li>
+                <li class="menu-item">
+
+                                  
+                          
+
+                  
+        
+        <a href="/search" data-drupal-link-system-path="search">            <i class=" fas fa-search"></i><span class="visually-hidden">Search</span>
+          </a>
+        
+      </li>
+      </ul>
+    
+
+
+      </nav>
+</div>
+<nav role="navigation" aria-labelledby="block-mathilda-account-menu-menu" id="block-mathilda-account-menu" class="settings-tray-editable" data-drupal-settingstray="editable">
+            
+  <h2 class="visually-hidden" id="block-mathilda-account-menu-menu">User account menu</h2>
+  
+
+        
+        <ul class="menu">
+                  <li class="menu-item">
+
+        
+                                                    
+        
+        
+                  
+                <a href="/user/login" data-drupal-link-system-path="user/login">            <i class=" fas fa-sign-in-alt"></i><span class="visually-hidden">Log in</span>
+          </a>
+
+
+              </li>
+      </ul>
+    
+
+
+
+
+
+  </nav>
+
+
+
+
+
+<div id="block-responsivemenumobileicon" class="responsive-menu-toggle-wrapper responsive-menu-toggle settings-tray-editable responsive_menu_toggle fs" data-drupal-settingstray="editable">
+  
+    
+      <a id="toggle-icon" class="toggle responsive-menu-toggle-icon" title="Menu" href="#off-canvas">
+  <span class="icon"></span><span class="label">Menu</span>
+</a>
+  </div>
+
+
+    </div>
+  </header>
+
+  
+  
+
+  
+
+  
+
+  
+
+  <main role="main" class="transition-fade main-content" id="main-content">
+
+    <div class="layout-content">
+        <div>
+    <div data-drupal-messages-fallback class="hidden"></div>
+
+
+
+
+
+<div id="block-cookiesui" class="settings-tray-editable cookies_ui_block fs" data-drupal-settingstray="editable">
+  
+    
+        
+<div id="cookiesjsr"></div>
+
+  </div>
+
+
+
+<div id="block-mathilda-content" class="system_main_block">
+  
+    
+      <article data-history-node-id="81" role="article" class="ai_assets-layout-id-default" about="/research/ai-catalog/emllib">
+
+  
+    
+
+  
+  <div>
+    <div  data-cd-id="jnnzgixb_1609753977524" style="--hue-bg:var(--std-hue-bg-0); --sat-bg:var(--std-sat-bg-0); --lum-bg:var(--std-lum-bg-0); --alpha-bg:var(--std-alpha-bg-0); --hue-txt:var(--std-hue-txt-0); --sat-txt:var(--std-sat-txt-0); --lum-txt:var(--std-lum-txt-0); --alpha-txt:var(--std-alpha-txt-0);" class="pt0_5-s pr0_5-s pb1-s pl0_5-s pt1-m pr1-m pb1-m pl1-m pt2-l pr2-l pb1-l pl2-l pt3-xl pr3-xl pb1-xl pl3-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw60-grd algn-c set_gradient intro-section bs section">
+    <h1  class="d-n ta-l algn-l is-anchor section_title">
+        
+    </h1>
+            <div  style="nan" class="pt0-s pr0-s pb10-s pl0-s pt0-m pr0-m pb10-m pl0-m pt0-l pr0-l pb10-l pl0-l pt0-xl pr0-xl pb10-xl pl0-xl maxw40-grd mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl algn-c flx-d-clmn cd-layout d-f flx-wrp layout l--one-column clmn clmn-1 p-rltv">
+                                                      <nav role="navigation" class="breadcrumb ff-sec" aria-labelledby="system-breadcrumb">
+    <h2 id="system-breadcrumb" class="visually-hidden">Breadcrumb</h2>
+    <ol class="fs-2">
+          <li class="d-i">
+                  <a href="/">Home</a>
+                          <i class="fas fa-chevron-right fa-xs"></i>
+              </li>
+          <li class="d-i">
+                  <a href="/research">Research</a>
+                          <i class="fas fa-chevron-right fa-xs"></i>
+              </li>
+          <li class="d-i">
+                  <a href="/research/ai-catalog">AI Assets</a>
+                          <i class="fas fa-chevron-right fa-xs"></i>
+              </li>
+          <li class="d-i">
+                  EMLlib
+                      </li>
+        </ol>
+  </nav>
+
+  
+
+
+
+
+<div class="field_block-node-ai_assets-title fs">
+  
+    
+      <h2>EMLlib</h2>
+
+  </div>
+
+
+
+
+
+<div class="field_block-node-ai_assets-body fs">
+  
+    
+      
+            <div class="wysiwyg-txt"><p>A Python library to embed ML models in declarative optimization models</p>
+</div>
+      
+  </div>
+
+                                    </div>
+    </div>
+
+<div  data-cd-id="rorygxas_1614797134512" class="pt0-s pr0-s pb1-s pl0-s pt0-m pr0-m pb1-m pl0-m pt0-l pr0-l pb1-l pl0-l pt0-xl pr0-xl pb1-xl pl0-xl mt-10-s mr0-s mb0-s ml0-s mt-10-m mr0-m mb0-m ml0-m mt-10-l mr0-l mb0-l ml0-l mt-10-xl mr0-xl mb0-xl ml0-xl maxw40-grd algn-c flx-ai-n nan buttons-in-intro color-links btn-cntnr section">
+    <h1  class="d-n ta-l nan section_title">
+        
+    </h1>
+
+    <div class="layout cd_2_columns cd_2_columns--50-50 cd-layout d-f flx-wrp w12 l--two-column">
+        <div  class="pt0-s pr0-s pb0-s pl0-s pt0-m pr0-m pb0-m pl0-m pt0-l pr0-l pb0-l pl0-l pt0-xl pr0-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv clmn clmn-1 d-f flx-wrp">
+                                        
+
+
+
+
+<div class="field_block-node-ai_assets-field_asset_type fs">
+  
+    
+      
+
+  <a href="/taxonomy/term/78" class="badge inverted br d-ib bs">Executable</a>
+
+
+  </div>
+
+                                  </div>
+        <div  class="pt0-s pr0-s pb0-s pl0-s pt0-m pr0-m pb0-m pl0-m pt0-l pr0-l pb0-l pl0-l pt0-xl pr0-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv d-f  flx-jc-fe clmn clmn-2 d-f flx-wrp">
+                                        
+
+
+
+
+<div class="field_block-node-ai_assets-field_file fs">
+  
+    
+      
+            <div> 
+  
+
+
+
+  
+
+
+<a href="https://www.ai4europe.eu/sites/default/files/2021-05/emllib.zip" class="file file--mime-application-zip file--package-x-generic dl">    <i class=" fas fa-file-archive pr0_5"></i> emllib.zip
+  </a>
+
+
+
+</div>
+      
+  </div>
+
+
+
+
+
+<div class="field_block-node-ai_assets-field_links fs">
+  
+    
+      
+      <div>
+              <div><a href="https://emlopt.github.io/" rel="nofollow" target="_blank">https://emlopt.github.io/</a></div>
+          </div>
+  
+  </div>
+
+                                  </div>
+    </div>
+</div>
+<div  data-cd-id="flzejele_1614800729968" style="--hue-bg:var(--std-hue-bg-6); --sat-bg:var(--std-sat-bg-6); --lum-bg:var(--std-lum-bg-6); --alpha-bg:var(--std-alpha-bg-6); --hue-txt:var(--std-hue-txt-6); --sat-txt:var(--std-sat-txt-6); --lum-txt:var(--std-lum-txt-6); --alpha-txt:var(--std-alpha-txt-6);" class="pt0_5-s pr0_5-s pb0_5-s pl0_5-s pt1-m pr1-m pb1-m pl1-m pt1-l pr1-l pb1-l pl1-l pt1-xl pr1-xl pb1-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw40-grd algn-c flx-ai-n nan bs image-container section">
+    <h1  class="fs0 ta-l nan section_title">
+        
+    </h1>
+            <div  class="pt0-s pr0-s pb0-s pl0-s pt0-m pr0-m pb0-m pl0-m pt0-l pr0-l pb0-l pl0-l pt0-xl pr0-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv flx-d-clmn  cd-layout d-f flx-wrp layout l--one-column clmn clmn-1">
+                                              
+
+
+
+
+<div class="field_block-node-ai_assets-field_media fs">
+  
+    
+      
+            <div><article class="media w12 p-rltv">
+  
+          
+		<div class="l-r-i">
+			<picture>
+																					<source srcset="/sites/default/files/styles/16_9_100/public/2021-04/integrativeAI_1.jpeg?itok=Wfr40hGf 100w, /sites/default/files/styles/16_9_300/public/2021-04/integrativeAI_1.jpeg?itok=u047ZHrl 300w, /sites/default/files/styles/16_9_600/public/2021-04/integrativeAI_1.jpeg?itok=_uvDJp-G 600w, /sites/default/files/styles/16_9_1200/public/2021-04/integrativeAI_1.jpeg?itok=O7blCqOq 1200w, /sites/default/files/styles/16_9_1600/public/2021-04/integrativeAI_1.jpeg?itok=g7hL_Wpd 1600w, /sites/default/files/styles/16_9_2400/public/2021-04/integrativeAI_1.jpeg?itok=ONwtmArz 2400w" media="(min-width: 1px)" type="image/jpeg" sizes="1vw" data-originial-sizes="1vw"/>
+																	<img src="/sites/default/files/styles/16_9_100/public/2021-04/integrativeAI_1.jpeg?itok=Wfr40hGf" alt="Integrative AI cover" typeof="foaf:Image" />
+
+			</picture>
+		</div>
+
+
+
+
+  </article>
+</div>
+      
+  </div>
+
+                                    </div>
+    </div>
+
+<div  data-cd-id="aattdjvt_1614797512135" style="--hue-bg:var(--std-hue-bg-6); --sat-bg:var(--std-sat-bg-6); --lum-bg:var(--std-lum-bg-6); --alpha-bg:var(--std-alpha-bg-6); --hue-txt:var(--std-hue-txt-6); --sat-txt:var(--std-sat-txt-6); --lum-txt:var(--std-lum-txt-6); --alpha-txt:var(--std-alpha-txt-6);" class="pt1-s pr1-s pb1-s pl1-s pt1-m pr1-m pb1-m pl1-m pt1-l pr1-l pb1-l pl1-l pt1-xl pr1-xl pb1-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw40-grd algn-c flx-ai-n nan bs section-4 color-links section">
+    <h1  class="d-n ta-l nan section_title">
+        
+    </h1>
+    
+        <div class="layout cd_3_columns cd_3_columns--33-34-33 cd-layout d-f flx-wrp w12 l--three-column">
+            <div  class="pt1-s pr0-s pb1-s pl0-s pt0-m pr1-m pb0-m pl0-m pt0-l pr1-l pb0-l pl0-l pt0-xl pr1-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv clmn clmn-1">
+                <div class="p-rltv  w12">
+
+
+
+
+<div class="field_block-node-ai_assets-field_ref_organization fs">
+  
+    
+      
+  <div>
+    <div class="field-label">Developed by</div>
+              <div><a href="/ai-community/organizations/research-institution/alma-mater-studiorum-universita-di-bologna" hreflang="en">ALMA MATER STUDIORUM - Università di Bologna</a></div>
+          </div>
+
+  </div>
+</div>            </div>
+            <div  class="pt1-s pr0-s pb1-s pl0-s pt0-m pr1-m pb0-m pl1-m pt0-l pr1-l pb0-l pl1-l pt0-xl pr1-xl pb0-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv clmn clmn-2">
+                    <div class="p-rltv  w12"></div>            </div>
+            <div  class="pt1-s pr0-s pb1-s pl0-s pt0-m pr0-m pb0-m pl1-m pt0-l pr0-l pb0-l pl1-l pt0-xl pr0-xl pb0-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml-9_5-l mt0-xl mr0-xl mb0-xl ml-9_5-xl nan p-rltv clmn clmn-3">
+                    <div class="p-rltv  w12">
+
+
+
+
+<div class="field_block-node-ai_assets-field_license fs">
+  
+    
+      
+  <div>
+    <div class="field-label">License</div>
+              <div>Apache License 2.0 (Apache-2.0)</div>
+          </div>
+
+  </div>
+</div>            </div>
+        </div>
+    </div>
+
+<div  data-cd-id="eqjjdrcm_1614799248560" style="--hue-bg:var(--std-hue-bg-6); --sat-bg:var(--std-sat-bg-6); --lum-bg:var(--std-lum-bg-6); --alpha-bg:var(--std-alpha-bg-6); --hue-txt:var(--std-hue-txt-6); --sat-txt:var(--std-sat-txt-6); --lum-txt:var(--std-lum-txt-6); --alpha-txt:var(--std-alpha-txt-6);" class="pt1-s pr1-s pb1-s pl1-s pt1-m pr1-m pb1-m pl1-m pt1-l pr1-l pb1-l pl1-l pt1-xl pr1-xl pb1-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw40-grd algn-c flx-ai-n nan bs section-5 color-links section">
+    <h1  class="d-n ta-l nan section_title">
+        
+    </h1>
+
+    <div class="layout cd_2_columns cd_2_columns--50-50 cd-layout d-f flx-wrp w12 l--two-column">
+        <div  class="pt1-s pr0-s pb1-s pl0-s pt0-m pr1-m pb0-m pl0-m pt0-l pr1-l pb0-l pl0-l pt0-xl pr1-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv d-f flx-d-clmn clmn clmn-1 d-f flx-wrp">
+                                        
+
+
+
+
+<div class="field_block-node-ai_assets-body fs">
+  
+    
+      
+  <div class="wysiwyg-txt">
+    <div class="field-label">Main Characteristic</div>
+              <div><p>The EMLlib allows one to embed a pre-trained Machine Learning model, by encoding its structure using variables and constraints. This is useful when dealing with optimization problems over complex real world systems (e.g. in prescriptive analytics), for ML model verification, and for generating counterexamples.</p>
+</div>
+          </div>
+
+  </div>
+
+
+
+
+
+<div class="field_block-node-ai_assets-field_research_areas fs">
+  
+    
+      
+
+  <div class="field-label">Research areas</div>
+  <a href="/research/areas/integrative-ai" class="badge inverted br d-ib bs">Integrative AI</a>
+
+
+  </div>
+
+
+
+
+
+<div class="field_block-node-ai_assets-field_category fs">
+  
+    
+      
+
+  <div class="field-label">Technical Categories</div>
+  <a href="/research/constraints-and-satisfiability" class="badge inverted br d-ib bs">Constraints and satisfiability</a>
+
+  <a href="/research/machine-learning" class="badge inverted br d-ib bs">Machine learning</a>
+
+
+  </div>
+
+
+
+
+
+<div class="field_block-node-ai_assets-field_tags fs">
+  
+    
+      
+
+<div>
+      <div class="field-label">Keywords</div>
+  
+  <div class="tags fs ff-sec"><span class="tag set-colors">
+    <a href="/taxonomy/term/159" hreflang="en">Optimisation</a>
+  </span></div>
+</div>
+
+  </div>
+
+
+
+
+
+<div class="field_block-node-ai_assets-changed fs">
+  
+    
+      
+<div>
+      <div class="field-label" data-original-title="Changed">Last updated</div>
+  
+      <div>25.05.2021 - 15:00</div>
+  </div>
+
+  </div>
+
+                                  </div>
+        <div  class="pt1-s pr0-s pb1-s pl0-s pt0-m pr0-m pb0-m pl1-m pt0-l pr0-l pb0-l pl1-l pt0-xl pr0-xl pb0-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv d-f flx-d-clmn clmn clmn-2 d-f flx-wrp">
+                                        
+
+
+
+
+<div class="field_block-node-ai_assets-field_documentation fs">
+  
+    
+      
+  <div class="wysiwyg-txt">
+    <div class="field-label">Detailed Description</div>
+              <div><p>The library currently supports Feed-forward, fully-connected Neural Networks and Decision trees on the ML side, and the IBM Cplex Optimizer on the optimization side.</p>
+<p><strong>Execution environment</strong>: interpreted</p>
+<p><strong>Version of the environment</strong>: Python 3.X</p>
+<p> </p>
+<p> </p>
+</div>
+          </div>
+
+  </div>
+
+
+
+
+
+<div class="field_block-node-ai_assets-field_files fs">
+  
+    
+      
+
+<div>
+      <div class="field-label">Documents</div>
+    <ul>
+      <li class="fs"> 
+
+
+
+
+  
+
+
+<a href="https://www.ai4europe.eu/sites/default/files/2021-05/README.txt" class="file file--mime-text-plain file--text dl">    <i class=" fas fa-download pr0_5"></i> Read Me
+  </a>
+
+
+
+</li>
+    </ul>
+</div>
+
+  </div>
+
+                                  </div>
+    </div>
+</div>
+
+<div  data-cd-id="eqjjdrcm_1614799248561" style="--hue-bg:var(--std-hue-bg-6); --sat-bg:var(--std-sat-bg-6); --lum-bg:var(--std-lum-bg-6); --alpha-bg:var(--std-alpha-bg-6); --hue-txt:var(--std-hue-txt-6); --sat-txt:var(--std-sat-txt-6); --lum-txt:var(--std-lum-txt-6); --alpha-txt:var(--std-alpha-txt-6);" class="pt1-s pr1-s pb1-s pl1-s pt1-m pr1-m pb1-m pl1-m pt1-l pr1-l pb1-l pl1-l pt1-xl pr1-xl pb1-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw40-grd algn-c flx-ai-n nan bs section-6 section">
+    <h1  class="d-n ta-l nan section_title">
+        
+    </h1>
+
+    <div class="layout cd_2_columns cd_2_columns--50-50 cd-layout d-f flx-wrp w12 l--two-column">
+        <div  class="pt1-s pr0-s pb1-s pl0-s pt0-m pr1-m pb0-m pl0-m pt0-l pr1-l pb0-l pl0-l pt0-xl pr1-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv clmn clmn-1 d-f flx-wrp">
+                                        
+
+
+
+
+<div class="field_block-node-ai_assets-field_gdpr_requirements fs">
+  
+    
+      
+  <div>
+    <div class="field-label">GDPR Requirements</div>
+              <div>The tool is designed simply for model integration so that GDRP restrictions do not apply to the library itself. The models (ML &amp; optimization) being integrated should however respect GDPR individually.</div>
+          </div>
+
+  </div>
+
+                                  </div>
+        <div  class="pt1-s pr0-s pb1-s pl0-s pt0-m pr0-m pb0-m pl1-m pt0-l pr0-l pb0-l pl1-l pt0-xl pr0-xl pb0-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan p-rltv d-f flx-d-clmn clmn clmn-2 d-f flx-wrp">
+                                        
+
+
+
+
+<div class="field_block-node-ai_assets-field_trustworthy_ai fs">
+  
+    
+      
+  <div>
+    <div class="field-label">Trustworthy AI</div>
+              <div>The EMLlib can be used as an exact approach for the verification of ML systems and for the generation of adversarial examples, with the corresponding advantages (completeness) and disadvantages (limited scalability). As such, the library could be used by malicious actor to fool an existing ML system (with known structure and weights), or by a lawful actor to certificate or improve the robustness of an ML system.</div>
+          </div>
+
+  </div>
+
+                                  </div>
+    </div>
+</div>
+<div  data-cd-id="xytviyia_1618594693644" style="--hue-bg:var(--std-hue-bg-6); --sat-bg:var(--std-sat-bg-6); --lum-bg:var(--std-lum-bg-6); --alpha-bg:var(--std-alpha-bg-6); --hue-txt:var(--std-hue-txt-6); --sat-txt:var(--std-sat-txt-6); --lum-txt:var(--std-lum-txt-6); --alpha-txt:var(--std-alpha-txt-6);" class="pt0_5-s pr0_5-s pb0_5-s pl0_5-s pt1-m pr1-m pb1-m pl1-m pt1-l pr1-l pb1-l pl1-l pt1-xl pr1-xl pb1-xl pl1-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw40-grd algn-c flx-ai-n nan bs section">
+    <h1  class="d-n ta-l nan section_title">
+        
+    </h1>
+            <div  class="pt0-s pr0-s pb0-s pl0-s pt0-m pr0-m pb0-m pl0-m pt0-l pr0-l pb0-l pl0-l pt0-xl pr0-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw40-grd algn-c p-rltv color-links cd-layout d-f flx-wrp layout l--one-column clmn clmn-1">
+                                              
+
+
+
+
+<div class="show_relation_to_group_ShowRelatedGroupsAsLink fs">
+  
+    
+      
+  </div>
+
+                                    </div>
+    </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+  </div>
+
+    </div>
+    
+    
+  </main>
+
+      <footer role="contentinfo"  class="set-colors d-f bs p-rltv maxw60-grd algn-c page-footer fs-2 pl1 pr1 m0 w12 flx-ai-c">
+      <div class="footer-inside w12">
+          <div class="w12 d-f flx-wrp">
+    
+  <div data-cd-id="yefusydg_1611740224078" class="pt0-s pr0-s pb0-s pl0-s pt0-m pr0-m pb0-m pl0-m pt0-l pr0-l pb0-l pl0-l pt0-xl pr0-xl pb0-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl maxw10-grd algn-l flx-ai-n w3 w2-m  w1-l ">
+    
+        
+          
+          <div class="wysiwyg-txt"><div style="max-width:150px;">
+<article class="align-center media w12 p-rltv"><div>
+    <div class="field-label visually-hidden">Image</div>
+              <div><!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="ai4eu_outline_logo" class="ai4eu_outline_logo" x="0px" y="0px" viewbox="0 0 800 197" xml:space="preserve"><g><g><path class="color" d="M424.7,111.4h-11.1V96.8c0-14.1-11.5-25.5-25.5-25.5s-25.5,11.5-25.5,25.5v14.6h-13.2l38.7-71.3    c3.3-6,4-12.9,2-19.4c-1.9-6.5-6.3-11.9-12.3-15.2c-6-3.3-12.9-4-19.4-2c-6.5,1.9-11.9,6.3-15.2,12.3l-58.5,107.8    c-1.7,2.7-2.8,5.7-3.4,8.9c0,0.1,0,0.1,0,0.2c-0.1,0.4-0.1,0.8-0.2,1.2c-0.1,0.5-0.1,0.9-0.1,1.4c0,0.2,0,0.3,0,0.5    c0,0.1,0,0.1,0,0.2c0,0.4,0,0.7,0,1.1c0,0,0,0,0,0c0,0,0,0,0,0.1c0,0.4,0,0.8,0,1.2c0,0.1,0,0.1,0,0.2c0,0.4,0,0.7,0.1,1    c0,0.1,0,0.3,0,0.4c0,0.3,0.1,0.6,0.1,0.9c0,0.2,0.1,0.3,0.1,0.5c0,0.2,0.1,0.5,0.1,0.7c0,0.2,0.1,0.3,0.1,0.5    c0.1,0.2,0.1,0.5,0.2,0.7c0,0.1,0.1,0.3,0.1,0.4c0.1,0.2,0.1,0.4,0.2,0.7c0,0.1,0.1,0.2,0.1,0.2c0,0,0,0.1,0,0.1    c0.1,0.3,0.2,0.7,0.3,1c2.1,6,6.3,10.8,11.9,13.9c3.8,2.1,7.9,3.1,12.1,3.1c0.6,0,1.2,0,1.8-0.1h54.4v8.9    c0,14.1,11.5,25.5,25.5,25.5c0,0,0.1,0,0.1,0c6.8,0,13.1-2.6,17.9-7.4c4.8-4.8,7.5-11.2,7.5-18.1v-9h11.1    c14.1,0,25.5-11.5,25.5-25.5C450.3,122.9,438.8,111.4,424.7,111.4z M424.7,159.9h-11.1v-46h11.1c12.7,0,23,10.3,23,23    C447.7,149.6,437.4,159.9,424.7,159.9z M411.2,162.5v9c0,6.2-2.4,11.9-6.8,16.3c-4.3,4.3-10.1,6.7-16.2,6.7c-12.7,0-23-10.3-23-23    v-8.9v-1.3v-1.3v-46v-1.3v-1.3V96.8c0-12.7,10.3-23,23-23c12.7,0,23,10.3,23,23v14.6v1.3v1.3v46v1.3V162.5z M291.6,116.2    l53.9-99.3l0,0c2.9-5.4,7.8-9.3,13.7-11.1c2.2-0.6,4.4-1,6.6-1c3.8,0,7.5,0.9,10.9,2.8c5.4,2.9,9.3,7.8,11.1,13.7    c1.7,5.9,1.1,12.1-1.8,17.5l-39.4,72.5l-0.7,1.3l-0.7,1.3l-18.5,34c-2.9,5.4-7.8,9.3-13.7,11.1c-1.6,0.5-3.3,0.8-5,0.9    c-4.3,0.3-8.7-0.6-12.5-2.7c-5.3-2.9-9.2-7.6-11-13.4c0,0,0,0,0,0c0-0.1-0.1-0.2-0.1-0.2c-0.1-0.2-0.1-0.4-0.2-0.6    c0-0.1-0.1-0.2-0.1-0.3c-0.1-0.2-0.1-0.5-0.2-0.7c0-0.1-0.1-0.3-0.1-0.4c0-0.2-0.1-0.4-0.1-0.7c0-0.2-0.1-0.3-0.1-0.5    c0-0.2-0.1-0.5-0.1-0.7c0-0.1,0-0.3,0-0.4c0-0.3,0-0.6-0.1-0.9c0-0.1,0-0.2,0-0.3c0-0.3,0-0.6,0-0.9c0-0.1,0-0.2,0-0.2    c0-0.2,0-0.5,0-0.7c0-0.5,0-0.9,0.1-1.4c0-0.3,0.1-0.7,0.1-1c0-0.1,0-0.2,0-0.3c0.4-2.6,1.2-5.1,2.5-7.5l0.7-1.2l3.1-5.7    L291.6,116.2z M328.9,149.2l19.1-35.2h14.6v46h-45C322.4,157.6,326.3,153.9,328.9,149.2z"></path><path class="color" d="M603.1,55.5c14.1,0,25.5-11.5,25.5-25.5S617.2,4.5,603.1,4.5H488.4h-0.1c-14.1,0-25.5,11.5-25.5,25.5    c0,0.6,0,1.1,0.1,1.7v65.6c0,0.6-0.1,1.1-0.1,1.7s0,1.1,0.1,1.7v69.1c0,0.6-0.1,1.1-0.1,1.7c0,14.1,11.5,25.5,25.5,25.5h114.7    c14.1,0,25.5-11.5,25.5-25.5s-11.5-25.5-25.5-25.5h-89.1v-21.4h75.8c14.1,0,25.5-11.5,25.5-25.5s-11.5-25.5-25.5-25.5h-75.8V55.5    H603.1z M511.4,55.5v17.9v1.3v1.3v46v1.3v1.3v21.4v1.3v1.3v23c0,6.2-2.4,11.9-6.8,16.3c-4.3,4.3-10,6.7-16.1,6.7c0,0-0.1,0-0.1,0    c-12.7,0-23-10.3-23-23v-1.6v-6.3v-3.3v-50.2v-3.3v-6.3v-3.2v-6.3v-3.3V41.2v-3.3v-6.3V30c0-12.7,10.3-23,23-23    c12.7,0,23,10.3,23,23v23v1.3V55.5z M513.9,122v-46h75.8c12.7,0,23,10.3,23,23s-10.3,23-23,23H513.9z M626.1,171.4    c0,12.7-10.3,23-23,23H499.4c2.6-1.2,4.9-2.9,7-4.9c4.8-4.8,7.5-11.2,7.5-18.1v-23h89.1C615.8,148.4,626.1,158.8,626.1,171.4z     M626.1,30c0,12.7-10.3,23-23,23h-89.1V30c0-10.1-5.9-18.9-14.5-23h103.6C615.8,7,626.1,17.3,626.1,30z"></path><path class="color" d="M242.7,3.8c-14.1,0-25.5,11.5-25.5,25.5v142.1c0,14.1,11.5,25.5,25.5,25.5c14.1,0,25.5-11.5,25.5-25.5V29.4    C268.3,15.3,256.8,3.8,242.7,3.8z M265.7,171.4c0,12.7-10.3,23-23,23c-12.7,0-23-10.3-23-23V29.4c0-12.7,10.3-23,23-23    c12.7,0,23,10.3,23,23V171.4z"></path><path class="color" d="M774.5,0.5C760.4,0.5,749,12,749,26v87c-0.2,1.2-0.3,2.3-0.3,3.5c0,3.9-0.7,7.6-2.2,11    c-2,4.9-5.7,9.3-10.3,12.5c-4.6,3.1-10.1,4.8-15.8,4.8c-3.9,0-7.6-0.7-11-2.2c-5-2.1-9.3-5.7-12.5-10.3c-3.2-4.7-4.8-10-4.8-15.8    c0,0,0-0.1,0-0.1c0,0,0-0.1,0-0.1V25.5c0-14.1-11.5-25.5-25.5-25.5c-14.1,0-25.5,11.5-25.5,25.5V115c0,0.6-0.1,1.1-0.1,1.7    c0,10.5,2.2,21.2,6.3,30.9c6,14.2,16,26.2,28.7,34.9c13.1,8.9,28.3,13.5,44.1,13.5c0.1,0,0.2,0,0.3,0c10.5,0,21.2-2.2,30.9-6.3    c14.2-6,26.2-16,34.9-28.7c8.1-11.9,12.7-25.6,13.4-39.9c0.2-1.4,0.4-2.9,0.4-4.3V26C800,12,788.5,0.5,774.5,0.5z M796,130.5    c-1.9,10.4-5.9,20.3-11.9,29.1c-8.4,12.4-20,22-33.8,27.8c-9.4,4-19.7,6.1-29.9,6.1c-0.1,0-0.2,0-0.3,0c-15.2,0-30-4.5-42.7-13.1    c-12.4-8.4-22-20-27.8-33.8c-2.3-5.6-4-11.5-5-17.5c-0.2-1.3-0.4-2.7-0.6-4c-0.3-2.8-0.5-5.7-0.5-8.5c0-0.5,0-1.1,0.1-1.6    c0.8-11.9,10.8-21.4,23-21.5c12.6,0,22.9,10.3,23,22.9c0,0,0,0.1,0,0.1c0,2,0.2,3.9,0.5,5.7c0.2,0.8,0.3,1.7,0.6,2.5    c0.9,3.2,2.3,6.2,4.2,9c3.4,5,8.1,8.9,13.6,11.2c3.8,1.6,7.8,2.4,12,2.4c6.2,0,12.1-1.8,17.2-5.2c5-3.4,9-8.2,11.2-13.6    c0.6-1.3,1-2.7,1.4-4c0.2-0.9,0.4-1.8,0.6-2.7c0.3-1.7,0.5-3.5,0.5-5.3c0-1.2,0.1-2.3,0.3-3.4c1.6-11.1,11.2-19.6,22.8-19.6    c12.7,0,23,10.3,23,23c0,1.4,0,2.8-0.1,4.2c-0.1,2-0.3,4-0.5,5.9C796.4,128,796.2,129.3,796,130.5z M643.6,25.5    c0-12.7,10.3-23,23-23c12.7,0,23,10.3,23,23v80c-4.1-8.6-12.9-14.5-23-14.5c-10.1,0.1-18.8,6-23,14.5V25.5z M751.5,26    c0-12.7,10.3-23,23-23s23,10.3,23,23v80.1c-4-8.9-12.9-15-23.3-15c-9.9,0-18.5,5.7-22.8,14V26z"></path><path class="color" d="M186,128.8c-0.3-0.7-0.7-1.4-1.1-2L126.3,18.7c-2.2-5.6-6.2-10.2-11.6-13.1c-3.1-1.7-6.5-2.7-9.9-3    c-0.2,0-0.4,0-0.6-0.1c-0.1,0-0.2,0-0.2,0c-0.4,0-0.8,0-1.2,0C98.4,2.3,94,3.4,90.1,5.5c-5.4,2.9-9.3,7.5-11.5,12.8L3.1,157.5    c-3.3,6-4,12.9-2,19.4c1.9,6.5,6.3,11.9,12.3,15.2c3.8,2.1,7.9,3.1,12.1,3.1c2.4,0,4.9-0.4,7.3-1.1c6.5-1.9,11.9-6.3,15.2-12.3    l10.5-19.4h87.7l10.6,19.5c4.6,8.5,13.4,13.3,22.5,13.3c4.1,0,8.3-1,12.1-3.1c6-3.3,10.3-8.7,12.3-15.2c1.9-6.5,1.2-13.4-2-19.4    L186,128.8z M201.2,176.3c-1.7,5.9-5.7,10.7-11.1,13.7c-11.1,6.1-25.1,1.9-31.2-9.2l-9.9-18.3l-0.7-1.3l-0.7-1.3l-25-46l-0.7-1.3    l-0.7-1.3l-17.5-32.3l-0.7-1.3l-0.7-1.3L82,38.9l0,0c-3.4-6.3-3.5-13.4-1.1-19.6c1.9-4.8,5.5-9,10.4-11.7c3.9-2.1,8.2-3,12.5-2.7    c0,0,0.1,0,0.1,0c0.2,0,0.5,0,0.7,0.1c1.4,0.1,2.8,0.4,4.2,0.8c5.9,1.7,10.7,5.7,13.7,11.1l1.5,2.8l2.5,4.7l1.5,2.8l49.9,92    l1.7,3.1l3.7,6.7l0.1,0.2l3.2,5.8l1.4,2.5l11.5,21.2C202.3,164.2,203,170.4,201.2,176.3z M59.9,159.9l25-46h35l25,46H59.9z     M55.6,162.5l-9.9,18.2c-2.9,5.4-7.8,9.3-13.7,11.1c-5.9,1.7-12.1,1.1-17.5-1.8c-5.4-2.9-9.3-7.8-11.1-13.7    c-1.7-5.9-1.1-12.1,1.8-17.5l12.8-23.6l1.7-3.1l6.7-12.4l1.7-3.1l48.6-89.5c-0.2,4.4,0.8,8.9,3,13.1l21.1,38.9l-17.6,32.3    l-0.7,1.3l-0.7,1.3l-25,46l-0.7,1.3L55.6,162.5z M102.4,81.7l16.1,29.7H86.2L102.4,81.7z"></path></g></g></svg></div>
+          </div>
+
+  </article></div>
+</div>
+    
+
+    
+</div>
+<nav role="navigation" aria-labelledby="block-footer-menu" id="block-footer" class="settings-tray-editable" data-drupal-settingstray="editable">
+            
+  <h2 class="visually-hidden" id="block-footer-menu">Footer</h2>
+  
+
+        
+        <ul class="menu d-f flx-wrp flx-jc-fe">
+                  <li class="menu-item p0_5">
+        <a href="/about-ai4eu" data-drupal-link-system-path="node/15">About AI4EU</a>
+              </li>
+                <li class="menu-item p0_5">
+        <a href="/legal-notice" data-drupal-link-system-path="node/18">Legal notice</a>
+              </li>
+                <li class="menu-item p0_5">
+        <a href="https://www.facebook.com/ai4eu">ai4eu in facebook</a>
+              </li>
+                <li class="menu-item p0_5">
+        <a href="https://www.linkedin.com/company/ai4eu/">ai4eu on linkedin</a>
+              </li>
+                <li class="menu-item p0_5">
+        <a href="https://twitter.com/ai4eu">ai4eu on twitter</a>
+              </li>
+                <li class="menu-item p0_5">
+        <a href="https://www.youtube.com/channel/UC0TvS1wLb1Qja9k-dle0cdQ">ai4eu on youtube</a>
+              </li>
+      </ul>
+    
+
+
+
+
+  </nav>
+
+  <div data-cd-id="zfcwkooa_1611651765227" class="pt1-s pr0-s pb1-s pl0-s pt1-m pr0-m pb1-m pl0-m pt1-l pr0-l pb1-l pl0-l pt1-xl pr0-xl pb1-xl pl0-xl mt0-s mr0-s mb0-s ml0-s mt0-m mr0-m mb0-m ml0-m mt0-l mr0-l mb0-l ml0-l mt0-xl mr0-xl mb0-xl ml0-xl nan algn-l flx-ai-n">
+    
+          <h2 class="d-n ta-l algn-l title">EU Footer</h2>
+        
+          
+          <div class="wysiwyg-txt"><div class="d-f">
+<div class="w3 w2-m w1-l pr1" style="max-width:200px;">
+<article class="media w12 p-rltv"><div>
+    <div class="field-label visually-hidden">Image</div>
+              <div><!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Ebene_1" x="0px" y="0px" viewbox="0 0 810 540" style="enable-background:new 0 0 810 540;" xml:space="preserve"><style type="text/css">
+<!--/*--><![CDATA[/* ><!--*/
+
+	.st0{fill:#003399;}
+	.st1{fill:#FFCC00;}
+
+/*--><!]]>*/
+</style><desc>European flag</desc><rect y="0" class="st0" width="810" height="540"></rect><g><polygon class="st1" points="405,60 398.3,80.7 376.5,80.7 394.1,93.5 387.4,114.3 405,101.5 422.6,114.3 415.9,93.5 433.5,80.7    411.7,80.7  "></polygon><polygon class="st1" points="411.7,440.7 405,420 398.3,440.7 376.5,440.7 394.1,453.5 387.4,474.3 405,461.5 422.6,474.3    415.9,453.5 433.5,440.7  "></polygon><polygon class="st1" points="225,281.5 242.6,294.3 235.9,273.5 253.5,260.7 231.7,260.7 225,240 218.3,260.7 196.5,260.7    214.1,273.5 207.4,294.3  "></polygon><polygon class="st1" points="315,84.1 308.3,104.8 286.5,104.8 304.1,117.7 297.4,138.4 315,125.6 332.6,138.4 325.9,117.7    343.5,104.8 321.7,104.8  "></polygon><polygon class="st1" points="249.1,150 242.4,170.7 220.6,170.7 238.2,183.5 231.5,204.3 249.1,191.5 266.7,204.3 260,183.5    277.6,170.7 255.9,170.7  "></polygon><polygon class="st1" points="255.9,350.7 249.1,330 242.4,350.7 220.6,350.7 238.2,363.5 231.5,384.3 249.1,371.5 266.7,384.3    260,363.5 277.6,350.7  "></polygon><polygon class="st1" points="321.7,416.6 315,395.9 308.3,416.6 286.5,416.6 304.1,429.4 297.4,450.2 315,437.3 332.6,450.2    325.9,429.4 343.5,416.6  "></polygon><polygon class="st1" points="613.5,260.7 591.7,260.7 585,240 578.3,260.7 556.5,260.7 574.1,273.5 567.4,294.3 585,281.5    602.6,294.3 595.9,273.5  "></polygon><polygon class="st1" points="495,84.1 488.3,104.8 466.5,104.8 484.1,117.7 477.4,138.4 495,125.6 512.6,138.4 505.9,117.7    523.5,104.8 501.7,104.8  "></polygon><polygon class="st1" points="550,183.5 543.3,204.3 560.9,191.5 578.5,204.3 571.8,183.5 589.4,170.7 567.6,170.7 560.9,150    554.1,170.7 532.4,170.7  "></polygon><polygon class="st1" points="567.6,350.7 560.9,330 554.1,350.7 532.4,350.7 550,363.5 543.3,384.3 560.9,371.5 578.5,384.3    571.8,363.5 589.4,350.7  "></polygon><polygon class="st1" points="501.7,416.6 495,395.9 488.3,416.6 466.5,416.6 484.1,429.4 477.4,450.2 495,437.3 512.6,450.2    505.9,429.4 523.5,416.6  "></polygon></g></svg></div>
+          </div>
+
+  </article></div>
+<p class="w9 w10-m w11-l d-b fs-4 fs-4-m fs-2-l ">This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement 825619.</p>
+</div>
+</div>
+    
+
+    
+</div>
+
+  </div>
+
+      </div>
+    </footer>
+  
+</div>
+  </div>
+
+    <div class="off-canvas-wrapper"><div id="off-canvas">
+              <ul>
+              <li class="menu-item--bd4ebbe1-1b0e-4ced-a4f4-da86371593ea">
+        <a href="/ai-community" data-drupal-link-system-path="node/54">AI Community</a>
+                                <ul>
+              <li class="menu-item--viewsorganizationspage-1">
+        <a href="/ai-community/organizations" data-drupal-link-system-path="ai-community/organizations">Organizations</a>
+              </li>
+          <li class="menu-item--viewsprojectspage-1">
+        <a href="/ai-community/projects" data-drupal-link-system-path="ai-community/projects">Projects</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="menu-item--b987d23b-aba7-4cff-8a9b-1bad8374da06">
+        <a href="/Business-Home" data-drupal-link-system-path="node/57">Business &amp; Industry</a>
+                                <ul>
+              <li class="menu-item--_b8d38b8-efdd-4003-b3f4-bf1e9cd3462b">
+        <a href="/business-and-industry" title="Industrial Verticals" data-drupal-link-system-path="node/23">Industrial Verticals</a>
+              </li>
+          <li class="menu-item--a644283a-c903-497e-b0c9-16e7eb226a21">
+        <a href="/Open-Calls" data-drupal-link-system-path="node/89">Open Calls</a>
+              </li>
+          <li class="menu-item--viewscase-studiespage-1">
+        <a href="/business-and-industry/case-studies" data-drupal-link-system-path="business-and-industry/case-studies">Case Studies</a>
+              </li>
+          <li class="menu-item--viewsopen-callspage-1">
+        <a href="/business-and-industry/open-calls" data-drupal-link-system-path="business-and-industry/open-calls">Open Calls</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="menu-item--dce85a64-464f-435a-b5d4-d6b1203067ab">
+        <a href="/research" data-drupal-link-system-path="node/52">Research</a>
+                                <ul>
+              <li class="menu-item--viewsai-assetspage-1">
+        <a href="/research/ai-catalog" data-drupal-link-system-path="research/ai-catalog">AI Catalog</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="menu-item--d6a71faf-52ee-40a6-896e-e5ebc2c13314">
+        <a href="/education" data-drupal-link-system-path="node/42">Education</a>
+                                <ul>
+              <li class="menu-item--c9b5785b-3a38-41a5-ae5b-c3c00ee8e957">
+        <a href="/education/education-initiatives" title="Education Initiatives" data-drupal-link-system-path="node/44">Education Initiatives</a>
+              </li>
+          <li class="menu-item--_ee11c6c-8bce-4394-aa9e-5db2df98a6c7">
+        <a href="/news-and-events/news?category=6#edit-category" title="Education related news" data-drupal-link-query="{&quot;category&quot;:&quot;6&quot;}" data-drupal-link-system-path="news-and-events/news">Education related news</a>
+              </li>
+          <li class="menu-item--_30f2a94-a330-4140-b670-7afc72420eb2">
+        <a href="/education/pan-european-course" title="Pan European Course" data-drupal-link-system-path="node/43">Pan European Course</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="menu-item--cc818745-8233-47b9-9c7d-a5093795cd9f">
+        <a href="/ethics" data-drupal-link-system-path="node/24">Ethics</a>
+                                <ul>
+              <li class="menu-item--_c562799-9094-4b93-a858-aebac94200f9">
+        <a href="/ethics/osai" data-drupal-link-system-path="node/25">The Observatory on Society and Artificial Intelligence</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="menu-item--_9e4d6e2-f3d0-4bbc-823b-f4ac1f746453">
+        <a href="/development" title="Services" data-drupal-link-system-path="node/16">Services</a>
+              </li>
+          <li class="menu-item--e70cef5d-4d9e-45e8-b01a-238dcea2a319">
+        <a href="/news-and-events" title="News &amp; Media" data-drupal-link-system-path="node/3">News &amp; Events</a>
+                                <ul>
+              <li class="menu-item--viewsnewspage">
+        <a href="/news-and-events/news" data-drupal-link-system-path="news-and-events/news">News</a>
+              </li>
+          <li class="menu-item--viewseventspage-1">
+        <a href="/news-and-events/events" data-drupal-link-system-path="news-and-events/events">Events</a>
+                                <ul>
+              <li class="menu-item--viewseventspast-events-page">
+        <a href="/news-and-events/events/past-events" data-drupal-link-system-path="news-and-events/events/past-events">Past Events</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="menu-item--a94d3d62-9bd6-4e7c-8ebe-6ea60987cf6d">
+        <a href="/news-and-events/events/webcafes" data-drupal-link-system-path="node/32">Web Cafés</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="menu-item--view">
+        <a href="/search" data-drupal-link-system-path="search">Search</a>
+              </li>
+        </ul>
+  
+
+</div></div>
+    <script>
+
+
+    </script>
+
+
+  </body>
+</html>
