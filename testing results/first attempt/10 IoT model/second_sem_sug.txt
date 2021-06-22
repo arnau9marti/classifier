@@ -1,1 +1,0 @@
-{"logistic": ["logistics industry", "logistics industry", "logistics enterprise"], "sensor": ["sensor readings", "sensor readings", "sensor readings", "sensor data", "sensor data", "sensor data", "sensor device", "sensor device", "sensor device", "sensor systems", "sensor systems", "sensor systems"]}
