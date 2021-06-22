@@ -1,0 +1,1 @@
+{"geospatial": ["open geospatial consortium (ogc)", "open geospatial consortium (ogc)", "open geospatial consortium", "open geospatial consortium"]}

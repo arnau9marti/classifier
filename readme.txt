@@ -1,3 +1,8 @@
+Files:
+classifier.cc - NLP Processing
+knowledge.py - Graph Driver
+app.js - Visualization Backend
+
 Requirements:
 neo4j desktop or cli
 nodejs

@@ -1,2 +1,2 @@
 ./classifier
-python3 knowledge.py 1 SAMPLE NAME
+python3 knowledge.py 1 IoTmodel
