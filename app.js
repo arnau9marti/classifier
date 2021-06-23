@@ -28,14 +28,8 @@ function classify(res) {
 
         lines = eol.split(stdout)
         
-        // lines.forEach(function(line) {
-        //     console.log(line)
-        // })
-        
         res.render('result', {text: description, res: res_name, out: lines});    
     });
-    //child.stdin.setEncoding('utf-8');
-    //child.stdin.write(mode+"\n");
 }
 
 function explore(res) {
@@ -110,7 +104,6 @@ app.post('/result', (req, res) => {
     if(mode == "0") res_name = req.body.lname;
     if(mode == "1") res_name = "SAMPLE NAME";
     
-    //newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
     newtxt("./classifier\npython3 knowledge.py 1 "+res_name, "script.sh");
 
     if(mode == "0") {
