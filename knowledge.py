@@ -676,7 +676,7 @@ if __name__ == "__main__":
         simple_queries = simplest_queries
         simple_queries = list(dict.fromkeys(simple_queries))
 
-        # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY AND COMMUNITY
+        # FRIST SEMANTIC REASONING (WITH MATCHES) -> CENTRALITY
         first_sem_sug = dict()
         first_sem_sug_term = dict()
         first_sem_sug_pred = dict()
@@ -688,7 +688,6 @@ if __name__ == "__main__":
             first_sem_sug_pred[topic] = []
             rels = app.find_relationship(topic)
             for rel in rels:
-                # if (app.check_centrality(rel) > 1.0 or (app.check_community(rel, topic) == 1 and app.find_link_prediction(rel,topic) > 5.0)):
                 pred = app.check_centrality(rel)
                 if (pred > 0.0):
                     first_sem_sug_term[topic].append(rel)
@@ -706,7 +705,7 @@ if __name__ == "__main__":
 
         app.inverse_super()
 
-        # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY???
+        # SECOND SEMANTIC REASONING (WITH INPUT AND SIMPLE_QUERIES) -> COMMUNITY
         # rels_term = app.find_related_term("internet", "streaming")
         # print(app.check_community("internet", "streaming"))
         # print(rels_term)
