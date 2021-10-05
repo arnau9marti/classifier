@@ -207,8 +207,13 @@ void insert_dep(xml_object_range<xml_node_iterator> childs){
         sibwords.push_back(word.value());
     }
 
-    xml_node parent = childs.begin()->parent();
-    string parent_sibword = parent.next_sibling().last_attribute().value();  
+    xml_node parent = xml_node();
+    string parent_sibword = {};
+
+    if (childs.begin()!=childs.end()) {
+        parent = childs.begin()->parent();
+        parent_sibword = parent.next_sibling().last_attribute().value();
+    }
 
     for (xml_node_iterator it3 = childs.begin(); it3 != childs.end(); ++it3) {
         //cout << "Nth Dependency Node: ";        
