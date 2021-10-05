@@ -22,7 +22,6 @@ express-handlebars
 handlebars
 eol
 jquery
-neovis
 body-parser
 
 neo4j plugins:
