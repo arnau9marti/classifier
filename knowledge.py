@@ -516,8 +516,11 @@ class App:
     def return_topics(self):
         with self.driver.session() as session:
             result = session.read_transaction(self._return_topics)
+            all_topics = []
             for name in result:
-                print("{name}".format(name=name))
+                #print("{name}".format(name=name))
+                all_topics.append(name)
+            return all_topics
 
     @staticmethod
     def _return_topics(tx):
@@ -816,8 +819,10 @@ if __name__ == "__main__":
         print("---------")
 
         # COLLECT ALL TOPICS
-        app.return_topics()
-        print("---------")
+        all_topics = app.return_topics()
+        with open('data.json', 'w') as outfile:
+            json.dump(all_topics, outfile)
+        #print("---------")
 
         # COLLECT ALL TERMS FOR TEXT MATCHED UI
         term_list = list(dict.fromkeys(term_list))
