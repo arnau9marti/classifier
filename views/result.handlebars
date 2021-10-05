@@ -154,8 +154,7 @@
 
 </head>
 
-{{!-- <body onload="draw()">
- --}}
+<body onload="draw()">
 
 <style>
 .center {
@@ -167,12 +166,10 @@
 </style>
 
 <script type = "text/javascript">
-
   var req = new XMLHttpRequest();
   req.open('GET', 'data.json', false);
   req.send();
   var all_topics = JSON.parse(req.responseText);
-  console.log(all_topics)
 
 </script>
 
@@ -285,8 +282,8 @@
     terms.push(key);
   }
 
-  console.log("JSON")
-  console.log(all_topics)
+  //console.log("JSON")
+  //console.log(all_topics)
 
 </script>
 
