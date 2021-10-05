@@ -154,8 +154,8 @@
 
 </head>
 
-
-<body onload="draw()">
+{{!-- <body onload="draw()">
+ --}}
 
 <style>
 .center {
@@ -168,6 +168,16 @@
 
 <script type = "text/javascript">
 
+  var req = new XMLHttpRequest();
+  req.open('GET', 'data.json', false);
+  req.send();
+  var all_topics = JSON.parse(req.responseText);
+  console.log(all_topics)
+
+</script>
+
+
+<script type = "text/javascript">
   var lines = "{{out}}"
   var out = lines.split(',')
   let nbut = 0;
@@ -177,11 +187,16 @@
   var tech_categories = [];
   var buss_categories_sug = [];
   var tech_categories_sug = [];
-  var all_topics = [];
   var suggest = {};
   var terms = []
 
   let i = 0;
+
+  //console.log("LINES")
+  //console.log(lines)
+
+  //console.log("OUT")
+  //console.log(out)
 
   while (i<out.length && out[i]!="---------") {
     topics.push(out[i]);
@@ -225,11 +240,13 @@
   }
   ++i;
 
+  /*
   while (i<out.length && out[i]!="---------") {
     all_topics.push(out[i]);
     ++i;
   }
   ++i;
+  */
 
   while (i<out.length && out[i]!="---------") {
     terms.push(out[i]);
@@ -267,6 +284,9 @@
   for (var key in highlights) {
     terms.push(key);
   }
+
+  console.log("JSON")
+  console.log(all_topics)
 
 </script>
 
