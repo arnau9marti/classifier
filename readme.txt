@@ -29,6 +29,10 @@ APOC
 Neosemnatics
 Graph Data Science Library
 
+Compiling and set up:
+1. Change path inside classifier.cc (line 408) for your FreeLing analyze location
+2. Compile with the included makefile
+
 Classifier first initialization:
 1. Create a Neo4j database and start it up
 2. Execute the following cypher commands on the database (replace paths with the correct ones)
