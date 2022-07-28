@@ -1,3 +1,4 @@
+The main goal of this thesis is to design and implement a Knowledge-Based System capable of learning through continuous interaction with the user. The central component of the system is a Knowledge Graph that manages system knowledge at all times. The Knowledge Graph is initialized with the analysis of the documents in the domain, and then the system learns new concepts and relationships through interaction with the user, expanding the representation with new experiences.
 Files:
 classifier.cc - NLP Processing
 knowledge.py - Graph Driver
